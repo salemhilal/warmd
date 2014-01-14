@@ -1,0 +1,95 @@
+***************
+*** 54,60 ****
+  
+    # make a pretty-print hour
+    my $dispHour = ($hour%12 ? $hour%12 : 12) . ($hour < 12 ? 'AM' : 'PM');
+-   print "  <tr align=\"center\">\n    <th>$dispHour</th>\n";
+  
+    foreach $day (0..6) {
+      my $slot = $schedule->[$day]->[$hour];
+--- 55,61 ----
+  
+    # make a pretty-print hour
+    my $dispHour = ($hour%12 ? $hour%12 : 12) . ($hour < 12 ? 'AM' : 'PM');
++   print "  <tr>\n    <th class=\"hour\">$dispHour</th>\n";
+  
+    foreach $day (0..6) {
+      my $slot = $schedule->[$day]->[$hour];
+***************
+*** 95,107 ****
+  
+  	$icon = "<a href=\"entry.cgi?session=$$params{session}&amp;tbl=Program&amp;StartTime=$$slot{StartTime}&amp;EndTime=$$slot{EndTime}\">". &img('pencil') . '</a>' if $edit;
+  	$title = $$slot{Program}; # dead air is not a show (despite the joke), so no link
+- 	$genrelist = 'Noise, Experimental';
+        }
+  
+        print "    <td rowspan=\"$duration\" class=\"$$slot{Type}\">\n";
+        print "$duration $day $hour\n" if $$params{debug};
+-       print "      $title $icon<br />\n      <i>$$slot{DJName}</i><br />\n";
+-       print "<font color=\"#C0C0C0\" size=\"1\">[$genrelist]</font>\n" if $genrelist;
+        print "    </td>\n";
+  
+  
+--- 97,110 ----
+  
+  	$icon = "<a href=\"entry.cgi?session=$$params{session}&amp;tbl=Program&amp;StartTime=$$slot{StartTime}&amp;EndTime=$$slot{EndTime}\">". &img('pencil') . '</a>' if $edit;
+  	$title = $$slot{Program}; # dead air is not a show (despite the joke), so no link
++ 	$genrelist = '';
+        }
+  
+        print "    <td rowspan=\"$duration\" class=\"$$slot{Type}\">\n";
+        print "$duration $day $hour\n" if $$params{debug};
++       print "      $title<br />\n";
++       print "      <span class=\"showhost\">$$slot{DJName}</span><br />\n" if $$slot{DJName};
++ #      print "      <span class=\"showgenres\">$genrelist</span>\n" if $genrelist;
+        print "    </td>\n";
+  
+  
+***************
+*** 111,132 ****
+      }
+    }
+  
+-   print "    <th>$dispHour</th>\n";
+    print "  </tr>\n";
+  }
+- print <<DONE;
+-   <tr>
+-     <th>&nbsp;</th>
+-     <th>Sunday</th>
+-     <th>Monday</th>
+-     <th>Tuesday</th>
+-     <th>Wednesday</th>
+-     <th>Thursday</th>
+-     <th>Friday</th>
+-     <th>Saturday</th>
+-     <th>&nbsp;</th>
+-   </tr>
+- </table>
+- DONE
+  
+- &printFoot({name=>'Schedule'}, $cgi, $user);
+--- 114,136 ----
+      }
+    }
+  
++ #  print "    <th>$dispHour</th>\n";
+    print "  </tr>\n";
+  }
++ #print <<DONE;
++ #  <tr>
++ #    <th></th>
++ #    <th>Sunday</th>
++ #    <th>Monday</th>
++ #    <th>Tuesday</th>
++ #    <th>Wednesday</th>
++ #    <th>Thursday</th>
++ #    <th>Friday</th>
++ #    <th>Saturday</th>
++ #    <th></th>
++ #  </tr>
++ #DONE
++ 
++ print "</table>\n";
+  
++ #&printFoot({name=>'Schedule'}, $cgi, $user);

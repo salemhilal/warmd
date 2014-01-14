@@ -1,0 +1,1 @@
+/var/www/db/src/db/cgi-bin/album.cgi

@@ -1,0 +1,117 @@
+--- schedule.cgi.pre-halfhour-tables	2012-09-14 19:57:51.000000000 -0400
++++ schedule2.cgi	2011-09-09 20:46:38.000000000 -0400
+@@ -1,6 +1,7 @@
+ #!/usr/bin/perl
+ 
+ # Scheduling page -- displays a week calendar schedule of programs
++# modified april 2009 by ams1@wrct.org just by chopping stuff out schedule.cgi
+ 
+ use lib "$ENV{WWW_SITE}/perl-lib";
+ use lib "$ENV{WWW_SITE}/perl-lib/tables";
+@@ -23,7 +24,7 @@
+ my $sortby = ($$params{sortby} or 'GenreID,Artists.ShortName');
+ 
+ $user = &loginSession($$params{session});
+-&printHead({name=>'Schedule'}, $cgi, $user);
++#&printHead({name=>'Schedule'}, $cgi, $user);
+ 
+ #&printTaskSelect($cgi, $user, 'bin');
+ 
+@@ -36,9 +37,9 @@
+ 
+ print <<DONE;
+ 
+-<table border="1" cellspacing="0">
++<table id="schedule"> 
+   <tr>
+-    <th>&nbsp;</th>
++    <th></th>
+     <th>Sunday</th>
+     <th>Monday</th>
+     <th>Tuesday</th>
+@@ -46,7 +47,7 @@
+     <th>Thursday</th>
+     <th>Friday</th>
+     <th>Saturday</th>
+-    <th>&nbsp;</th>
++    <th></th>
+   </tr>
+ DONE
+ 
+@@ -54,7 +55,7 @@
+ 
+   # make a pretty-print hour
+   my $dispHour = ($hour%12 ? $hour%12 : 12) . ($hour < 12 ? 'AM' : 'PM');
+-  print "  <tr align=\"center\">\n    <th>$dispHour</th>\n";
++  print "  <tr>\n    <th class=\"hour\">$dispHour</th>\n";
+ 
+   foreach $day (0..6) {
+     my $slot = $schedule->[$day]->[$hour];
+@@ -78,7 +79,8 @@
+ 	$duration = 24-$hour if $duration > 24-$hour;
+ 
+ 	$icon = "<a href=\"delete.cgi?session=$$params{session}&amp;tbl=Program&amp;ProgramID=$$slot{ProgramID}\">". &img('trash'). '</a>' if $edit;
+-	$title = "<a href=\"display.cgi?session=$$params{session}&amp;tbl=Program&amp;ProgramID=$$slot{ProgramID}\">$$slot{Program}</a>";
++###	$title = "<a class=\"showname\" href=\"http://db.wrct.org/display.cgi?session=$$params{session}&amp;tbl=Program&amp;ProgramID=$$slot{ProgramID}\">$$slot{Program}</a>";
++	$title = "<a class=\"showname\" href=\"http://www.wrct.org/show/$$slot{ProgramID}\">$$slot{Program}</a>";
+       # we need to insert genre lists here once they get entered into the db
+ 	my ($genres, $gcount) = &sqlSelectMany({table=>'ProgramGenres'}, ['SubGenreID', 'ProgramGenre'],
+ 				    {string=>'ProgramID = ?', values=>[$$slot{ProgramID}]},
+@@ -95,13 +97,14 @@
+ 
+ 	$icon = "<a href=\"entry.cgi?session=$$params{session}&amp;tbl=Program&amp;StartTime=$$slot{StartTime}&amp;EndTime=$$slot{EndTime}\">". &img('pencil') . '</a>' if $edit;
+ 	$title = $$slot{Program}; # dead air is not a show (despite the joke), so no link
+-	$genrelist = 'Noise, Experimental';
++	$genrelist = '';
+       }
+ 
+       print "    <td rowspan=\"$duration\" class=\"$$slot{Type}\">\n";
+       print "$duration $day $hour\n" if $$params{debug};
+-      print "      $title $icon<br />\n      <i>$$slot{DJName}</i><br />\n";
+-      print "<font color=\"#C0C0C0\" size=\"1\">[$genrelist]</font>\n" if $genrelist;
++      print "      $title<br />\n";
++      print "      <span class=\"showhost\">$$slot{DJName}</span><br />\n" if $$slot{DJName};
++#      print "      <span class=\"showgenres\">$genrelist</span>\n" if $genrelist;
+       print "    </td>\n";
+ 
+ 
+@@ -111,22 +114,23 @@
+     }
+   }
+ 
+-  print "    <th>$dispHour</th>\n";
++#  print "    <th>$dispHour</th>\n";
+   print "  </tr>\n";
+ }
+-print <<DONE;
+-  <tr>
+-    <th>&nbsp;</th>
+-    <th>Sunday</th>
+-    <th>Monday</th>
+-    <th>Tuesday</th>
+-    <th>Wednesday</th>
+-    <th>Thursday</th>
+-    <th>Friday</th>
+-    <th>Saturday</th>
+-    <th>&nbsp;</th>
+-  </tr>
+-</table>
+-DONE
++#print <<DONE;
++#  <tr>
++#    <th></th>
++#    <th>Sunday</th>
++#    <th>Monday</th>
++#    <th>Tuesday</th>
++#    <th>Wednesday</th>
++#    <th>Thursday</th>
++#    <th>Friday</th>
++#    <th>Saturday</th>
++#    <th></th>
++#  </tr>
++#DONE
++
++print "</table>\n";
+ 
+-&printFoot({name=>'Schedule'}, $cgi, $user);
++#&printFoot({name=>'Schedule'}, $cgi, $user);

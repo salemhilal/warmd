@@ -1,0 +1,36 @@
+body {
+  /*background-image: url('http://www.wrct.org/wp-content/themes/tabloid-chic/images/logo.png');
+  background-repeat: no-repeat;
+
+  background-color: #222;*/
+}
+
+#content {
+  background-color: #FFF;
+  color: #000;
+}
+
+#header {
+  font-size: 1.5em;
+  font-family: Helvetica, sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #FF0091;
+}
+
+#emff {
+  padding: 0;
+  margin: 0;
+}
+
+#nowPlayingDiv {
+  font-family: Helvetica, sans-serif;
+  font-size: 0.9em;
+}
+
+#nowPlayingDiv a:link { color: #FF0091; }
+#nowPlayingDiv a:visited { color: #FF0091; }
+#nowPlayingDiv a:hover { color: #000; }
+#nowPlayingDiv a:active { color: #000; }
+#nowPlayingDiv a:focus { color: #000; }
+

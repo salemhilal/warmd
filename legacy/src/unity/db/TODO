@@ -1,0 +1,38 @@
+- check out FULLTEXT index for searching review fields for relevence
+
+- add albums to database from playlist (year, genre, checkbox)
+	- maybe have plays in CSV table while editing?
+	- OR ask users about AltAlbum entries after done with playlist
+
+	- This has been started. What's needed:
+		- A wrapper frame around the entry page that,
+		  when you're done, will let you update the playlist.
+
+- entry.cgi multiple search field matches should display 'lists' like in display.cgi - DONE (in that there are links to the records now)
+
+
+- Entering review synopsis on the same page as "enter a new album."
+	- This is a Tough Problem(tm) -- we need some way to keep
+	  track of which forms are being submitted, since we essentially
+	  have 2 or more distinct forms.
+	- Another approach -- have a series of entry pages,
+	  and only pass along the remaining tables as state
+
+- Printing out review cards.
+
+- Related Artists?
+
+- Delete Playlists
+
+- BETTER NAVIGATION! - Getting there
+
+- "Current Show" link on home page
+
+- better security (ssl?)
+
+- delete.cgi security
+	- limit number of records
+
+- playlist editing controls
+
+- "Music behind the DJ" marker like on http://www.wfmu.org/playlists/shows/1988

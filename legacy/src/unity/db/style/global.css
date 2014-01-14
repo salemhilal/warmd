@@ -1,0 +1,86 @@
+tt {
+	color: blue;
+}
+
+body {
+	color: white;
+	font-family: arial, sans-serif;
+	background-repeat: no-repeat;
+}
+h1 {
+	color: white;
+	font-family: arial, sans-serif;
+	font-size: 200%;
+}
+h2 {
+	color: white;
+	font-family: arial, sans-serif;
+	font-size: 160%;
+}
+td {
+	color: white;
+	font-family: arial, sans-serif;
+}
+th {
+	text-align: center;
+	color: white;
+	background: black;
+	font-family: arial, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+}
+
+
+/* Alternating row colors */
+.0 {	background-color: black; }
+.1 {	background-color: #333333; }
+
+
+/* Links */
+a {
+	color: #8899ff;
+	text-decoration:none;
+}
+a:visited {
+	color: #9999cc;
+}
+
+.err {	color: red; }
+
+
+/* The following are used for the schedule */
+.dead {
+	text-align: center;	
+	color: white;
+	background: #330000;
+	font-style: arial, sans-serif;
+	font-size: 80%;
+	font-style: italics;
+}
+.time {
+	text-align: right;
+	color: white;
+	background: black;
+	font-family: arial, sans-serif;
+	font-size: 80%;
+}
+.other {
+	color: white;
+	background: none;
+	font-family: arial, sans-serif;
+	font-size: 80%;
+}
+.show {
+	text-align: center;
+	color: white;
+	background: #333333;
+	font-family: arial, sans-serif;
+	font-size: 80%;
+}
+.pa {
+	text-align: center;
+	color: white;
+	background: #505050;
+	font-family: arial, sans-serif;
+	font-size: 80%;
+}

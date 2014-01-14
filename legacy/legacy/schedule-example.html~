@@ -1,0 +1,654 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+   "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+   <meta name="Author" content="Joel Young" />
+   <title>WRCT Pittsburgh 88.3FM - Program Guide</title>
+
+   <link rel="StyleSheet" href="/StyleSheets/wrct/global.css" type="text/css" media="screen" />
+</head>
+
+<body background="/img/wrct/bg-database.gif"
+      bgcolor="black" text="#BFBFBF" link="#8899ff" vlink="#9999cc">
+<br />
+<table border="0">
+   <tr>
+      <td><img src="/img/wrct/blackpixel.gif" width="40" /></td>
+      <td colspan="2"><a href="index.cgi"><img src ="/img/wrct/blank.gif" width="142" height="1" border="0"></a><br />
+        <img src="/img/wrct/orangebar.gif" width="417" height="2" border="0">
+      </td>
+   </tr>
+   <tr>
+      <td></td>
+      <td><img src="/img/wrct/blackpixel.gif" width="30"></td>
+      <td><br />
+        <h1>Program Guide: FALL 2008</h1>
+	(<a href="http://wrct.org/WRCT-Spring08.pdf">Download schedule as PDF</a>)<br />
+
+
+<table border="1" cellspacing="0">
+  <tr>
+    <th>&nbsp;</th>
+    <th>Sunday</th>
+    <th>Monday</th>
+    <th>Tuesday</th>
+    <th>Wednesday</th>
+    <th>Thursday</th>
+    <th>Friday</th>
+    <th>Saturday</th>
+    <th>&nbsp;</th>
+  </tr>
+  <tr align="center">
+    <th>12:00AM</th>
+    <td rowspan="12" class="dead">
+      Dead Air <br />
+      <i></i><br />
+<font color="#C0C0C0" size="1">[Noise, Experimental]</font>
+    </td>
+    <td rowspan="4" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=584">Side A, Side B</a> <br />
+      <i>N/A</i><br />
+    </td>
+    <td rowspan="2" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=623">Terminally Chill</a> <br />
+      <i>DJ &euro;-Rock and DJ A-Kaa$h</i><br />
+    </td>
+    <td rowspan="4" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=640">music to ink by</a> <br />
+      <i>Juan</i><br />
+    </td>
+    <td rowspan="2" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=617">Middle Ground</a> <br />
+      <i>Beat Master Phresh</i><br />
+    </td>
+    <td rowspan="2" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=615">The Gedanken Experiment</a> <br />
+      <i>Ryan</i><br />
+    </td>
+    <td rowspan="2" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=32">Viva le Mock</a> <br />
+      <i>The Mockster</i><br />
+<font color="#C0C0C0" size="1">[Indie, Punk, Indie, Country, Power Pop]</font>
+    </td>
+    <th>12:00AM</th>
+  </tr>
+  <tr align="center">
+    <th>12:30AM</th>
+    <th>12:30AM</th>
+  </tr>
+  <tr align="center">
+    <th>1:00AM</th>
+    <td rowspan="14" class="dead">
+      Dead Air <br />
+      <i></i><br />
+<font color="#C0C0C0" size="1">[Noise, Experimental]</font>
+    </td>
+    <td rowspan="14" class="dead">
+      Dead Air <br />
+      <i></i><br />
+<font color="#C0C0C0" size="1">[Noise, Experimental]</font>
+    </td>
+    <td rowspan="2" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=645">Chip off the Block <br /> // New & Way Cool</a> <br />
+      <i>F8-bit <br /> // Mr. PD</i><br />
+    </td>
+    <td rowspan="10" class="dead">
+      Dead Air <br />
+      <i></i><br />
+<font color="#C0C0C0" size="1">[Noise, Experimental]</font>
+    </td>
+    <th>1:00AM</th>
+  </tr>
+  <tr align="center">
+    <th>1:30AM</th>
+    <th>1:30AM</th>
+  </tr>
+  <tr align="center">
+    <th>2:00AM</th>
+    <td rowspan="10" class="dead">
+      Dead Air <br />
+      <i></i><br />
+<font color="#C0C0C0" size="1">[Noise, Experimental]</font>
+    </td>
+    <td rowspan="12" class="dead">
+      Dead Air <br />
+      <i></i><br />
+<font color="#C0C0C0" size="1">[Noise, Experimental]</font>
+    </td>
+    <td rowspan="2" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=647">Crate Digging</a> <br />
+      <i>Sir Kitty Mittens</i><br />
+    </td>
+    <th>2:00AM</th>
+  </tr>
+  <tr align="center">
+    <th>2:30AM</th>
+    <th>2:30AM</th>
+  </tr>
+  <tr align="center">
+    <th rowspan=6>...</th>
+    <td rowspan="10" class="dead">
+      Dead Air <br />
+      <i></i><br />
+<font color="#C0C0C0" size="1">[Noise, Experimental]</font>
+    </td>
+    <th>3:00AM</th>
+  </tr>
+  <tr align="center">
+    <th>3:30AM</th>
+    <th>3:30AM</th>
+  </tr>
+  <tr align="center">
+    <th>4:00AM</th>
+    <th>4:00AM</th>
+  </tr>
+  <tr align="center">
+    <th>4:30AM</th>
+    <th>4:30AM</th>
+  </tr>
+  <tr align="center">
+    <th>5:00AM</th>
+    <th>5:00AM</th>
+  </tr>
+  <tr align="center">
+    <th>5:30AM</th>
+    <th>5:30AM</th>
+  </tr>
+  <tr align="center">
+    <th>6:00AM</th>
+    <td rowspan="5" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=637">Jazz Corner</a> <br />
+      <i>Kevin Amos</i><br />
+    </td>
+    <td rowspan="12" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=277">The Saturday Light Brigade</a> <br />
+      <i>Larry and Rikki Berger</i><br />
+    </td>
+    <th>6:00AM</th>
+  </tr>
+  <tr align="center">
+    <th>6:30AM</th>
+    <th>6:30AM</th>
+  </tr>
+  <tr align="center">
+    <th>7:00AM</th>
+    <td rowspan="2" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=632">Tyyme Gospel Hour</a> <br />
+      <i>Tyyme</i><br />
+    </td>
+    <th>7:00AM</th>
+  </tr>
+  <tr align="center">
+    <th>7:30AM</th>
+    <th>7:30AM</th>
+  </tr>
+  <tr align="center">
+    <th>8:00AM</th>
+    <td rowspan="2" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=260">Democracy Now!</a> <br />
+      <i>Public Affairs</i><br />
+    </td>
+    <td rowspan="2" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=300">Democracy Now!</a> <br />
+      <i>Public Affairs</i><br />
+    </td>
+    <td rowspan="2" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=301">Democracy Now!</a> <br />
+      <i>Public Affairs</i><br />
+    </td>
+    <td rowspan="2" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=302">Democracy Now!</a> <br />
+      <i>Public Affairs</i><br />
+    </td>
+    <td rowspan="2" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=261">Democracy Now!</a> <br />
+      <i>Public Affairs</i><br />
+    </td>
+    <th>8:00AM</th>
+  </tr>
+  <tr align="center">
+    <th>8:30AM</th>
+    <td rowspan="7" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=22">One To One</a> <br />
+      <i>Kevin Amos</i><br />
+<font color="#C0C0C0" size="1">[Funk, International, Jazz, Punk, Hardcore, Rap, Hip Hop, Ska]</font>
+    </td>
+    <th>8:30AM</th>
+  </tr>
+  <tr align="center">
+    <th>9:00AM</th>
+    <td rowspan="2" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=467">Law and Disorder</a> <br />
+      <i>Public Affairs</i><br />
+    </td>
+    <td rowspan="2" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=404">Rustbelt Radio Redux</a> <br />
+      <i>Public Affairs</i><br />
+    </td>
+    <td rowspan="1" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=605">History for the Future Redux</a> <br />
+      <i>Public Affairs</i><br />
+    </td>
+    <td rowspan="2" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=608">Total Education Hour Redux</a> <br />
+      <i>Public Affairs</i><br />
+    </td>
+    <td rowspan="2" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=366">Pinkney Hall</a> <br />
+      <i>Kenny Joe</i><br />
+<font color="#C0C0C0" size="1">[Freeform]</font>
+    </td>
+    <th>9:00AM</th>
+  </tr>
+  <tr align="center">
+    <th>9:30AM</th>
+    <td rowspan="5" class="dead">
+      Dead Air <br />
+      <i></i><br />
+<font color="#C0C0C0" size="1">[Noise, Experimental]</font>
+    </td>
+    <th>9:30AM</th>
+  </tr>
+  <tr align="center">
+    <th>10:00AM</th>
+    <td rowspan="2" class="dead">
+      Dead Air <br />
+      <i></i><br />
+<font color="#C0C0C0" size="1">[Noise, Experimental]</font>
+    </td>
+    <td rowspan="8" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=482">A Minute Pause</a> <br />
+      <i>Shawn Watson</i><br />
+    </td>
+    <td rowspan="3" class="dead">
+      Dead Air <br />
+      <i></i><br />
+<font color="#C0C0C0" size="1">[Noise, Experimental]</font>
+    </td>
+    <td rowspan="4" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=641">Romeo's Distress</a> <br />
+      <i>Alex</i><br />
+    </td>
+    <th>10:00AM</th>
+  </tr>
+  <tr align="center">
+    <th>10:30AM</th>
+    <th>10:30AM</th>
+  </tr>
+  <tr align="center">
+    <th>11:00AM</th>
+    <td rowspan="2" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=643">Clean Cut</a> <br />
+      <i>Salem</i><br />
+    </td>
+    <th>11:00AM</th>
+  </tr>
+  <tr align="center">
+    <th>11:30AM</th>
+    <td rowspan="4" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=635">Uptown Girl</a> <br />
+      <i>Dave</i><br />
+    </td>
+    <th>11:30AM</th>
+  </tr>
+  <tr align="center">
+    <th>12:00PM</th>
+    <td rowspan="2" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=636">J-Walking</a> <br />
+      <i>J.PhoSho</i><br />
+    </td>
+    <td rowspan="3" class="dead">
+      Dead Air <br />
+      <i></i><br />
+<font color="#C0C0C0" size="1">[Noise, Experimental]</font>
+    </td>
+    <td rowspan="4" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=538">Sounds of the 60's and 70's</a> <br />
+      <i>Prof. Stripey</i><br />
+    </td>
+    <td rowspan="8" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=274">Zombo in your Brain</a> <br />
+      <i>Zombo</i><br />
+    </td>
+    <td rowspan="6" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=297">Radio 9</a> <br />
+      <i>Jay Thurber</i><br />
+<font color="#C0C0C0" size="1">[Blues, Rock, Jazz]</font>
+    </td>
+    <th>12:00PM</th>
+  </tr>
+  <tr align="center">
+    <th>12:30PM</th>
+    <th>12:30PM</th>
+  </tr>
+  <tr align="center">
+    <th>1:00PM</th>
+    <td rowspan="2" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=576">The Digital Hazard</a> <br />
+      <i>Public Affairs</i><br />
+    </td>
+    <th>1:00PM</th>
+  </tr>
+  <tr align="center">
+    <th>1:30PM</th>
+    <td rowspan="4" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=612">Black Coffee</a> <br />
+      <i>Girl Friday</i><br />
+<font color="#C0C0C0" size="1">[Rock, Metal, Punk, Prog/Art Rock, Thrash, Math Rock]</font>
+    </td>
+    <td rowspan="4" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=606">SALAD DAZE</a> <br />
+      <i>Tomasz</i><br />
+    </td>
+    <th>1:30PM</th>
+  </tr>
+  <tr align="center">
+    <th>2:00PM</th>
+    <td rowspan="2" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=402">The Best of Broadway</a> <br />
+      <i>Gordon</i><br />
+    </td>
+    <td rowspan="2" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=574">Out of Bounds</a> <br />
+      <i>Nigel the Virus</i><br />
+<font color="#C0C0C0" size="1">[Freeform]</font>
+    </td>
+    <td rowspan="7" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=420">Couch Dancing</a> <br />
+      <i>DJ Firefly</i><br />
+<font color="#C0C0C0" size="1">[Electronic]</font>
+    </td>
+    <th>2:00PM</th>
+  </tr>
+  <tr align="center">
+    <th>2:30PM</th>
+    <th>2:30PM</th>
+  </tr>
+  <tr align="center">
+    <th>3:00PM</th>
+    <td rowspan="4" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=449">Classics</a> <br />
+      <i>Gordon</i><br />
+    </td>
+    <td rowspan="2" class="dead">
+      Dead Air <br />
+      <i></i><br />
+<font color="#C0C0C0" size="1">[Noise, Experimental]</font>
+    </td>
+    <td rowspan="4" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=522">ReRewind</a> <br />
+      <i>Arsenal & P'Nickers</i><br />
+    </td>
+    <th>3:00PM</th>
+  </tr>
+  <tr align="center">
+    <th>3:30PM</th>
+    <td rowspan="1" class="dead">
+      Dead Air <br />
+      <i></i><br />
+<font color="#C0C0C0" size="1">[Noise, Experimental]</font>
+    </td>
+    <td rowspan="3" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=603">Bridge City Dreamer</a> <br />
+      <i>Pam / DJ Tammy</i><br />
+    </td>
+    <th>3:30PM</th>
+  </tr>
+  <tr align="center">
+    <th>4:00PM</th>
+    <td rowspan="2" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=614">Under the Cut</a> <br />
+      <i>Kati</i><br />
+    </td>
+    <td rowspan="2" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=619">Your Cat's Favorite Show</a> <br />
+      <i>Allison</i><br />
+    </td>
+    <td rowspan="3" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=556">Total Education Hour</a> <br />
+      <i>Public Affairs</i><br />
+<font color="#C0C0C0" size="1">[Public Affairs]</font>
+    </td>
+    <th>4:00PM</th>
+  </tr>
+  <tr align="center">
+    <th>4:30PM</th>
+    <th>4:30PM</th>
+  </tr>
+  <tr align="center">
+    <th>5:00PM</th>
+    <td rowspan="4" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=557">Stone Free (formerly Tombstone Radio)</a> <br />
+      <i>Jesse</i><br />
+    </td>
+    <td rowspan="1" class="dead">
+      Dead Air <br />
+      <i></i><br />
+<font color="#C0C0C0" size="1">[Noise, Experimental]</font>
+    </td>
+    <td rowspan="1" class="dead">
+      Dead Air <br />
+      <i></i><br />
+<font color="#C0C0C0" size="1">[Noise, Experimental]</font>
+    </td>
+    <td rowspan="1" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=579">Policy That Matters</a> <br />
+      <i>Public Affairs</i><br />
+    </td>
+    <td rowspan="2" class="dead">
+      Dead Air <br />
+      <i></i><br />
+<font color="#C0C0C0" size="1">[Noise, Experimental]</font>
+    </td>
+    <th>5:00PM</th>
+  </tr>
+  <tr align="center">
+    <th>5:30PM</th>
+    <td rowspan="1" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=384">Free Speech Radio News</a> <br />
+      <i>Public Affairs</i><br />
+    </td>
+    <td rowspan="1" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=388">Free Speech Radio News</a> <br />
+      <i>Public Affairs</i><br />
+    </td>
+    <td rowspan="1" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=385">Free Speech Radio News</a> <br />
+      <i>Public Affairs</i><br />
+    </td>
+    <td rowspan="1" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=389">Free Speech Radio News</a> <br />
+      <i>Public Affairs</i><br />
+    </td>
+    <td rowspan="1" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=390">Free Speech Radio News</a> <br />
+      <i>Public Affairs</i><br />
+    </td>
+    <th>5:30PM</th>
+  </tr>
+  <tr align="center">
+    <th>6:00PM</th>
+    <td rowspan="2" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=303">Indymedia Rustbelt Radio</a> <br />
+      <i>Public Affairs</i><br />
+    </td>
+    <td rowspan="2" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=651">Pit Stop Radio</a> <br />
+      <i></i><br />
+    </td>
+    <td rowspan="2" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=436">The Ebony Spectrum</a> <br />
+      <i>Public Affairs</i><br />
+<font color="#C0C0C0" size="1">[Public Affairs]</font>
+    </td>
+    <td rowspan="2" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=11">Barrio Latino</a> <br />
+      <i>Public Affairs</i><br />
+<font color="#C0C0C0" size="1">[Public Affairs]</font>
+    </td>
+    <td rowspan="2" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=371">Cantinho Brasileiro no Radio (Brazilian Radio Hour)</a> <br />
+      <i>Public Affairs</i><br />
+<font color="#C0C0C0" size="1">[South America]</font>
+    </td>
+    <td rowspan="4" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=325">Radio Free Radio</a> <br />
+      <i>Steve</i><br />
+<font color="#C0C0C0" size="1">[Experimental]</font>
+    </td>
+    <th>6:00PM</th>
+  </tr>
+  <tr align="center">
+    <th>6:30PM</th>
+    <th>6:30PM</th>
+  </tr>
+  <tr align="center">
+    <th>7:00PM</th>
+    <td rowspan="4" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=533">A Progressive Addiction</a> <br />
+      <i>Chris</i><br />
+<font color="#C0C0C0" size="1">[Rock, Jazz Fusion, Prog/Art Rock, New Wave]</font>
+    </td>
+    <td rowspan="2" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=646">Some Assembly Required</a> <br />
+      <i>DJ Buffa Lowe</i><br />
+    </td>
+    <td rowspan="2" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=591">L.O.C.K. Down Radio</a> <br />
+      <i>Public Affairs</i><br />
+<font color="#C0C0C0" size="1">[Public Affairs, Hip Hop]</font>
+    </td>
+    <td rowspan="6" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=54">Consolidation</a> <br />
+      <i>Dan Strange</i><br />
+<font color="#C0C0C0" size="1">[Hip Hop, Jazz, Electronic, Free Improv, Experimental, Metal]</font>
+    </td>
+    <td rowspan="4" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=568">La Rumba Pittsburgh</a> <br />
+      <i>Cece</i><br />
+    </td>
+    <td rowspan="4" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=596">Everything Blue</a> <br />
+      <i>Doctor Blues</i><br />
+    </td>
+    <th>7:00PM</th>
+  </tr>
+  <tr align="center">
+    <th>7:30PM</th>
+    <th>7:30PM</th>
+  </tr>
+  <tr align="center">
+    <th>8:00PM</th>
+    <td rowspan="2" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=638">Radioland</a> <br />
+      <i>Girl Friedegg</i><br />
+    </td>
+    <td rowspan="2" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=639">Tabemasho</a> <br />
+      <i>Aujuju and Jtegz</i><br />
+    </td>
+    <td rowspan="2" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=622">Super Fun Time</a> <br />
+      <i>Xiaoshan</i><br />
+    </td>
+    <th>8:00PM</th>
+  </tr>
+  <tr align="center">
+    <th>8:30PM</th>
+    <th>8:30PM</th>
+  </tr>
+  <tr align="center">
+    <th>9:00PM</th>
+    <td rowspan="4" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=492">Sound Smorgasbord</a> <br />
+      <i>Kimmy</i><br />
+    </td>
+    <td rowspan="2" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=455">Advanced Calculus</a> <br />
+      <i>Public Affairs</i><br />
+    </td>
+    <td rowspan="2" class="pa">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=580">Talk Back!</a> <br />
+      <i>Public Affairs</i><br />
+<font color="#C0C0C0" size="1">[Public Affairs]</font>
+    </td>
+    <td rowspan="2" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=462">My Disco Needs Fixed</a> <br />
+      <i>Tina</i><br />
+<font color="#C0C0C0" size="1">[Indie, Electronic]</font>
+    </td>
+    <td rowspan="6" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=32">Viva le Mock</a> <br />
+      <i>The Mockster</i><br />
+<font color="#C0C0C0" size="1">[Indie, Punk, Indie, Country, Power Pop]</font>
+    </td>
+    <td rowspan="6" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=387">Too Evil to Have a Human Name</a> <br />
+      <i>Bill</i><br />
+    </td>
+    <th>9:00PM</th>
+  </tr>
+  <tr align="center">
+    <th>9:30PM</th>
+    <th>9:30PM</th>
+  </tr>
+  <tr align="center">
+    <th>10:00PM</th>
+    <td rowspan="4" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=342">What's Really Good</a> <br />
+      <i>Sean MC, DJ Thermos</i><br />
+    </td>
+    <td rowspan="2" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=644">The Not-Quite Random Hour</a> <br />
+      <i>DJ Accent</i><br />
+    </td>
+    <td rowspan="4" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=629">Post-Progressive Disorder</a> <br />
+      <i>Spoon</i><br />
+    </td>
+    <td rowspan="4" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=502">Skulduggery</a> <br />
+      <i>Riza Bey</i><br />
+    </td>
+    <th>10:00PM</th>
+  </tr>
+  <tr align="center">
+    <th>10:30PM</th>
+    <th>10:30PM</th>
+  </tr>
+  <tr align="center">
+    <th>11:00PM</th>
+    <td rowspan="2" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=642">The Power Hour</a> <br />
+      <i>Kyle Henson</i><br />
+    </td>
+    <td rowspan="2" class="show">
+      <a href="display.cgi?session=&amp;tbl=Program&amp;ProgramID=597">Russian Hour</a> <br />
+      <i>Maxim</i><br />
+<font color="#C0C0C0" size="1">[Freeform]</font>
+    </td>
+    <th>11:00PM</th>
+  </tr>
+  <tr align="center">
+    <th>11:30PM</th>
+    <th>11:30PM</th>
+  </tr>
+  <tr>
+    <th>&nbsp;</th>
+    <th>Sunday</th>
+    <th>Monday</th>
+    <th>Tuesday</th>
+    <th>Wednesday</th>
+    <th>Thursday</th>
+    <th>Friday</th>
+    <th>Saturday</th>
+    <th>&nbsp;</th>
+  </tr>
+</table>
+
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
