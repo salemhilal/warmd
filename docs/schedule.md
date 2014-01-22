@@ -55,6 +55,8 @@ Baron and Salem will
 
 ### Week 7 (February 16)
 
+ - Add schedule-making things
+
 ### Week 8 (February 23)
 
 ### Week 9 (March 2)
