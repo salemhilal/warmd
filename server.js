@@ -6,12 +6,15 @@
 
 // Imports
 var express = require('express'),
-    fs = require('fs');
+    fs = require('fs'),
+    app = express();
+    
 
-// Misc
+// Configs
 var env = process.env.NODE_ENV || 'development',
-    config = require('/.config/config')[env];
+    config = require('./config/config')[env];
 
+// Get the keys, check to make sure they exist
 var keys;
 try {
   keys = require('./config/keys');
@@ -28,7 +31,13 @@ catch (err) {
 // Bootstrapping  ================
 //================================
 
+// Express
 
+// DB connection
+
+// Models
+
+// Routes
 
 
 
@@ -37,6 +46,10 @@ catch (err) {
 //================================
 
 // Start app
+var port = process.env.PORT || config.port || 3000;
+app.listen(port);
+console.log("WARMD now running on port " + port);
+console.log("running in " + env + " environment");
 
 // Expose app for testing purposes
 exports = module.exports = app;
