@@ -43,6 +43,12 @@ Bookshelf.db = Bookshelf.initialize({
   connection: keys.mysql
 });
 
+var User = Bookshelf.db.Model.extend({
+  tableName: "Users"
+});
+
+
+
 // Models
 
 // Routes
