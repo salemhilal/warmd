@@ -7,7 +7,8 @@
 // Imports
 var express = require('express'),
     fs = require('fs'),
-    app = express();
+    app = express(),
+    Bookshelf = require('bookshelf');
     
 
 // Configs
@@ -17,7 +18,7 @@ var env = process.env.NODE_ENV || 'development',
 // Get the keys, check to make sure they exist
 var keys;
 try {
-  keys = require('./config/keys');
+  keys = require('./config/keys')[env];
 }
 catch (err) {
   if(err.code === 'MODULE_NOT_FOUND'){
@@ -35,6 +36,13 @@ catch (err) {
 
 // DB connection
 
+// We add the db to the scope of the library
+// Because javascript and awkward best practices.
+Bookshelf.db = Bookshelf.initialize({
+  client: 'mysql',
+  connection: keys.mysql
+});
+
 // Models
 
 // Routes
@@ -44,6 +52,11 @@ catch (err) {
 //================================
 // Initialize ====================
 //================================
+
+// Test
+app.get("/ping", function(req, res) {
+  res.end("pong");
+});
 
 // Start app
 var port = process.env.PORT || config.port || 3000;
