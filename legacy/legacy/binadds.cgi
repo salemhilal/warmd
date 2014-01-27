@@ -1,1 +1,0 @@
-/var/www/db/src/db/cgi-bin/binadds.cgi

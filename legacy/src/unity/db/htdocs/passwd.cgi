@@ -1,1 +1,0 @@
-/raid/db/cgi-bin/passwd.cgi
