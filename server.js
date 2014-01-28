@@ -47,7 +47,11 @@ var User = Bookshelf.db.Model.extend({
   tableName: "Users"
 });
 
-
+new User({"FName" : "Salem"})
+  .fetch()
+  .then(function(model){
+    console.log(model.get('LName'));
+  });
 
 // Models
 
