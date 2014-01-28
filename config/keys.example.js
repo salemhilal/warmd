@@ -11,4 +11,6 @@ module.exports = {
       database: "DATABASE_HERE",
       charset: "CHARACTER_ENCODING_HERE"
     }
+  }
 };
+
