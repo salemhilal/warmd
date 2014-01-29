@@ -56,17 +56,12 @@ new User({"FName" : "Salem"})
 // Models
 
 // Routes
-
+require('./config/routes')(app)
 
 
 //================================
 // Initialize ====================
 //================================
-
-// Test
-app.get("/ping", function(req, res) {
-  res.end("pong");
-});
 
 // Start app
 var port = process.env.PORT || config.port || 3000;
