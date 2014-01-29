@@ -9,6 +9,19 @@ Overview
 The current database system at WRCT is a collection of perl scripts held together by duct tape, shoelaces, and the prayers of tiny children.
 We aim to fix that. We're writing the project in Node, because we can't see Javascript going anywhere in the near future. 
 
+
+Installation
+------------
+
+Say you have a fresh ubuntu box and want to deploy this server.
+
+1. ```cd``` into a directory of your choosing. 
+2. ```git clone https://github.com/bichiliad/warmd.git```
+3. ```mv config/keys.example.config config/keys.config```, add DB info in ```keys.config```
+4. ```./scripts/ubuntu_setup.sh``` to install dependencies / node.
+5. ```npm install``` to install node dependencies
+6. ```npm start``` to get that server goin'
+
 Scope
 -----
 There are a number of functionalities of this db. Specifically: 

@@ -23,20 +23,20 @@ Salem will
 
 Baron and Salem will
 
- - Peel off tasks as they see fit
+ - ~~Peel off tasks as they see fit~~
  - Still figure out views
- - Wireframe (chart out DB relationships)
+ - ~~Wireframe (chart out DB relationships)~~
  - Wireframe again (How will views happen)
- - Set up server boilerplate stuff
+ - ~~Set up server boilerplate stuff~~
  - Pubcookie!
  
 #### Week 3 (January 27) 
  
  Baron and Salem will
- 
+ - ~~
  - Look into the current SSO spec
  - Look into making the DB a SSO provider (potentially)
- - Create DB models (bookshelf.js/knex.js)
+ - ~~Create DB models (bookshelf.js/knex.js)~~
  - Get a private API worked out
 
 ### Week 4 (February 3)
@@ -59,7 +59,12 @@ Baron and Salem will
 
 ### Week 8 (February 23)
 
+ - Continue schedule-making components
+ - Work on rendering Wordpress exports
+
 ### Week 9 (March 2)
+
+ - 
 
 ### Week 10 (March 9)
 
