@@ -19,12 +19,25 @@ module.exports = function(grunt) {
         newcap: true    // Capitalize names of constructors
       },
       all: ['server.js', 'app/**/*.js']
+    },
+
+    shell: {
+      clean: 'rm -rf ./node_modules && npm cache clean',
+      update: 'npm install',
+      updateProd: 'npm install --production',
+      start: 'NODE_ENV=development ./node_modules/.bin/nodemon server.js',
+      test: 'NODE_ENV=test ./node_modules/.bin/mocha --reporter spec test/test-*.js',
+      startProd: 'NODE_ENV=production ./node_modules/.bin/nodemon server.js'
     }
   
   });
 
   // Lint things
   grunt.registerTask('lint', ['jshint']);
+  grunt.registerTask('clean', ['shell:clean']);
+  grunt.registerTask('reload', ['shell:clean', 'shell:update']);
+  grunt.registerTask('start', ['shell:start']);
+  grunt.registerTask('startProd', ['shell:clean', 'shell:updateProd', 'jshint', 'shell:test', 'startProd']);
 
 
 }

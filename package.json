@@ -29,7 +29,9 @@
     "express": "~3.4.7",
     "knex": "~0.5.4",
     "bookshelf": "~0.6.2",
-    "mysql": "~2.0.1"
+    "mysql": "~2.0.1",
+    "passport-kerberos": "0.0.1",
+    "passport": "~0.2.0"
   },
   "devDependencies": {
     "nodemon": "latest",
@@ -39,6 +41,7 @@
     "supertest": "latest",
     "grunt": "~0.4.2",
     "grunt-contrib-jshint": "~0.8.0",
-    "load-grunt-tasks": "~0.3.0"
+    "load-grunt-tasks": "~0.3.0",
+    "grunt-shell": "~0.6.4"
   }
 }
