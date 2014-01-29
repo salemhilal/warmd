@@ -25,7 +25,9 @@ catch (err) {
     console.error("\n\nMake sure you've created config/keys.js\n", err, "\n\n");
     return;
   }
-  else throw err;
+  else { 
+    throw err;
+  }
 }
 
 //================================
@@ -56,7 +58,7 @@ new User({"FName" : "Salem"})
 // Models
 
 // Routes
-require('./config/routes')(app)
+require('./config/routes')(app);
 
 
 //================================
