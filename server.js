@@ -6,7 +6,7 @@
 
 // Imports
 var express = require('express'),
-    fs = require('fs'),
+    //fs = require('fs'),
     app = express(),
     Bookshelf = require('bookshelf');
     

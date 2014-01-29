@@ -10,7 +10,8 @@ module.exports = function(grunt) {
     // Linting
     jshint: {
       options: {
-        node: true,    // We're using node. 
+        node: true,     // We're using node. 
+        unused: true,   // Let us know if we don't use vars
         curly: true,    // Must have optional braces
         eqeqeq: true,   // No type inference
         freeze: true,   // Don't overwrite native object prototypes
