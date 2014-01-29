@@ -24,7 +24,7 @@ Salem will
 Baron and Salem will
 
  - ~~Peel off tasks as they see fit~~
- - Still figure out views
+ - ~~Still figure out views~~
  - ~~Wireframe (chart out DB relationships)~~
  - Wireframe again (How will views happen)
  - ~~Set up server boilerplate stuff~~
@@ -33,9 +33,10 @@ Baron and Salem will
 #### Week 3 (January 27) 
  
  Baron and Salem will
- - ~~
+ - ~~Add task management~~
  - Look into the current SSO spec
  - Look into making the DB a SSO provider (potentially)
+ - ~~Clone/get programmatic access to test data~~
  - ~~Create DB models (bookshelf.js/knex.js)~~
  - Get a private API worked out
 
@@ -44,52 +45,64 @@ Baron and Salem will
  - Implement / test API (This will take a week or two)
  - Start implementing basic CRUD views
 
-### Week 5 (February 2)
+### Week 5 (February 9)
 
  - Implement / test API
  - Finish implementing basic CRUD views
 
-### Week 6 (February 9)
+### Week 6 (February 16)
 
- - User permissions and levels, sign-up flow
+ - User permissions and levels, sign-up/sign-in flow
+ - At this point, we should have nice, RESTful endpoints
 
-### Week 7 (February 16)
+
+### Week 7 (February 23)
 
  - Add schedule-making things
 
-### Week 8 (February 23)
+### Week 8 (March 2)
 
  - Continue schedule-making components
- - Work on rendering Wordpress exports
+ - Work on rendering Wordpress exports (a la wrct.org/schedule)
 
-### Week 9 (March 2)
-
- - 
-
-### Week 10 (March 9)
+### Week 9 (March 9)
 
  - Spring Break
 
-### Week 11 (March 16)
+### Week 10 (March 16)
 
-### Week 12 (March 23)
+ - Write views. All of them.
+ - Write tests for views. All of them.
 
-### Week 13 (March 30)
+### Week 11 (March 23)
 
- - Salem's Birthday (April 5th)
+ - User testing!
+ - Research unimplemented features
+ - There will be a bunch of them probably
 
-### Week 14 (April 6)
+### Week 12 (March 30)
 
- - Carnival
+ - Implement unimplemented features
+ - Test them
+ - Revise them
+ - Celebrate Salem's birthday (April 5th)
 
-### Week 15 (April 13)
+### Week 13 (April 6)
 
+ - Carnival (Apr 10-12)
 
-### Week 16 (April 20)
+### Week 14 (April 13)
 
-### Week 17 (April 27)
+ - 
 
-### Week 18 (May 4)
+### Week 15 (April 20)
+
+### Week 16 (April 27)
+
+ - Thorough testing should be done
+ - Look into TravisCLI for future development?
+
+### Week 17 (May 4)
 
  - Finishing touches / tests
  - Make a poster

@@ -18,3 +18,5 @@ aka the "Oh man we should totally use this in the project somewhere" file.
  - Handlebars
  - Angular
  - Actually we should write this in Go.  
+ - [node-krb5](https://github.com/qesuto/node-krb5)
+ - [passport-kerberos](https://github.com/joshuah/passport-kerberos)
