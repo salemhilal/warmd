@@ -15,7 +15,8 @@ module.exports = function(grunt) {
         freeze: true,   // Don't overwrite native object prototypes
         indent: 2,      // Tab formatting
         newcap: true    // Capitalize names of constructors
-      }
+      },
+      all: ['server.js', 'app/**/*.js']
     }
   
   });
