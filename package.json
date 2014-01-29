@@ -37,6 +37,8 @@
     "mocha": "latest",
     "should": "latest",
     "supertest": "latest",
-    "grunt": "~0.4.2"
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.8.0",
+    "load-grunt-tasks": "~0.3.0"
   }
 }
