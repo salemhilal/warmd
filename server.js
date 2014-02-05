@@ -39,22 +39,15 @@ catch (err) {
 
 // We add the db to the scope of the library
 // Because javascript and awkward best practices.
-Bookshelf.db = Bookshelf.initialize({
+Bookshelf.DB = Bookshelf.initialize({
   client: 'mysql',
   connection: keys.mysql
 });
 
-var User = Bookshelf.db.Model.extend({
-  tableName: "Users"
-});
-
-new User({"FName" : "Salem"})
-  .fetch()
-  .then(function(model){
-    console.log(model.get('LName'));
-  });
 
 // Models
+Bookshelf.DB.User = require("app/models/user.js"");
+
 
 // Routes
 require('./config/routes')(app);
