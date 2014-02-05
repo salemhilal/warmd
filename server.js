@@ -6,7 +6,6 @@
 
 // Imports
 var express = require('express'),
-    //fs = require('fs'),
     app = express(),
     Bookshelf = require('bookshelf');
     
@@ -68,7 +67,8 @@ require('./config/routes')(app);
 // Start app
 var port = process.env.PORT || config.port || 3000;
 app.listen(port);
-console.log("WARMD now running on port " + port);
+
+console.log("\n\nWARMD now running on port " + port);
 console.log("running in " + env + " environment");
 
 // Expose app for testing purposes
