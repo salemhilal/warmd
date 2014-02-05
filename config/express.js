@@ -5,7 +5,7 @@ module.exports = function(app, config) {
   app.set('showStackError', config.showStackError || true);
 
   app.use(express.logger()); // Log every request.
-  appuse(express.static(config.root + '/public')); // Register public folder as a static dir
+  app.use(express.static(config.root + '/public')); // Register public folder as a static dir
 
 
   app.engine('hbs', hbs.express3({
@@ -24,6 +24,9 @@ module.exports = function(app, config) {
     // Lets handle errors
     app.use(function(err, req, res, next){
       // treat as 404
+      console.log("=====================")
+      console.log(err);
+      console.log("=====================")
       if (err.message
         && (~err.message.indexOf('not found')
         || (~err.message.indexOf('Cast to ObjectId failed')))) {
@@ -31,7 +34,7 @@ module.exports = function(app, config) {
       }
 
       // log it
-      // send emails if you want
+      // TODO: send emails
       console.error(err.stack);
 
       // error page
@@ -43,7 +46,7 @@ module.exports = function(app, config) {
       res.status(404).render('404', {
         url: req.originalUrl,
         error: 'Not found'
-      };
+      });
     });
 
   });

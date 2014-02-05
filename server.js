@@ -34,7 +34,7 @@ catch (err) {
 //================================
 
 // Express
-
+require("./config/express")(app, config);
 // DB connection
 
 // We add the db to the scope of the library
@@ -45,9 +45,9 @@ Bookshelf.DB = Bookshelf.initialize({
 });
 
 
-// Models
-var User = require("./app/models/user.js");
-User.forge({"definitely":"wrong"}).save().then(function(data){console.log(data)})
+// Models (must be first to allow access to globals)
+Bookshelf.DB.User = require("./app/models/user.js");
+
 
 // Routes
 require('./config/routes')(app);
