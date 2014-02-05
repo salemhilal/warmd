@@ -46,8 +46,8 @@ Bookshelf.DB = Bookshelf.initialize({
 
 
 // Models
-Bookshelf.DB.User = require("app/models/user.js"");
-
+var User = require("./app/models/user.js");
+User.forge({"definitely":"wrong"}).save().then(function(data){console.log(data)})
 
 // Routes
 require('./config/routes')(app);
