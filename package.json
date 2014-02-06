@@ -32,7 +32,8 @@
     "mysql": "~2.0.1",
     "passport-kerberos": "0.0.1",
     "passport": "~0.2.0",
-    "express-hbs": "~0.7.8"
+    "express-hbs": "~0.7.8",
+    "connect-acceptoverride": "0.0.3"
   },
   "devDependencies": {
     "nodemon": "latest",

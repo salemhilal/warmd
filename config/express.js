@@ -1,10 +1,13 @@
 var express = require('express'),
-    hbs = require('express-hbs');
+    hbs = require('express-hbs'),
+    wares = require('./middlewares/utils.js'),
+    acceptOverride = require('connect-acceptoverride');
 
 module.exports = function(app, config) {
   app.set('showStackError', config.showStackError || true);
 
   app.use(express.logger()); // Log every request.
+  app.use(acceptOverride());
   app.use(express.static(config.root + '/public')); // Register public folder as a static dir
 
 

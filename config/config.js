@@ -5,7 +5,8 @@ module.exports = {
   
   'development': {
     port: 3000,
-    root: root
+    root: root,
+    debug: true,
   },
 
   'production': {

@@ -41,7 +41,8 @@ require("./config/express")(app, config);
 // Because javascript and awkward best practices.
 Bookshelf.DB = Bookshelf.initialize({
   client: 'mysql',
-  connection: keys.mysql
+  connection: keys.mysql,
+  debug: config.debug
 });
 
 
@@ -63,6 +64,10 @@ app.listen(port);
 
 console.log("\n\nWARMD now running on port " + port);
 console.log("running in " + env + " environment");
+
+if(config.verbose) {
+  console.log("Verbose mode on");
+}
 
 // Expose app for testing purposes
 exports = module.exports = app;

@@ -22,8 +22,24 @@ module.exports = {
   },
 
   show: function(req, res) {
-    console.log(req.user);
-    res.render('users/show', req.user.attributes);
+    console.log("Params, 2", req.params);
+    res.format({
+      
+      // They want JSON 
+      json: function() {
+        res.json(req.user.attributes);      
+      },
+
+      // They want HTML
+      html: function() {
+        res.render('users/show', req.user.attributes);
+      },
+
+      // They don't know what they want, give em HTML
+      default: function() {
+        res.render('user/show', req.user.attributes);
+      }
+    })
   }  
 
 
