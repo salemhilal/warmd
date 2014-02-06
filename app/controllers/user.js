@@ -10,11 +10,8 @@ module.exports = {
         req.user = user;
         next();
       }, function(err) {
-        console.log("##############")
-        console.log(err.message)
-        console.log("##############")
-        if(err.message && err.message.indexOf("EmptyResponse") != -1) {
-          next(new Error('not found'))
+        if(err.message && err.message.indexOf("EmptyResponse") !== -1) {
+          next(new Error('not found'));
         } else {
           next(err);
         }
@@ -39,8 +36,8 @@ module.exports = {
       default: function() {
         res.render('user/show', req.user.attributes);
       }
-    })
+    });
   }  
 
 
-}
+};
