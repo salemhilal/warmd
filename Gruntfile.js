@@ -18,7 +18,7 @@ module.exports = function(grunt) {
         indent: 2,      // Tab formatting
         newcap: true    // Capitalize names of constructors
       },
-      all: ['server.js', 'app/**/*.js']
+      all: ['server.js', 'app/**/*.js', 'config/*.js']
     },
 
     shell: {

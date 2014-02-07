@@ -1,5 +1,5 @@
-var Bookshelf = require('bookshelf').DB,
-    User = Bookshelf.User;
+var DB = require('bookshelf').DB,
+    User = DB.User;
 
 module.exports = {
 
@@ -37,7 +37,13 @@ module.exports = {
         res.render('user/show', req.user.attributes);
       }
     });
-  }  
+  },
+
+  create: function(req, res) {
+    console.log(req.body);
+    res.json({response: "hell yes"});
+  
+  }
 
 
 };

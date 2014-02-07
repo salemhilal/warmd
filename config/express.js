@@ -1,6 +1,6 @@
 var express = require('express'),
     hbs = require('express-hbs'),
-    wares = require('./middlewares/utils.js'),
+    // wares = require('./middlewares/utils.js'),
     acceptOverride = require('connect-acceptoverride');
 
 module.exports = function(app, config) {
@@ -21,18 +21,18 @@ module.exports = function(app, config) {
 
   app.configure(function() {
   
+    app.use(express.bodyParser());
+    app.use(express.methodOverride());
+
     // routes should be last
     app.use(app.router);
 
     // Lets handle errors
     app.use(function(err, req, res, next){
       // treat as 404
-      console.log("=====================")
-      console.log(err);
-      console.log("=====================")
-      if (err.message
-        && (~err.message.indexOf('not found')
-        || (~err.message.indexOf('Cast to ObjectId failed')))) {
+      if (err.message && 
+        (~err.message.indexOf('not found') || 
+        (~err.message.indexOf('Cast to ObjectId failed')))) {
         return next();
       }
 
@@ -45,7 +45,7 @@ module.exports = function(app, config) {
     });
 
     // assume 404 since no middleware responded
-    app.use(function(req, res, next){
+    app.use(function(req, res) { //, next) {
       res.status(404).render('404', {
         url: req.originalUrl,
         error: 'Not found'
@@ -54,4 +54,4 @@ module.exports = function(app, config) {
 
   });
 
-}
+};

@@ -1,6 +1,4 @@
-var Bookshelf = require('bookshelf').DB,
-    users = require('../app/controllers/user.js'), 
-    User = Bookshelf.User; 
+var users = require('../app/controllers/user.js'); 
 
 module.exports = function(app) {
 
@@ -11,6 +9,8 @@ module.exports = function(app) {
 
   /* User Routes */
   app.param('id', users.load);
-  app.get('/users/:id.:format', users.show)
-  app.get('/users/:id', users.show)
+  app.post('/users/new', users.create);
+  app.get('/users/:id.:format', users.show);
+  app.get('/users/:id', users.show);
+
 };
