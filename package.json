@@ -31,7 +31,6 @@
     "knex": "~0.5.4",
     "bookshelf": "~0.6.2",
     "mysql": "~2.0.1",
-    "passport-kerberos": "0.0.1",
     "passport": "~0.2.0",
     "express-hbs": "~0.7.8",
     "connect-acceptoverride": "0.0.3"
