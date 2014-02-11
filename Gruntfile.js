@@ -28,15 +28,36 @@ module.exports = function(grunt) {
       start: 'NODE_ENV=development ./node_modules/.bin/nodemon server.js',
       test: 'NODE_ENV=test ./node_modules/.bin/mocha --reporter spec test/test-*.js',
       startProd: 'NODE_ENV=production ./node_modules/.bin/nodemon server.js'
+    },
+
+    nodemon: {
+      dev: {
+        script: 'server.js',
+        options: {
+          nodeArgs: ['--debug']
+        }
+      } 
+    },
+
+    'node-inspector': { 
+      dev: {}
+    },
+
+    concurrent: {
+      dev: {
+        tasks: ['node-inspector', 'nodemon'],
+        options: {
+          logConcurrentOutput: true
+        }
+      }
     }
-  
   });
 
   // Lint things
   grunt.registerTask('lint', ['jshint']);
   grunt.registerTask('clean', ['shell:clean']);
   grunt.registerTask('reload', ['shell:clean', 'shell:update']);
-  grunt.registerTask('start', ['shell:start']);
+  grunt.registerTask('start', ['concurrent']);
   grunt.registerTask('startProd', ['shell:clean', 'shell:updateProd', 'jshint', 'shell:test', 'startProd']);
 
 

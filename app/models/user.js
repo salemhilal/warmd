@@ -14,7 +14,8 @@ var User = Bookshelf.Model.extend({
     "email",        
     "djName",       // on-air DJ name TODO: do we put this under shows? 
     "dateTrained",  // Date of training
-    "userName"      // Their username (i.e. shilal)    
+    "userName",      // Their username (i.e. shilal)    
+    "password"
   ]
 
 });
