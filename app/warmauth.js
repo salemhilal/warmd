@@ -3,48 +3,21 @@ var flash = require('connect-flash')
 , passport = require('passport')
 , util = require('util')
 , bCrypt = require('bcrypt-nodejs')
-, async = require('async')
 , should = require('should')
 , LocalStrategy = require('passport-local').Strategy;
 
 
 var bacon = 'bacon', baconHash, veggies = 'veggie', veggiesHash, salt1;
 
-      async.parallel([
-         function genSalt1(cb) {
-         bCrypt.genSalt(8, function (err, reply) {
-            if (err) { return cb(err) }
-            should.exist(reply)
-            salt1 = reply
-            cb()
-            })
-         },
-         function hashBacon1(cb) {
-         bCrypt.hash(bacon, salt1, null, function (err, reply) {
-            if (err) { return cb(err) }
-            should.exist(reply)
-            baconHash = reply
-            cb()
-            })
-         },
+salt1 = bCrypt.genSaltSync();
 
-         function hashVeggies1(cb) {
-            bCrypt.hash(veggies, salt1, null, function (err, reply) {
-                  if (err) { return cb(err) }
-                  should.exist(reply)
-                  veggiesHash = reply
-                  cb()
-                  })
-         },
-      ], function (errs) {
-         should.not.exist(errs, 'no errors should occur when generating salts')
-            should.exist(salt1, 'salt1 not set')
-      })
+baconHash = bCrypt.hashSync(bacon, salt1);
 
+veggiesHash = bCrypt.hashSync(veggies,salt1);
 
 
 var users = [
-{ id: 1, username: 'bob', password: baconHash , email: 'bob@example.com' }
+{ id: 1, username: 'bob', password: baconHash, email: 'bob@example.com' }
 , { id: 2, username: 'joe', password: veggiesHash, email: 'joe@example.com' }
 ];
 
@@ -93,6 +66,8 @@ passport.use(new LocalStrategy(
          function(username, password, done) {
          // asynchronous verification, for effect...
          process.nextTick(function () {
+console.log(username);
+console.log(password);
 
             // Find the user by username.  If there is no user with the given
             // username, or the password is not correct, set the user to `false` to
@@ -101,17 +76,17 @@ passport.use(new LocalStrategy(
             findByUsername(username, function(err, user) {
                if (err) { return done(err); }
                if (!user) { return done(null, false, { message: 'Unknown user ' + username }); }
-
-               bCrypt.compare(user.password, password, function(err, match) { 
-		if(match === true){ // we let bob or joe come in with any password
-		done(null, false, { message: 'Invalid password' }); }
-		})
-               return done(null, user);
+               console.log(bCrypt.compareSync(password,user.password) === false);
+               if (bCrypt.compareSync(password, user.password) === false) {
+                  console.log("In if statement");
+                  return done(null, false, { message: 'Invalid password' });
+               }
+                 return done(null, user);
                })
-            });
-         }
-         ));
+            })
+         })
 
+      );
 
 
 

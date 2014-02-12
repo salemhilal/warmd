@@ -1,6 +1,13 @@
 var DB = require('bookshelf').DB,
     User = DB.User;
 
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/login')
+}
+
+
+
 module.exports = {
 
   // Look up u
@@ -21,10 +28,10 @@ module.exports = {
 
   show: function(req, res) {
     res.format({
-      
-      // They want JSON 
+
+      // They want JSON
       json: function() {
-        res.json(req.user.attributes);      
+        res.json(req.user.attributes);
       },
 
       // They want HTML
@@ -42,7 +49,7 @@ module.exports = {
   create: function(req, res) {
     console.log(req.body);
     res.json({response: "aww yeah"});
-  
+
   }
 
 
