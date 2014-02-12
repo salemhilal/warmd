@@ -2,13 +2,14 @@ var flash = require('connect-flash')
 , express = require('express')
 , passport = require('passport')
 , util = require('util')
-, bcrypt = require('bcrypt-nodejs')
+, bCrypt = require('bcrypt-nodejs')
+, async = require('async')
+, should = require('should')
 , LocalStrategy = require('passport-local').Strategy;
 
 
-var bacon = 'bacon', baconHash, veggies = 'veggie', veggiesHash;
+var bacon = 'bacon', baconHash, veggies = 'veggie', veggiesHash, salt1;
 
-before(function (done) {
       async.parallel([
          function genSalt1(cb) {
          bCrypt.genSalt(8, function (err, reply) {
@@ -38,9 +39,7 @@ before(function (done) {
       ], function (errs) {
          should.not.exist(errs, 'no errors should occur when generating salts')
             should.exist(salt1, 'salt1 not set')
-            done()
       })
-})
 
 
 
@@ -103,7 +102,10 @@ passport.use(new LocalStrategy(
                if (err) { return done(err); }
                if (!user) { return done(null, false, { message: 'Unknown user ' + username }); }
 
-               bCrypt.compare(user.password, password, function(err, messages) { return done(null, false, { message: 'Invalid password' }); }
+               bCrypt.compare(user.password, password, function(err, match) { 
+		if(match === true){ // we let bob or joe come in with any password
+		done(null, false, { message: 'Invalid password' }); }
+		})
                return done(null, user);
                })
             });
