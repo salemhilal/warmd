@@ -48,6 +48,7 @@ Bookshelf.DB = Bookshelf.initialize({
 
 // Models (must be first to allow access to globals)
 Bookshelf.DB.User = require("./app/models/user.js");
+Bookshelf.DB.Artist = require("./app/models/artist.js")
 
 
 // Routes

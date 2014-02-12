@@ -3,6 +3,7 @@ var DB = require('bookshelf').DB,
 
 module.exports = {
 
+  // Look up u
   load: function(req, res, next, id) {
     User.forge({ userID: id })
       .fetch({ require: true }) // Make sure we find a matching ID
@@ -19,7 +20,6 @@ module.exports = {
   },
 
   show: function(req, res) {
-    console.log("Params, 2", req.params);
     res.format({
       
       // They want JSON 
@@ -41,7 +41,7 @@ module.exports = {
 
   create: function(req, res) {
     console.log(req.body);
-    res.json({response: "hell yes"});
+    res.json({response: "aww yeah"});
   
   }
 
