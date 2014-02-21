@@ -1,7 +1,7 @@
 var DB = require('bookshelf').DB,
-    Program = DB.Programs,
-    Program = DB.Collection.extend ({
-      model: Prog
+    Program = DB.Program,
+    Programs = DB.Collection.extend ({
+      model: Program
    }).forge();
 
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
          req.program = program;
          next();
       }, function (err) {
-         if(err.message && err.message.indexOF('EmptyResponse') !== -1) {
+         if(err.message && err.message.indexOf('EmptyResponse') !== -1) {
             next(new Error('not found'));
          } else {
             next(err);
@@ -28,7 +28,7 @@ module.exports = {
             res.json(req.program.attributes);
          },
          html: function() {
-            res.render('program/show', req.user.attributes);
+            res.render('program/show', req.program.attributes);
          },
          default: function () {
             res.json(red.program.attributes);

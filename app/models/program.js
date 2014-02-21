@@ -1,9 +1,9 @@
 var Bookshelf = require('bookshelf').DB;
 
-var Prog = Bookshelf.Model.extend({
+var Program = Bookshelf.Model.extend({
 
    tableName: "Programs"
 
    });
 
-module.exports = Prog;
+module.exports = Program;
