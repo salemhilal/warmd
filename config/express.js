@@ -20,19 +20,19 @@ var express = require('express'),
        app.use(passport.session());
        app.use(express.static('./public'));
        //app.use(express.favicon(__dirname + '/public/images/shortcut-icon.png'));
-       app.use(messages());
+       //app.use(messages());
 
-       app.engine('html', swig.renderFile);
-       app.set('view engine', 'html');
+      // app.engine('html', swig.renderFile);
+      // app.set('view engine', 'html');
       // I'm doing the authentication pages in html, because I'm more familiar with that. Comment out when using the views, or rectify for angluar presentation
-/*
+
        app.engine('hbs', hbs.express3({
          partialsDir: config.root + '/app/views/partials',
          contentHelperName: 'content',
-       }));*/
+       }));
 
-//app.set('view engine', 'hbs');
-//app.set('views', config.root + '/app/views');
+app.set('view engine', 'hbs');
+app.set('views', config.root + '/app/views');
 
 app.configure(function() {
 

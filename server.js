@@ -60,7 +60,7 @@ Bookshelf.DB.Program = require("./app/models/program.js");
 
 // Routes
 require('./config/routes')(app, passport, Bookshelf);
-require('./config/bookshelf_sql')(Bookshelf);
+// require('./config/bookshelf_sql')(Bookshelf);
 require('./config/auth')(passport, Bookshelf);
 
 //================================
