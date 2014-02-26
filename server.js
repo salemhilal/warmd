@@ -9,10 +9,7 @@ var express = require('express'),
     expressValidator = require('express-validator'),
     passport = require('passport'),
     crypto = require('crypto'),
-    swig = require('swig'),
-    messages = require('./config/messages'),
-    flash = require('connect-flash'),
-//    https = require('https'), // uncomment for production on current.
+    https = require('https'), // uncomment for production on current.
     app = express(),
     Bookshelf = require('bookshelf');
 
@@ -41,7 +38,7 @@ catch (err) {
 //================================
 
 // Express
-require("./config/express")(app, config, passport, messages, swig, flash);
+require("./config/express")(app, config, passport);
 // DB connection
 
 // We add the db to the scope of the library
