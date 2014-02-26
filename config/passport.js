@@ -1,7 +1,5 @@
 var passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
-    User = DB.User,
-    DB = require('bookshelf').DB;
 
 
 module.exports = function (passport, config) {

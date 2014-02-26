@@ -1,6 +1,6 @@
 # Technologies!
 
-aka the "Oh man we should totally use this in the project somewhere" file. 
+aka the "Oh man we should totally use this in the project somewhere" file.
 
 
 ### In use
@@ -9,7 +9,7 @@ aka the "Oh man we should totally use this in the project somewhere" file.
  - Express
  - Grunt
  - [git-friendly](https://github.com/jamiew/git-friendly)
- - That's it. 
+ - That's it.
 
 ### Oh man it'd be cool if we used
 
@@ -17,6 +17,8 @@ aka the "Oh man we should totally use this in the project somewhere" file.
  - Bookshelf
  - Handlebars
  - Angular
- - Actually we should write this in Go.  
+ - Actually we should write this in Go.
  - [node-krb5](https://github.com/qesuto/node-krb5)
  - [passport-kerberos](https://github.com/joshuah/passport-kerberos)
+ - [tls] http://nodejs.org/api/tls.html
+ - ssl w/ passport: http://stackoverflow.com/questions/18779206/ssl-with-express-js-trouble

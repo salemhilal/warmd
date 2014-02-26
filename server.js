@@ -6,9 +6,16 @@
 
 // Imports
 var express = require('express'),
+    expressValidator = require('express-validator'),
+    passport = require('passport'),
+    crypto = require('crypto'),
+    swig = require('swig'),
+    messages = require('./config/messages'),
+    flash = require('connect-flash'),
+//    https = require('https'), // uncomment for production on current.
     app = express(),
     Bookshelf = require('bookshelf');
-    
+
 
 // Configs
 var env = process.env.NODE_ENV || 'development',
@@ -24,7 +31,7 @@ catch (err) {
     console.error("\n\nMake sure you've created config/keys.js\n", err, "\n\n");
     return;
   }
-  else { 
+  else {
     throw err;
   }
 }
@@ -51,10 +58,10 @@ Bookshelf.DB.User = require("./app/models/user.js");
 Bookshelf.DB.Artist = require("./app/models/artist.js");
 Bookshelf.DB.Program = require("./app/models/program.js");
 
-
 // Routes
 require('./config/routes')(app);
-
+require('./config/bookshelf_sql')(Bookshelf);
+require('./config/auth')(passport);
 
 //================================
 // Initialize ====================
