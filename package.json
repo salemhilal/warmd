@@ -3,16 +3,13 @@
   "description": "WRCT: A Radio Music Database",
   "version": "0.0.1",
   "private": true,
-  "contributors": [
-    {
-      "name": "Salem Hilal",
-      "email": "salemhilal@gmail.com"
-    },
-    {
-      "name": "Matt Baron",
-      "email": "mbaron50@gmail.com"
-    }
-  ],
+  "contributors": [{
+    "name": "Salem Hilal",
+    "email": "salemhilal@gmail.com"
+  }, {
+    "name": "Matt Baron",
+    "email": "mbaron50@gmail.com"
+  }],
   "repository": {
     "type": "git",
     "url": "https://github.com/bichiliad/warmd.git"

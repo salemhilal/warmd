@@ -1,14 +1,17 @@
 var express = require('express'),
     hbs = require('express-hbs'),
-    // wares = require('./middlewares/utils.js'),
     acceptOverride = require('connect-acceptoverride');
 
 module.exports = function(app, config, passport) {
+    // Log every request.
     app.set('showStackError', config.showStackError || true);
+    app.use(express.logger());
 
-    app.use(express.logger()); // Log every request.
+    // Set headings for requests that forget to set headings
     app.use(acceptOverride());
-    app.use(express.static(config.root + '/public')); // Register public folder as a static dir
+
+    // Register public folder as a static dir
+    app.use(express.static(config.root + '/public'));
 
     // Authentication config for express,
     // hack-y now, will revisit later.
@@ -18,10 +21,12 @@ module.exports = function(app, config, passport) {
     app.use(express.session({
         secret: 'shilalisababby' // <-- lol
     }));
+
+    // Set up passport
     app.use(passport.initialize());
     app.use(passport.session());
-    app.use(express.static('./public'));
 
+    // Set rendering engines
     app.engine('hbs', hbs.express3({
         partialsDir: config.root + '/app/views/partials',
         contentHelperName: 'content',
@@ -30,6 +35,8 @@ module.exports = function(app, config, passport) {
     app.set('view engine', 'hbs');
     app.set('views', config.root + '/app/views');
 
+
+    // Still need to learn what configure() does
     app.configure(function() {
 
         app.use(express.bodyParser());
