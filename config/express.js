@@ -29,7 +29,7 @@ var express = require('express'),
        app.engine('hbs', hbs.express3({
          partialsDir: config.root + '/app/views/partials',
          contentHelperName: 'content',
-       }));*/
+       }));
 
 //app.set('view engine', 'hbs');
 //app.set('views', config.root + '/app/views');
@@ -62,11 +62,10 @@ app.configure(function() {
       // assume 404 since no middleware responded
       app.use(function(req, res) { //, next) {
          res.status(404).render('404', {
-url: req.originalUrl,
-error: 'Not found'
-});
-});
-
-});
+         url: req.originalUrl,
+         error: 'Not found'
+         });
+      }}});*/
 
 };
+
