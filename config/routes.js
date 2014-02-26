@@ -6,7 +6,7 @@ var rendering = require('./rendering'),
     indexController = require('../app/controllers/index'),
     loginController = require('../app/controllers/login');
 
-module.exports = function(app) {
+module.exports = function(app, passport) {
 
    app.get("/ping", function(req,res) {
          res.end("pong");

@@ -3,7 +3,7 @@ var express = require('express'),
     // wares = require('./middlewares/utils.js'),
     acceptOverride = require('connect-acceptoverride');
 
-    module.exports = function(app, config, passport, messages, swig) {
+    module.exports = function(app, config, passport, messages, swig, flash) {
        app.set('showStackError', config.showStackError || true);
 
        app.use(express.logger()); // Log every request.
@@ -31,8 +31,8 @@ var express = require('express'),
          contentHelperName: 'content',
        }));*/
 
-app.set('view engine', 'hbs');
-app.set('views', config.root + '/app/views');
+//app.set('view engine', 'hbs');
+//app.set('views', config.root + '/app/views');
 
 app.configure(function() {
 

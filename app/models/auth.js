@@ -1,4 +1,4 @@
-var Bookshelf = require('bookshelf').mysqlAuth;
+var Bookshelf = require('bookshelf').DB;
 
 module.exports = function() {
     var bookshelf = {};
