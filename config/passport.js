@@ -1,23 +1,49 @@
 var passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
+    DB = require('bookself').DB,
+    User = DB.User;
 
 
 module.exports = function (passport, config) {
 
-      // serialize sessions
-      passport.serializeUser(function(user, done) {
-            done(null, user.id)
-            })
+   // user -> id
+   passport.serializeUser(function(user, done) {
+      done(null, user.id)
+   });
 
+   // id -> user
    passport.deserializeUser(function(id, done) {
-         User.findOne({ _id: id }, function (err, user) {
-            done(err, user)
-            })
-         })
+      User.forge({ userID: id })
+        .fetch({ require: true }) // Make sure we find a matching ID
+        .then(function (user) {
+          req.user = user;
+          done(null, user);
+        }, function(err) {
+          if(err.message && err.message.indexOf("EmptyResponse") !== -1) {
+            done(new Error("No such user"));
+          } else {
+            done(err);
+          }
+        });
+
+   });
 
    // use local strategy
    passport.use(new LocalStrategy({
-      function (username, password, done){
-      User.authenticate
+      usernameField: "User",
+      passwordField: "Password",
+   },
+   function (username, password, done){
+      User.forge({ User: username })
+         .fetch({ require: true })
+         .then(function (user) { // Found user
 
-   }
+            //TODO: Authenticate here, PLEASE.
+
+            return done(null, user)
+         }, function(err) { // Could not find user / something went wrong
+            return done(null, false, { message: "No such user"})
+         })
+      }
+   );
+}
