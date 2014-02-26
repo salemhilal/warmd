@@ -3,7 +3,7 @@ var express = require('express'),
     // wares = require('./middlewares/utils.js'),
     acceptOverride = require('connect-acceptoverride');
 
-    module.exports = function(app, config) {
+    module.exports = function(app, config, passport) {
        app.set('showStackError', config.showStackError || true);
 
        app.use(express.logger()); // Log every request.
@@ -18,7 +18,6 @@ var express = require('express'),
        app.use(express.session({ secret: 'shilalisababby' }));
        app.use(passport.initialize());
        app.use(passport.session());
-       app.use(flash());
        app.use(express.static('./public'));
        //app.use(express.favicon(__dirname + '/public/images/shortcut-icon.png'));
        app.use(messages());
