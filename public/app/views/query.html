@@ -1,7 +1,11 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <input type="text" class="form-control" ng-model="query" ng-keyup="autocomplete()" placeholder="Search for an artist">
 
-  <input type="text" ng-model="query" ng-keyup="autocomplete()" placeholder="Search for an artist">
-
-  <ul>
-    <li ng-repeat="artist in artists">{{artist.Artist}}</li>
-  </ul>
-
+            <ul>
+            <li ng-repeat="artist in artists">{{artist.Artist}}</li>
+            </ul>
+        </div>
+    </div>
+</div>

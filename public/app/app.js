@@ -13,6 +13,10 @@ var warmdApp = angular.module('warmdApp', [
         templateUrl: 'app/views/query.html',
         controller: 'QueryCtrl',
       })
+      .when('/login', {
+        templateUrl: 'app/views/login.html',
+        controller: 'LoginCtrl',
+      })
       .otherwise({
         redirectTo: '/'
       })
