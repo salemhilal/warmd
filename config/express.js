@@ -3,7 +3,7 @@ var express = require('express'),
     // wares = require('./middlewares/utils.js'),
     acceptOverride = require('connect-acceptoverride');
 
-    module.exports = function(app, config, passport) {
+    module.exports = function(app, config, passport, messages, swig) {
        app.set('showStackError', config.showStackError || true);
 
        app.use(express.logger()); // Log every request.

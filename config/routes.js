@@ -2,7 +2,7 @@ var users = require('../app/controllers/user.js');
 var artists = require('../app/controllers/artist.js');
 var programs = require('../app/controllers/program.js');
 
-var rendering = require('render.js'),
+var rendering = require('./rendering'),
     indexController = require('../app/controllers/index'),
     loginController = require('../app/controllers/login');
 

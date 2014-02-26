@@ -41,7 +41,7 @@ catch (err) {
 //================================
 
 // Express
-require("./config/express")(app, config);
+require("./config/express")(app, config, passport, messages, swig);
 // DB connection
 
 // We add the db to the scope of the library
@@ -61,7 +61,7 @@ Bookshelf.DB.Program = require("./app/models/program.js");
 // Routes
 require('./config/routes')(app);
 require('./config/bookshelf_sql')(Bookshelf);
-require('./config/auth')(passport);
+require('./config/auth')(passport, Bookshelf);
 
 //================================
 // Initialize ====================
