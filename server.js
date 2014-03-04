@@ -37,8 +37,6 @@ catch (err) {
 // Bootstrapping  ================
 //================================
 
-// Express
-require("./config/express")(app, config, passport);
 // DB connection
 
 // We add the db to the scope of the library
@@ -55,10 +53,14 @@ Bookshelf.DB.User = require("./app/models/user.js");
 Bookshelf.DB.Artist = require("./app/models/artist.js");
 Bookshelf.DB.Program = require("./app/models/program.js");
 
+// Passport
+require('./config/passport')(passport, Bookshelf);
+
+// Express
+require("./config/express")(app, config, passport);
+
 // Routes
 require('./config/routes')(app, passport, Bookshelf);
-// require('./config/bookshelf_sql')(Bookshelf);
-require('./config/auth')(passport, Bookshelf);
 
 //================================
 // Initialize ====================

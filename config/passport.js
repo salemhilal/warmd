@@ -1,6 +1,6 @@
 var LocalStrategy = require('passport-local').Strategy,
    crypto = require('crypto'),
-   DB = require('bookself').DB,
+   DB = require('bookshelf').DB,
    User = DB.User;
 
 
@@ -45,19 +45,15 @@ module.exports = function(passport, config) {
                   require: true
                })
                .then(function(user) { // Found user
-                  var sa = user.get('salt');
-                  var pw = user.get('password');
-                  var upw = crypto.createHmac('sha1', sa).update(password).digest('hex');
-                  if (upw == pw) {
-                     return done(null, user);
-                  }
+                  //TODO: Actually check the password.
+                  return done(null, user);
 
-                  return done(null, user)
                }, function(err) { // Could not find user / something went wrong
                   return done(null, false, {
                      message: "No such user"
-                  })
-               })
+                  });
+               });
          }
-      );
-   }
+    ));
+
+};
