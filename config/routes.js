@@ -9,8 +9,8 @@ var rendering = require('./rendering'),
 module.exports = function(app, passport) {
 
    app.get("/ping", function(req,res) {
-         res.end("pong");
-         });
+     res.end("pong");
+   });
 
 
    // Home
