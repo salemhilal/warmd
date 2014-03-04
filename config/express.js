@@ -8,7 +8,6 @@ module.exports = function(app, config, passport) {
     app.use(express.logger());
 
 
-
     // Register public folder as a static dir
     app.use(express.static(config.root + '/public'));
 
