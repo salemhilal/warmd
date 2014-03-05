@@ -1,0 +1,19 @@
+.menu-item {
+  color: #777;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.menu-item:hover {
+  text-decoration: underline;
+}
+.main {
+  margin-top: 80px;
+}
+.login-form {
+  margin-top: 40px;
+}
+
+.login-logo {
+  width:100%;
+  margin: 30px auto;
+}
