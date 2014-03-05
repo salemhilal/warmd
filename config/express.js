@@ -46,10 +46,8 @@ module.exports = function(app, config, passport) {
       // Must be after passport middleware
       app.use(function(req, res, next) {
         if (req.user == null && req.path.indexOf('/app') === 0) {
-          console.log("===BACK TO LOGIN")
           res.redirect('/login');
         } else {
-          console.log("===NOT BACK TO LOGIN")
           next();
         }
       });

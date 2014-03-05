@@ -16,7 +16,12 @@ module.exports = function(app, config, passport) {
 
 
   // Login
-  app.get('/login', users.login);
+  app.get('/login', function(req, res, next) {
+    if(req.user) {
+      res.redirect('/');
+    }
+    next();
+  }, users.login);
   app.get('/logout', users.logout);
   app.post('/users/session',
     passport.authenticate('local', {
