@@ -22,6 +22,7 @@ module.exports = function(app, config, passport) {
     }
     next();
   }, users.login);
+
   app.get('/logout', users.logout);
   app.post('/users/session',
     passport.authenticate('local', {
@@ -30,23 +31,23 @@ module.exports = function(app, config, passport) {
     }));
 
     /*app.post('/users/session', function(req, res, next) {
-    passport.authenticate('local', function(err, user, info) {
-    if (err) {
-      console.log(err, info);
-      return next(err);
-    }
-    if (!user) {
-      console.log(err, info);
-      return res.redirect('/login'); }
-    req.login(user, function(err) {
-      if (err) {
-        console.log(err, info);
-        return next(err);
-      }
-      return res.redirect('/users/' + user.username);
-    });
-  })(req, res, next);
-});*/
+      passport.authenticate('local', function(err, user, info) {
+        if (err) {
+          console.log(err, info);
+          return next(err);
+        }
+        if (!user) {
+          console.log(err, info);
+          return res.redirect('/login'); }
+        req.login(user, function(err) {
+          if (err) {
+            console.log(err, info);
+            return next(err);
+          }
+          return res.redirect('/users/' + user.username);
+        });
+      })(req, res, next);
+    });*/
 
    /* User Routes */
    app.param('user', users.load);
