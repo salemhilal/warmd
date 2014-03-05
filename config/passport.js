@@ -43,7 +43,7 @@ module.exports = function(passport, config) {
        })
        .then(function(user) { // Found user
          //TODO: Actually check the password.
-         console.log("Found user")
+         console.log("Found user: ", user.attributes.User);
          return done(null, user);
 
         }, function(err) { // Could not find user / something went wrong

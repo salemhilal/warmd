@@ -1,24 +1,30 @@
 var users = require('../app/controllers/user.js'),
     artists = require('../app/controllers/artist.js'),
-    programs = require('../app/controllers/program.js');
+    programs = require('../app/controllers/program.js'),
+    express = require('express');
 
-module.exports = function(app, passport) {
+module.exports = function(app, config, passport) {
 
-  // Health checking
+  // Health & sanity checking
   app.get("/ping", function(req,res) {
    res.end("pong");
   });
+
+
+  // Register public folder as a static dir
+  // app.use("/", );
+
 
   // Login
   app.get('/login', users.login);
   app.get('/logout', users.logout);
   app.post('/users/session',
     passport.authenticate('local', {
-      successRedirect: '/?success=true',
+      successRedirect: '/app',
       failureRedirect: '/login?success=false'
     }));
 
-  /*app.post('/users/session', function(req, res, next) {
+    /*app.post('/users/session', function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
     if (err) {
       console.log(err, info);
@@ -54,5 +60,10 @@ module.exports = function(app, passport) {
    app.param('program', programs.load);
    app.get('/programs/:program.:format', users.isAuthed, programs.show);
    app.get('/programs/:program', users.isAuthed, programs.show);
+
+   /* Dead last thing to match */
+   app.get('/', function(req, res, next) {
+     res.redirect('/app');
+   });
 
 };

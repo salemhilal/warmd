@@ -60,7 +60,7 @@ require('./config/passport')(passport, Bookshelf);
 require("./config/express")(app, config, passport);
 
 // Routes
-require('./config/routes')(app, passport, Bookshelf);
+require('./config/routes')(app, config, passport);
 
 //================================
 // Initialize ====================

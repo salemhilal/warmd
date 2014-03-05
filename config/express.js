@@ -9,8 +9,7 @@ module.exports = function(app, config, passport) {
 
 
     // Register public folder as a static dir
-    app.use(express.static(config.root + '/public'));
-
+    // app.use(express.static(config.root + '/public'));
 
     // Set rendering engines
     app.engine('hbs', hbs.express3({
@@ -42,6 +41,21 @@ module.exports = function(app, config, passport) {
       // use passport session
       app.use(passport.initialize())
       app.use(passport.session())
+
+      // Place app behind password protection.
+      // Must be after passport middleware
+      app.use(function(req, res, next) {
+        if (req.user == null && req.path.indexOf('/app') === 0) {
+          console.log("===BACK TO LOGIN")
+          res.redirect('/login');
+        } else {
+          console.log("===NOT BACK TO LOGIN")
+          next();
+        }
+      });
+
+      app.use("/app", express.static(config.root + '/public/app'));
+      app.use("/resources", express.static(config.root + '/public/resources'));
 
       // routes should be last
       app.use(app.router);
