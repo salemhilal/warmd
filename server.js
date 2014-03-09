@@ -9,15 +9,8 @@ var express = require('express'),
     expressValidator = require('express-validator'),
     passport = require('passport'),
     crypto = require('crypto'),
-<<<<<<< Updated upstream
-    swig = require('swig'),
-    messages = require('./config/messages'),
-    flash = require('connect-flash'),
-//    https = require('https'), // uncomment for production on current.
-=======
     https = require('https'), // uncomment for production on current.
     fs = require('fs'),
->>>>>>> Stashed changes
     app = express(),
     Bookshelf = require('bookshelf');
 
@@ -56,8 +49,6 @@ catch (err) {
 // Bootstrapping  ================
 //================================
 
-// Express
-require("./config/express")(app, config, passport, messages, swig, flash);
 // DB connection
 
 // We add the db to the scope of the library
@@ -74,9 +65,14 @@ Bookshelf.DB.User = require("./app/models/user.js");
 Bookshelf.DB.Artist = require("./app/models/artist.js");
 Bookshelf.DB.Program = require("./app/models/program.js");
 
+// Passport
+require('./config/passport')(passport, Bookshelf);
+
+// Express
+require("./config/express")(app, config, passport);
+
 // Routes
-require('./config/routes')(app, passport, Bookshelf);
-require('./config/auth')(passport, Bookshelf);
+require('./config/routes')(app, config, passport);
 
 //================================
 // Initialize ====================

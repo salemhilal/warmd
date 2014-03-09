@@ -1,69 +1,75 @@
-var users = require('../app/controllers/user.js');
-var artists = require('../app/controllers/artist.js');
-var programs = require('../app/controllers/program.js');
+var users = require('../app/controllers/user.js'),
+    artists = require('../app/controllers/artist.js'),
+    programs = require('../app/controllers/program.js'),
+    express = require('express');
 
-var rendering = require('./rendering'),
-    indexController = require('../app/controllers/index'),
-    loginController = require('../app/controllers/login');
+module.exports = function(app, config, passport) {
 
-module.exports = function(app, passport) {
-
-   app.get("/ping", function(req,res) {
-         res.end("pong");
-         });
+  // Health & sanity checking
+  app.get("/ping", function(req,res) {
+   res.end("pong");
+  });
 
 
-   // Home
-   app.get('/', indexController.home);
-   app.get('/home', ensureAuthenticated, indexController.userHome);
+  // Register public folder as a static dir
+  // app.use("/", );
 
 
-   // Auth
-   app.get('/register', loginController.registerPage);
-   app.post('/register', loginController.registerPost);
-   app.get('/login', loginController.loginPage);
-   app.post('/login', loginController.checkLogin);
-   app.get('/logout', loginController.logout);
+  // Login
+  app.get('/login', function(req, res, next) {
+    if(req.user) {
+      res.redirect('/');
+    }
+    next();
+  }, users.login);
 
-   app.get('/apitest', function(req, res) {
-         rendering.render(req, res, {
-            'data': {
-            'test': {
-            'testsub': {
-            'str': 'testsub hello world'
-            },
-            'testsub2': 42
-            },
-            'test2': 'hello world'
-            }
-            });
-         })
+  app.get('/logout', users.logout);
+  app.post('/users/session',
+    passport.authenticate('local', {
+      successRedirect: '/app',
+      failureRedirect: '/login?success=false'
+    }));
 
-
-   // Auth Middleware
-   function ensureAuthenticated(req, res, next) {
-      if (req.isAuthenticated()) { return next(); }
-      res.redirect('/login');
-   }
-
+    /*app.post('/users/session', function(req, res, next) {
+      passport.authenticate('local', function(err, user, info) {
+        if (err) {
+          console.log(err, info);
+          return next(err);
+        }
+        if (!user) {
+          console.log(err, info);
+          return res.redirect('/login'); }
+        req.login(user, function(err) {
+          if (err) {
+            console.log(err, info);
+            return next(err);
+          }
+          return res.redirect('/users/' + user.username);
+        });
+      })(req, res, next);
+    });*/
 
    /* User Routes */
    app.param('user', users.load);
    app.post('/users/new', users.create);
-   app.get('/users/:user.:format', users.show);
-   app.get('/users/:user', users.show);
+   app.get('/users/:user.:format', users.isAuthed, users.show);
+   app.get('/users/:user', users.isAuthed, users.show);
 
 
    /* Artist Routes */
-   console.log(artists);
    app.param('artist', artists.load);
-   app.post('/artists/query', artists.query);
-   app.get('/artists/:artist.:format', artists.show);
-   app.get('/artists/:artist', artists.show);
+   app.post('/artists/query', users.isAuthed, artists.query);
+   app.get('/artists/:artist.:format', users.isAuthed, artists.show);
+   app.get('/artists/:artist', users.isAuthed, artists.show);
 
    /* Program Routes */
    app.param('program', programs.load);
-   app.get('/programs/:program.:format', programs.show);
-   app.get('/programs/:program', programs.show);
+   app.get('/programs/:program.:format', users.isAuthed, programs.show);
+   app.get('/programs/:program', users.isAuthed, programs.show);
+
+   /* Dead last thing to match */
+   app.get('/', function(req, res, next) {
+     res.redirect('/app');
+   });
 
 };
