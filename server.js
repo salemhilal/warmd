@@ -66,7 +66,7 @@ Bookshelf.DB.Artist = require("./app/models/artist.js");
 Bookshelf.DB.Program = require("./app/models/program.js");
 
 // Passport
-require('./config/passport')(passport, Bookshelf);
+require('./config/passport')(passport, config);
 
 // Express
 require("./config/express")(app, config, passport);
