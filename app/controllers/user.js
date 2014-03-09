@@ -18,9 +18,6 @@ module.exports = {
   // TODO: Move this to some communal middlewares file.
   isAuthed: function(req, res, next) {
     process.nextTick(function() {
-      console.log("====================");
-      console.log(req.isAuthenticated());
-      console.log(req.user);
       if (req.isAuthenticated()) {
         return next();
       } else {
@@ -42,7 +39,7 @@ module.exports = {
       .fetch({ require: true }) // Make sure we find a matching ID
       .then(function (user) {
         // Can't do req.user, interferes with passport
-        req.userData = user;
+          req.userData = user;
         next();
       }, function(err) {
         if(err.message && err.message.indexOf("EmptyResponse") !== -1) {

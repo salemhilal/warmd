@@ -4,7 +4,7 @@ var LocalStrategy = require('passport-local').Strategy,
    User = DB.User;
 
 
-module.exports = function(passport, config) {
+module.exports = function(passport) {
 
    // user -> id
    passport.serializeUser(function(user, done) {
