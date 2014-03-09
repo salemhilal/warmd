@@ -9,10 +9,15 @@ var express = require('express'),
     expressValidator = require('express-validator'),
     passport = require('passport'),
     crypto = require('crypto'),
+<<<<<<< Updated upstream
     swig = require('swig'),
     messages = require('./config/messages'),
     flash = require('connect-flash'),
 //    https = require('https'), // uncomment for production on current.
+=======
+    https = require('https'), // uncomment for production on current.
+    fs = require('fs'),
+>>>>>>> Stashed changes
     app = express(),
     Bookshelf = require('bookshelf');
 
@@ -20,6 +25,17 @@ var express = require('express'),
 // Configs
 var env = process.env.NODE_ENV || 'development',
     config = require('./config/config')[env];
+
+// HTTPS/SSL
+var options = {
+   key: fs.readFileSync('./config/server-key.pem'),
+   cert: fs.readFileSync('./config/server-cert.pem'),
+   // This is only necessary if using the client cert authentication
+   requestCert: true,
+
+   // This is only necessary if client uses self-signed cert
+   //ca: [ fs.readFileSync('client-cert.pem')]
+   };
 
 // Get the keys, check to make sure they exist
 var keys;
@@ -68,14 +84,16 @@ require('./config/auth')(passport, Bookshelf);
 
 // Start app
 var port = process.env.PORT || config.port || 3000;
-app.listen(port);
+var server = https.createServer(options, app).listen(port, function(){
+   //app.listen(port);
 
-console.log("\n\nWARMD now running on port " + port);
-console.log("running in " + env + " environment");
+   console.log("\n\nWARMD now running on port " + port);
+   console.log("running in " + env + " environment");
 
-if(config.verbose) {
-  console.log("Verbose mode on");
-}
+   if(config.verbose) {
+     console.log("Verbose mode on");
+   }
+});
 
 // Expose app for testing purposes
 exports = module.exports = app;
