@@ -3,6 +3,20 @@ var LocalStrategy = require('passport-local').Strategy,
    DB = require('bookshelf').DB,
    User = DB.User;
 
+// Password verification functions
+
+encryptPassword = function(password){
+   if (!password) return ''
+   var encrypted
+   try {
+      encrypted = crypto.createCipher('aes256', password).setAutoPadding(auto_padding=true).final('hex')
+      return encrypted
+   } catch  (err) {
+      return 'There was error!'
+   }
+}
+
+
 
 module.exports = function(passport, config) {
 
@@ -44,8 +58,13 @@ module.exports = function(passport, config) {
        .then(function(user) { // Found user
          //TODO: Actually check the password.
          console.log("Found user: ", user.attributes.User);
-         return done(null, user);
-
+         console.log("Stored Hash: ", user.attributes.Password);
+         console.log("Passed Hash: ", encryptPassword(password));
+         if (encryptPassword(password) === user.attributes.Password){
+            return done(null, user);
+         } else {
+            return done(new Error("Incorrect Password"));
+         }
         }, function(err) { // Could not find user / something went wrong
           return done(err);
         });
