@@ -31,11 +31,13 @@ module.exports = function(passport, config) {
       User.forge({
          userID: id
       })
-         .fetch({
-            require: true
-         }) // Make sure we find a matching ID
+      .fetch() // Make sure we find a matching ID
       .then(function(user) {
-         done(null, user);
+        if(!user) { // No user found
+          done(null, false);  
+        } else {
+          done(null, user);
+        }
       }, function(err) {
          if (err.message && err.message.indexOf("EmptyResponse") !== -1) {
             done(new Error("No such user"));
@@ -53,10 +55,15 @@ module.exports = function(passport, config) {
          User: username
        })
        .fetch({
-         require: true
+         //require: true
        })
-       .then(function(user) { // Found user
+       .then(function(user) { 
+         if(!user) {
+          return done(null, false);
+         }
+         // Found user
          //TODO: Actually check the password.
+         console.log("User: ", user);
          console.log("Found user: ", user.attributes.User);
          console.log("Stored Hash: ", user.attributes.Password);
          console.log("Passed Hash: ", encryptPassword(password));
