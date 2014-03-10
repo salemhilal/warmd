@@ -63,7 +63,7 @@ module.exports = function(passport, config) {
          if (encryptPassword(password) === user.attributes.Password){
             return done(null, user);
          } else {
-            return done(new Error("Incorrect Password"));
+            return done(null, false);
          }
         }, function(err) { // Could not find user / something went wrong
           return done(err);
