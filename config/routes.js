@@ -10,11 +10,6 @@ module.exports = function(app, config, passport) {
    res.end("pong");
   });
 
-
-  // Register public folder as a static dir
-  // app.use("/", );
-
-
   // Login
   app.get('/login', function(req, res, next) {
     if(req.user) {
@@ -54,7 +49,6 @@ module.exports = function(app, config, passport) {
    app.post('/users/new', users.create);
    app.get('/users/:user.:format', users.isAuthed, users.show);
    app.get('/users/:user', users.isAuthed, users.show);
-
 
    /* Artist Routes */
    app.param('artist', artists.load);
