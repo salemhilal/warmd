@@ -10,7 +10,8 @@
   margin-top: 80px;
 }
 .login-form {
-  margin-top: 40px;
+  margin: 40px auto 0;
+  max-width: 400px;
 }
 
 .login-logo {
