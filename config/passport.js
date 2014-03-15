@@ -34,7 +34,7 @@ module.exports = function(passport) {
       .fetch() // Make sure we find a matching ID
       .then(function(user) {
         if(!user) { // No user found
-          done(null, false);  
+          done(null, false);
         } else {
           done(null, user);
         }
@@ -55,9 +55,9 @@ module.exports = function(passport) {
          User: username
        })
        .fetch({
-         //require: true
+         withRelated: ['programs']
        })
-       .then(function(user) { 
+       .then(function(user) {
          if(!user) {
           return done(null, false);
          }
@@ -68,6 +68,7 @@ module.exports = function(passport) {
          console.log("Stored Hash: ", user.attributes.Password);
          console.log("Passed Hash: ", encryptPassword(password));
          if (encryptPassword(password) === user.attributes.Password){
+            console.log("=======Programs:\n", user.related('programs'));
             return done(null, user);
          } else {
             return done(null, false);
