@@ -22,6 +22,10 @@ var User = DB.Model.extend({
     "dateTrained",  // Date of training
     "userName",     // Their username (i.e. shilal)
     "password"
+  ],
+
+  relations: [
+    'programs', // has many  
   ]
 
 });

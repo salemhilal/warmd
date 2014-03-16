@@ -15,7 +15,7 @@
       <img src="/resources/img/wrct-9-logo.jpg" alt="wrct" class="login-logo">
 
       <form action="/users/session" method="post" role="form" class="highlight">
-        <div id="login-err" class="alert alert-danger">
+        <div id="login-err" class="alert alert-warning alert-dismissable">
           <strong>Hmm, something's not correct.</strong> <br>Make sure your username and password are right.
         </div>
         <div class="for else {
@@ -24,6 +24,7 @@
           <label for="username">Username</label>
           <input id="username" type="text" name="username" class="form-control input-lg" placeholder="Enter your username" >
         </div>
+        <br/>
         <div class="form-group">
           <label for="loginPassword">Password</label>
           <input type="password" class="form-control input-lg" name="password" id="password" placeholder="password">

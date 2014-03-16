@@ -31,7 +31,9 @@ module.exports = function(passport) {
       User.forge({
          userID: id
       })
-      .fetch() // Make sure we find a matching ID
+      .fetch({
+        withRelated: ['programs'],
+      })
       .then(function(user) {
         if(!user) { // No user found
           done(null, false);
@@ -55,18 +57,14 @@ module.exports = function(passport) {
          User: username
        })
        .fetch({
-         withRelated: ['programs']
+         withRelated: ['programs'],
        })
        .then(function(user) {
          if(!user) {
           return done(null, false);
          }
          // Found user
-         //TODO: Actually check the password.
-         console.log("User: ", user);
          console.log("Found user: ", user.attributes.User);
-         console.log("Stored Hash: ", user.attributes.Password);
-         console.log("Passed Hash: ", encryptPassword(password));
          if (encryptPassword(password) === user.attributes.Password){
             console.log("=======Programs:\n", user.related('programs'));
             return done(null, user);
