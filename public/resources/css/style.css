@@ -23,3 +23,19 @@
   padding-left: 20px;
   padding-right: 20px;
 }
+
+.plays {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plays li {
+  padding: 5px;
+  margin: 5px;
+  width: 100px;
+  height: 20px;
+  line-height: 1.5em;
+  border-radius: 3px;
+  background: #EEE;
+}

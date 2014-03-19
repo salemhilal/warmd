@@ -1,7 +1,7 @@
 "use strict";
 
 var warmdApp = angular.module('warmdApp', [
-  'ngRoute',
+  'ngRoute', 'ui'
 ])
 .config(function ($routeProvider) {
   $routeProvider

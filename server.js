@@ -64,6 +64,7 @@ Bookshelf.DB = Bookshelf.initialize({
 Bookshelf.DB.User = require("./app/models/user.js");
 Bookshelf.DB.Artist = require("./app/models/artist.js");
 Bookshelf.DB.Program = require("./app/models/program.js");
+Bookshelf.DB.Playlist = require("./app/models/playlist.js");
 
 // Passport
 require('./config/passport')(passport, config);

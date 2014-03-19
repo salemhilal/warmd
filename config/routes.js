@@ -1,6 +1,7 @@
 var users = require('../app/controllers/user.js'),
     artists = require('../app/controllers/artist.js'),
     programs = require('../app/controllers/program.js'),
+    playlists = require('../app/controllers/playlist.js'),
     express = require('express');
 
 module.exports = function(app, config, passport) {
@@ -45,6 +46,12 @@ module.exports = function(app, config, passport) {
   app.param('program', programs.load);
   app.get('/programs/:program.:format', users.isAuthed, programs.show);
   app.get('/programs/:program', users.isAuthed, programs.show);
+
+  /* Playlist routes */
+  app.param('playlist', playlists.load);
+  app.post('/playlists', users.isAuthed, playlists.create);
+  app.get('/playlists/:playlist.json', users.isAuthed, playlists.show);
+  app.put('/playlists/:playlist', users.isAuthed, playlists.update);
 
   /* Dead last thing to match */
   app.get('/', function(req, res, next) {
