@@ -21,6 +21,10 @@ var warmdApp = angular.module('warmdApp', [
       templateUrl: '/app/views/user.html',
       controller: 'UserCtrl',
     })
+    .when('/playlist/new/:programID', {
+      templateUrl: '/app/views/playlist.html',
+      controller: 'PlaylistCtrl',
+    })
     .otherwise({
       redirectTo: '/'
     })

@@ -6,14 +6,16 @@ var LocalStrategy = require('passport-local').Strategy,
 // Password verification functions
 
 encryptPassword = function(password){
-   if (!password) return ''
-   var encrypted
-   try {
-      encrypted = crypto.createCipher('aes256', password).setAutoPadding(auto_padding=true).final('hex')
-      return encrypted
-   } catch  (err) {
-      return 'There was error!'
-   }
+  if (!password) {
+    return '';
+  }
+  var encrypted
+  try {
+    encrypted = crypto.createCipher('aes256', password).setAutoPadding(auto_padding=true).final('hex')
+    return encrypted
+  } catch  (err) {
+    return 'There was error!'
+  }
 }
 
 

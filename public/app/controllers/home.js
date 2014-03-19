@@ -1,3 +1,6 @@
-warmdApp.controller("HomeCtrl", function HomeCtrl($scope) {
-    console.log("HomeCtrl");
-});
+warmdApp.controller("HomeCtrl", ["$scope", "$http", function ($scope, $http) {
+
+  console.log("HomeCtrl");
+  $scope.programs = $scope.user.programs;
+
+}]);
