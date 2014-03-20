@@ -1,5 +1,5 @@
 var DB = require('bookshelf').DB,
-    Play = require('./play').Play;
+    Play = require('./play').model;
 
 var Playlist = DB.Model.extend({
   tableName: "PlayLists",
