@@ -6,4 +6,4 @@ var Program = Bookshelf.Model.extend({
 
 });
 
-exports.Program = Program;
+exports.model = Program;

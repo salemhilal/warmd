@@ -1,7 +1,7 @@
 var LocalStrategy = require('passport-local').Strategy,
    crypto = require('crypto'),
    DB = require('bookshelf').DB,
-   User = DB.User;
+   User = require('../app/models/user').model;
 
 // Password verification functions
 

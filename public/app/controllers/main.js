@@ -1,9 +1,9 @@
 warmdApp.controller("MainCtrl", ["$scope", "$http", function MainCtrl($scope, $http){
     // Because templating is easier than html
     $scope.menu = [
-        { name: "My info", url: "/logout" },
+        { name: "My info", url: "/me\" target=\"_blank" },
         { name: "Shows",   url: "#"},
-        { name: "Log out", url: "#" },
+        { name: "Log out", url: "/logout" },
         { name: "Help",    url: "#" },
         { name: "Home",    url: "#" },
     ]

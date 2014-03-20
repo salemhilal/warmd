@@ -7,7 +7,14 @@ var Playlist = DB.Model.extend({
 
   plays: function() {
     return this.hasMany(Play, "ProgramID");
-  }
+  },
+
+  defaults: {
+    StartTime: new Date(),
+    EndTime: new Date(),
+    UserID: 0,
+    Comment: null,
+  },
 });
 
-exports.Playlist = Playlist;
+exports.model = Playlist;

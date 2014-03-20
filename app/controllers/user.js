@@ -1,5 +1,5 @@
 var DB = require('bookshelf').DB,
-    User = DB.User;
+    User = require('../models/user').model;
 
 module.exports = {
 

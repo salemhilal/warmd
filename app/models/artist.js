@@ -4,4 +4,4 @@ var Artist = DB.Model.extend({
   tableName: "Artists"
 });
 
-module.exports = Artist;
+exports.model = Artist;

@@ -1,5 +1,5 @@
 var DB = require('bookshelf').DB,
-    Playlist = DB.Playlist;
+    Playlist = require('../models/playlist').model;
 
 
 module.exports = {

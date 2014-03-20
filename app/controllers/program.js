@@ -1,5 +1,5 @@
 var DB = require('bookshelf').DB,
-    Program = DB.Program,
+    Program = require('../models/program').model,
     Programs = DB.Collection.extend ({
       model: Program
    }).forge();
@@ -63,4 +63,3 @@ module.exports = {
             });
       }
 }
-

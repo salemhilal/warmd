@@ -1,4 +1,4 @@
-warmdApp.controller("PlaylistCtrl", ["$scope", "$routeParams", function ($scope, $routeParams) {
+warmdApp.controller("PlaylistCtrl", ["$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
 
   console.log("PlayistCtrl");
   console.log($routeParams.programID);
@@ -8,5 +8,13 @@ warmdApp.controller("PlaylistCtrl", ["$scope", "$routeParams", function ($scope,
   // TODO: Just to prototype
   $scope.plays = ["one", "two", "three", "four", "five", "six"];
 
+
+  $http({method: 'GET', url: '/playlists/30.json'}).
+    success(function(data, status, headers, config) {
+      console.error(data, status, headers, config);
+    }).
+    error(function(data, status, headers, config) {
+      console.log(data, status, headers, config);
+    });
 
 }]);

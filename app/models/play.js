@@ -1,7 +1,7 @@
 var DB = require('bookshelf').DB;
 
 var Play = DB.Model.extend({
-  tablename: "Plays"
+  tablename: "Plays",
 });
 
-exports.Play = Play;
+exports.model = Play;

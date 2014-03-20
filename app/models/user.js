@@ -1,5 +1,5 @@
 var DB = require('bookshelf').DB,
-    Program = require('./program').Program;
+    Program = require('./program').model;
 
 var User = DB.Model.extend({
 
@@ -25,10 +25,10 @@ var User = DB.Model.extend({
   ],
 
   relations: [
-    'programs', // has many  
+    'programs', // has many
   ]
 
 });
 
 
-module.exports = User;
+exports.model = User;

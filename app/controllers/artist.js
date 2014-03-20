@@ -1,8 +1,8 @@
 var DB = require('bookshelf').DB,
-    Artist = DB.Artist,
+    Artist = require('../models/artist').model,
     Artists = DB.Collection.extend({
       model: Artist
-    }).forge(); 
+    }).forge();
 
 module.exports = {
 
@@ -30,7 +30,7 @@ module.exports = {
       default: function() {
         res.json(req.artist.attributes);
       }
-             //TODO: other views? 
+             //TODO: other views?
     });
   },
 
@@ -51,11 +51,11 @@ module.exports = {
         .orWhere("ShortName", "like", query)
         .orWhere("Artist", "like", "%" + query + "%")
         .orWhere("ShortName", "like", "%" + query + "%")
-        .limit(10);   
+        .limit(10);
     }).fetch()
       .then(function(collection) {
         res.json(collection.toJSON({shallow: true}));
-      }); 
+      });
   }
 
 }
