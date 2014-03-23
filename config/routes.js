@@ -34,7 +34,7 @@ module.exports = function(app, config, passport) {
   app.param('user', users.load);
   app.post('/users/new', users.create);
   app.get('/users/:user.:format', users.isAuthed, users.show);
-   app.get('/users/:user', users.isAuthed, users.show);
+  app.get('/users/:user', users.isAuthed, users.show);
 
   /* Artist Routes */
   app.param('artist', artists.load);
@@ -44,13 +44,13 @@ module.exports = function(app, config, passport) {
 
   /* Program Routes */
   app.param('program', programs.load);
-  app.get('/programs/:program.:format', users.isAuthed, programs.show);
-  app.get('/programs/:program', users.isAuthed, programs.show);
+  app.get('/programs/:program.:format', programs.show);
+  app.get('/programs/:program', programs.show);
 
-  /* Playlist routes */
+  /* Playlist Routes */
   app.param('playlist', playlists.load);
   app.post('/playlists', users.isAuthed, playlists.create);
-  app.get('/playlists/:playlist.json', users.isAuthed, playlists.show);
+  app.get('/playlists/:playlist', playlists.show);
   app.put('/playlists/:playlist', users.isAuthed, playlists.update);
 
   /* Dead last thing to match */
