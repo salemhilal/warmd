@@ -6,7 +6,7 @@ var Playlist = DB.Model.extend({
   idAttribute: "PlayListID",
 
   plays: function() {
-    return this.hasMany(Play, "ProgramID");
+    return this.hasMany(Play, "PlayListID");
   },
 
   defaults: {

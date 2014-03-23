@@ -68,7 +68,6 @@ module.exports = function(passport) {
          // Found user
          console.log("Found user: ", user.attributes.User);
          if (encryptPassword(password) === user.attributes.Password){
-            console.log("=======Programs:\n", user.related('programs'));
             return done(null, user);
          } else {
             return done(null, false);
