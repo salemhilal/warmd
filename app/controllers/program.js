@@ -24,15 +24,15 @@ module.exports = {
 
    show: function(req, res) {
       res.format( {
-         json: function () {
-            res.json(req.program.attributes);
-         },
-         html: function() {
-            res.render('program/show', req.program.attributes);
-         },
-         default: function () {
-            res.json(red.program.attributes);
-         }
+        json: function () {
+            res.json(200, req.program);
+        },
+        html: function() {
+          res.render('program/show', req.program.attributes);
+        },
+        default: function () {
+          res.json(200, req.program);
+        }
 
       });
    },

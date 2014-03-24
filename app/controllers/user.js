@@ -72,6 +72,7 @@ module.exports = {
 
   create: function(req, res) {
     console.log(req.body);
+    // TODO: Implement this behind privileged auth
     res.json({response: "aww yeah"});
 
   },
