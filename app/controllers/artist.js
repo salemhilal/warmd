@@ -36,6 +36,7 @@ module.exports = {
 
   query: function(req, res) {
     var query = req.body.query;
+    var limit = req.body.limit;
 
     // Make sure this query is a thang.
     if(!query) {
@@ -49,11 +50,17 @@ module.exports = {
       qb.where("Artist", "like", query)
         .orWhere("ShortName", "like", query)
         .orWhere("Artist", "like", "%" + query + "%")
-        .orWhere("ShortName", "like", "%" + query + "%")
-        .limit(10);
+        .orWhere("ShortName", "like", "%" + query + "%");
+
+      if (limit && typeof limit === "number") {
+        qb.limit(limit);
+      }
+        // .limit(10);
     }).fetch()
       .then(function(collection) {
         res.json(200, collection.toJSON({shallow: true}));
+      }, function(err) {
+        res.json(500, err);
       });
   }
 

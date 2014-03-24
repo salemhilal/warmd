@@ -30,5 +30,10 @@ var User = DB.Model.extend({
 
 });
 
+var Users = DB.Collection.extend({
+  model: User,
+});
+
 
 exports.model = User;
+exports.collection = Users;

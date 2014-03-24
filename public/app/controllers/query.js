@@ -3,6 +3,8 @@ warmdApp.controller("QueryCtrl", ["$scope", function QueryCtrl($scope) {
 
     $scope.artists = [];
 
+    // TODO: use $http
+    // TODO: Limit query to ten.
     $scope.autocomplete = _.debounce(function(){
       $.ajax({
         type: "POST",

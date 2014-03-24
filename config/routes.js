@@ -36,6 +36,7 @@ module.exports = function(app, config, passport) {
   app.post('/users/new', users.create);
   app.get('/users/:user.:format', users.isAuthed, users.show);
   app.get('/users/:user', users.isAuthed, users.show);
+  app.post('/users/query', users.query);
 
   /* Artist Routes */
   app.param('artist', artists.load);
