@@ -1,6 +1,7 @@
 <head>
 <link rel="stylesheet" href="/resources/css/style.css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="/resources/css/flat-ui.css">
 <style type="text/css" media="screen">
 
 </style>
@@ -12,24 +13,27 @@
   <div class="login-form panel panel-default">
     <div class="panel-body">
 
-      <img src="/resources/img/wrct-9-logo.jpg" alt="wrct" class="login-logo">
+<!--       <img src="/resources/images/wrct-9-logo.jpg" alt="wrct" class="login-logo"> -->
+
+      <h1>Login</h1>
 
       <form action="/users/session" method="post" role="form" class="highlight">
+
         <div id="login-err" class="alert alert-warning alert-dismissable">
           <strong>Hmm, something's not correct.</strong> <br>Make sure your username and password are right.
         </div>
-        <div class="for else {
 
-        m-group">
-          <label for="username">Username</label>
-          <input id="username" type="text" name="username" class="form-control input-lg" placeholder="Enter your username" >
-        </div>
-        <br/>
         <div class="form-group">
-          <label for="loginPassword">Password</label>
-          <input type="password" class="form-control input-lg" name="password" id="password" placeholder="password">
+          <label class="sr-only" for="username">Username</label>
+          <input id="username" type="text" name="username" class="form-control input-lg login-field" placeholder="Enter your username" >
         </div>
-        <button type="submit" class="btn btn-primary btn-lg">Login</button>
+
+        <div class="form-group">
+          <label class="sr-only" for="loginPassword">Password</label>
+          <input type="password" class="form-control input-lg login-field" name="password" id="password" placeholder="password">
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
       </form>
 
     </div>
