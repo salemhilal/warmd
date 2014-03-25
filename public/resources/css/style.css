@@ -20,8 +20,8 @@
 }
 .container {
   box-sizing: border-box;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .plays {
@@ -38,4 +38,8 @@
   line-height: 1.5em;
   border-radius: 3px;
   background: #EEE;
+}
+
+.tile {
+  margin-bottom:20px;
 }
