@@ -3,40 +3,40 @@
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/css/flat-ui.css">
 <style type="text/css" media="screen">
-
+  body {
+    background-color: #34495e;
+  }
 </style>
 </head>
 
 <body>
 <div class="container">
 
-  <div class="login-form panel panel-default">
-    <div class="panel-body">
+  <div class="login-form tile">
 
-<!--       <img src="/resources/images/wrct-9-logo.jpg" alt="wrct" class="login-logo"> -->
+    <h1>Login</h1>
+    <form action="/users/session" method="post" role="form"  >
 
-      <h1>Login</h1>
+      <!-- Error message -->
+      <div id="login-err" class="alert alert-warning alert-dismissable">
+        <strong>Hmm, something's not correct.</strong> <br>Make sure your username and password are right.
+      </div>
 
-      <form action="/users/session" method="post" role="form" class="highlight">
+      <!-- Username -->
+      <div class="form-group">
+        <input id="username" type="text" name="username" class="form-control input-lg login-field" placeholder="Enter your username" >
+        <label class="login-field-icon fui-user" for="username"></label>
+      </div>
 
-        <div id="login-err" class="alert alert-warning alert-dismissable">
-          <strong>Hmm, something's not correct.</strong> <br>Make sure your username and password are right.
-        </div>
+      <!-- Password -->
+      <div class="form-group">
+        <input type="password" class="form-control input-lg login-field" name="password" id="password" placeholder="and your password">
+        <label class="login-field-icon fui-lock" for="password"></label>
+      </div>
 
-        <div class="form-group">
-          <label class="sr-only" for="username">Username</label>
-          <input id="username" type="text" name="username" class="form-control input-lg login-field" placeholder="Enter your username" >
-        </div>
+      <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+    </form>
 
-        <div class="form-group">
-          <label class="sr-only" for="loginPassword">Password</label>
-          <input type="password" class="form-control input-lg login-field" name="password" id="password" placeholder="password">
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
-      </form>
-
-    </div>
   </div>
 </div>
 <script type="text/javascript" charset="utf-8">
