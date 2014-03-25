@@ -4398,6 +4398,8 @@ body.vjs-full-window {
   border-radius: 6px;
 }
 .login-form:before {
+  /* No arrow */
+  display: none;
   content: '';
   border-style: solid;
   border-width: 12px 12px 12px 0;
