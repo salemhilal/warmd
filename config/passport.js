@@ -18,7 +18,7 @@ encryptPassword = function(password){
 
 
 
-module.exports = function(passport, config) {
+module.exports = function(passport) {
 
    // user -> id
    passport.serializeUser(function(user, done) {
