@@ -18,9 +18,8 @@ var express = require('express'),
 // Configs
 var env = process.env.NODE_ENV || 'development',
     config = require('./config/config')[env],
-//    mail = require('./config/mailer'), // we can mail out on events,
-//    like when an album is reviewed or when a show gets added to the schedule
-    wlog = require('./config/logger');
+    wlog = require('./config/logger'),
+    mail = require('./config/mailer');
 
 // HTTPS/SSL
 var options = {
@@ -85,9 +84,8 @@ require('./config/routes')(app, config, passport);
 var port = process.env.PORT || config.port || 3000;
 var server = https.createServer(options, app).listen(port, function(){
    //app.listen(port);
-   wlog.info("Captain's log: WARMD running");
-   console.log("\n\nWARMD now running on port " + port);
-   console.log("running in " + env + " environment");
+   wlog.info("\n\nWARMD now running on port " + port);
+   wlog.info("running in " + env + " environment");
    wlog.fatal("WARMD STARTED! Call the cops.");
    if(config.verbose) {
      console.log("Verbose mode on");
