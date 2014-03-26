@@ -9,7 +9,10 @@ module.exports = {
    //Look up program in context of request
    load: function (req, res, next, id) {
       Program.forge({ ProgramID: id})
-      .fetch({ require: true })
+      .fetch({
+        withRelated: ['playlists'],
+        require: true,
+     })
       .then (function (program) {
          req.program = program;
          next();
