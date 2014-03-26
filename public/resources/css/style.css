@@ -7,13 +7,46 @@
   text-decoration: underline;
 }
 .main {
-  margin-top: 80px;
+  margin: 20px;
 }
 .login-form {
-  margin-top: 40px;
+  margin: 40px auto 0;
+  max-width: 400px;
 }
 
 .login-logo {
   width:100%;
   margin: 30px auto;
+}
+.container {
+  box-sizing: border-box;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.plays {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plays li {
+  padding: 5px;
+  margin: 5px;
+  width: 100px;
+  height: 20px;
+  line-height: 1.5em;
+  border-radius: 3px;
+  background: #EEE;
+}
+
+/* Bootstrap overwrites */
+/* NOTE: May include !important flags, as we're
+   loading bootstrap from a CDN. */
+.navbar {
+  margin-bottom: 20px !important;
+}
+
+.tile {
+  margin-bottom:20px;
 }

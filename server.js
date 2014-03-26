@@ -61,12 +61,6 @@ Bookshelf.DB = Bookshelf.initialize({
   debug: config.debug
 });
 
-
-// Models (must be first to allow access to globals)
-Bookshelf.DB.User = require("./app/models/user.js");
-Bookshelf.DB.Artist = require("./app/models/artist.js");
-Bookshelf.DB.Program = require("./app/models/program.js");
-
 // Passport
 require('./config/passport')(passport, config);
 

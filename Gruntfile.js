@@ -10,7 +10,7 @@ module.exports = function(grunt) {
     // Linting
     jshint: {
       options: {
-        node: true,     // We're using node. 
+        node: true,     // We're using node.
         unused: true,   // Let us know if we don't use vars
         curly: true,    // Must have optional braces
         eqeqeq: true,   // No type inference
@@ -34,12 +34,13 @@ module.exports = function(grunt) {
       dev: {
         script: 'server.js',
         options: {
-          nodeArgs: ['--debug']
+          nodeArgs: ['--debug'],
+          ignore: ['node_modules/**', 'public/**']
         }
-      } 
+      }
     },
 
-    'node-inspector': { 
+    'node-inspector': {
       dev: {}
     },
 

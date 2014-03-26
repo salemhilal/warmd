@@ -27,6 +27,15 @@ module.exports = function(app, config, passport) {
 
       // Set headings for requests that forget to set headings
       app.use(acceptOverride());
+      
+      // Ensure https is used by default
+      app.use(function(req, res, next) {
+        if (!req.secure) { 
+          // Break out of current call chain, redirect to https url.
+          return res.redirect('https://' + req.get('host') + req.url);
+        }
+        next();
+      });
 
       // Cookie parser before sessions, as sessions rely on cookies
       app.use(express.cookieParser());
