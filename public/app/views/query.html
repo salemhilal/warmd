@@ -5,12 +5,11 @@
 
   <div class="col-sm-3">
     <div class="dropdown">
-      <button class="btn btn-block btn-primary dropdown-toggle" data-toggle="dropdown">Artists<span class="caret"></span></button>
+      <button class="btn btn-block btn-primary dropdown-toggle" data-toggle="dropdown">{{toQuery.name}}<span class="caret"></span></button>
       <span class="dropdown-arrow dropdown-arrow-inverse"></span>
+
       <ul class="dropdown-menu dropdown-inverse" style="width: 100%;">
-        <li><a href="#fakelink">Sub Menu Element That Is Longer</a></li>
-        <li><a href="#fakelink">Sub Menu Element</a></li>
-        <li><a href="#fakelink">Sub Menu Element</a></li>
+        <li ng-repeat="type in types"><a ng-click="selected($index)">{{type.name}}</a></li>
       </ul>
     </div>
   </div>
@@ -20,7 +19,7 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <ul class="list-group">
-        <li class="list-group-item" ng-repeat="artist in artists">{{artist.Artist}}</li>
+        <li class="list-group-item" ng-repeat="item in results">{{item.name}}</li>
     </ul>
   </div>
 </div>

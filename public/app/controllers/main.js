@@ -7,7 +7,6 @@ warmdApp.controller("MainCtrl", ["$scope", "$http", "$location", function MainCt
     ]
 
     $scope.isActive = function(location) {
-      console.log($location.path());
       return location === $location.path();
     }
 
