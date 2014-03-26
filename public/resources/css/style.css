@@ -40,6 +40,13 @@
   background: #EEE;
 }
 
+/* Bootstrap overwrites */
+/* NOTE: May include !important flags, as we're
+   loading bootstrap from a CDN. */
+.navbar {
+  margin-bottom: 20px !important;
+}
+
 .tile {
   margin-bottom:20px;
 }
