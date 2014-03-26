@@ -26,34 +26,35 @@ Baron and Salem will
  - ~~Peel off tasks as they see fit~~
  - ~~Still figure out views~~
  - ~~Wireframe (chart out DB relationships)~~
- - Wireframe again (How will views happen)
+ - ~~Wireframe again (How will views happen)~~
  - ~~Set up server boilerplate stuff~~
- - Pubcookie!
+ - ~~Pubcookie!~~
  
 #### Week 3 (January 27) 
  
  Baron and Salem will
  - ~~Add task management~~
- - Look into the current SSO spec
- - Look into making the DB a SSO provider (potentially)
+ - ~~Look into the current SSO spec~~
+ - ~~Look into making the DB a SSO provider (potentially)~~
  - ~~Clone/get programmatic access to test data~~
  - ~~Create DB models (bookshelf.js/knex.js)~~
- - Get a private API worked out
+ - ~~Get a private API worked out~~
 
 ### Week 4 (February 3)
 
- - Implement / test API (This will take a week or two)
- - Start implementing basic CRUD views
+ - ~~Implement / test API (This will take a week or two)~~
+ - ~~Start implementing basic CRUD views~~
 
 ### Week 5 (February 9)
 
- - Implement / test API
- - Finish implementing basic CRUD views
+ - ~~Implement / test API~~
+ - ~~Finish implementing basic CRUD views~~
 
 ### Week 6 (February 16)
 
- - User permissions and levels, sign-up/sign-in flow
- - At this point, we should have nice, RESTful endpoints
+ - User permissions and levels 
+ - ~~sign-up/sign-in flow~~
+ - ~~At this point, we should have nice, RESTful endpoints~~
 
 
 ### Week 7 (February 23)
