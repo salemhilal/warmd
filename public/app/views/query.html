@@ -1,11 +1,26 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-      <input type="text" class="form-control" ng-model="query" ng-keyup="autocomplete()" placeholder="Search for an artist">
+<div class="row">
+  <div class="col-sm-5 col-sm-offset-2">
+    <input type="text" class="form-control" ng-model="query" ng-keyup="autocomplete()" placeholder="Search for an artist" style="margin-bottom:20px;">
+  </div>
 
-      <ul class="list-group">
-          <li class="list-group-item" ng-repeat="artist in artists">{{artist.Artist}}</li>
+  <div class="col-sm-3">
+    <div class="dropdown">
+      <button class="btn btn-block btn-primary dropdown-toggle" data-toggle="dropdown">Artists<span class="caret"></span></button>
+      <span class="dropdown-arrow dropdown-arrow-inverse"></span>
+      <ul class="dropdown-menu dropdown-inverse" style="width: 100%;">
+        <li><a href="#fakelink">Sub Menu Element That Is Longer</a></li>
+        <li><a href="#fakelink">Sub Menu Element</a></li>
+        <li><a href="#fakelink">Sub Menu Element</a></li>
       </ul>
     </div>
+  </div>
+
+</div><!--/.row -->
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="artist in artists">{{artist.Artist}}</li>
+    </ul>
   </div>
 </div>
