@@ -32,6 +32,10 @@ warmdApp.controller("QueryCtrl", ["$scope", "$http", function QueryCtrl($scope, 
     },
 
     $scope.autocomplete = _.debounce(function(){
+      if(!$scope.query) {
+        return;
+      }
+
       var url = $scope.toQuery.url;
       var query = $scope.query.trim();
       var format = $scope.toQuery.format;
