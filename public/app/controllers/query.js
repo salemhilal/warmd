@@ -21,7 +21,7 @@ warmdApp.controller("QueryCtrl", ["$scope", "$http", function QueryCtrl($scope, 
             id: user.UserID
           };
         }
-      }
+      },
     ],
 
     $scope.results = [],

@@ -1,14 +1,14 @@
 warmdApp.controller("MainCtrl", ["$scope", "$http", "$location", function MainCtrl($scope, $http, $location){
     // Because templating is easier than html
     $scope.menu = [
-        { name: "Home",    prefix: "#", route: "/"},
-        { name: "Search",   prefix: "#", route: "/query"},
-        { name: "Log out", prefix: "", route: "/logout" },
-    ]
+      { name: "Home",    prefix: "#", route: "/"},
+      { name: "Search",  prefix: "#", route: "/query"},
+      { name: "Log out", prefix: "",  route: "/logout" },
+    ];
 
     $scope.isActive = function(location) {
       return location === $location.path();
-    }
+    };
 
     $scope.user = {};
 
