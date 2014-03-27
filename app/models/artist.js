@@ -4,8 +4,8 @@ var Artist = DB.Model.extend({
   tableName: "Artists"
 });
 
-var Artists = DB.model.extend({
-  model: Play,
+var Artists = DB.Collection.extend({
+  model: Artist,
 })
 
 exports.model = Artist;

@@ -2,7 +2,6 @@ var DB = require('bookshelf').DB,
     Artist = require('../models/artist').model,
     Artists = require('../models/artist').collection;
 
-
 module.exports = {
 
   // Look up artist in context of request
@@ -38,7 +37,7 @@ module.exports = {
     var limit = req.body.limit;
 
     // Make sure this query is a thang.
-    if(!query) {
+    if(!query || typeof query !== "string") {
       res.json(400, {
         error: "bad request"
       });
@@ -46,15 +45,17 @@ module.exports = {
 
 
     /* I do my best to replicate the following query:
-    select distinct *
-    from (
-      select *, 1 as rank from `Artists` where `Artist` like 'death'
-      union
-      select *, 2 as rank from `Artists` where `Artist` like 'death%'
-      union
-      select *, 3 as rank from `Artists` where `Artist` like '%death%'
-    ) X
-    order by rank
+
+      select distinct *
+      from (
+        select *, 1 as rank from `Artists` where `Artist` like 'death'
+        union
+        select *, 2 as rank from `Artists` where `Artist` like 'death%'
+        union
+        select *, 3 as rank from `Artists` where `Artist` like '%death%'
+      ) X
+      order by rank
+
     */
 
     // Query exact matches (most relevant)
@@ -67,15 +68,23 @@ module.exports = {
 
     // Of those, make sure they're distinct, and enforce an ordering and a limit.
     // We order first by relevancy, then by name. Relevancy is ordered as per the above queries.
-    var exact = DB.knex("Artists").select().distinct("*").from(DB.knex.raw(
-      "((" + q1.toString() + ") union (" + q2.toString() + ") union (" + q3.toString() + ")) X"
-    )).orderBy('rank').orderBy("Artist");
+    var qb = DB.knex("Artists").              // Create a query builder on the Artists table
+        select().                             // select
+        distinct("*").                        // distinct *
+        from(DB.knex.raw("((" +               // from (
+            q1.toString() + ") union (" +     //   q1 union
+            q2.toString() + ") union (" +     //   q2 union
+            q3.toString() + ")) X")).         //   q3
+        orderBy("rank").                      // ) order by rank, Artist
+        orderBy("Artist");                    //
+
+    // If there's a limit, add it to the query builder.
     if(limit) {
-      exact.limit(limit);
+      qb.limit(limit);
     }
 
-    // Define promise resolution
-    exact.then(function(results) {
+    // Define promise resolution. Boy do I like promises.
+    qb.then(function(results) {
       res.json(200, results);
     }, function (err) {
       res.json(500, err.toString());
