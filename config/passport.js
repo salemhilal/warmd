@@ -5,14 +5,15 @@ var LocalStrategy = require('passport-local').Strategy,
 
 // Password verification functions
 
-encryptPassword = function(password){
+encryptPassword = function(password, username){
    if (!password) return ''
-   var encrypted
+   var encrypted, salt;
    try {
-      encrypted = crypto.createCipher('aes256', password).setAutoPadding(auto_padding=true).final('hex')
-      return encrypted
+      salt = crypto.createCipher('aes256', password+username).final('hex');
+      encrypted = crypto.createHmac('sha1', salt).update(password).digest('hex');
+      return encrypted;
    } catch  (err) {
-      return 'There was error!'
+      return 'There was error!';
    }
 }
 
@@ -65,8 +66,8 @@ module.exports = function(passport) {
          console.log("User: ", user);
          console.log("Found user: ", user.attributes.User);
          console.log("Stored Hash: ", user.attributes.Password);
-         console.log("Passed Hash: ", encryptPassword(password));
-         if (encryptPassword(password) === user.attributes.Password){
+         console.log("Passed Hash: ", encryptPassword(password, user.attributes.User));
+         if (encryptPassword(password, user.attributes.User) === user.attributes.Password){
             return done(null, user);
          } else {
             return done(null, false);

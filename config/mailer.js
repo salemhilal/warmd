@@ -11,7 +11,7 @@ var nodemailer = require('nodemailer'),
 wlog.info("Direct Transport configured");
 
 var message = {
-    to: '"Information Systems Manager" <salemhilal@gmail.com>',
+    to: '"Information Systems Manager" <mbaron50@gmail.com>',
     from: "warmd@wrct.org",
     subject: 'WARMD mail config message!',
     text: 'Hello, from inside a config. Still trying to populate with js variables, but have some log files instead.',
