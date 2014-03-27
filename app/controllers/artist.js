@@ -1,9 +1,6 @@
 var DB = require('bookshelf').DB,
     Artist = require('../models/artist').model,
-    Artists = DB.Collection.extend({ //TODO: Put this in the Artist model
-      model: Artist
-    }),
-    Promise = require("bluebird");
+    Artists = require('../models/artist').collection;
 
 
 module.exports = {
