@@ -27,10 +27,11 @@ module.exports = function(app, config, passport) {
 
       // Set headings for requests that forget to set headings
       app.use(acceptOverride());
-      
+
       // Ensure https is used by default
+      // FIXME: lol this does nothing.
       app.use(function(req, res, next) {
-        if (!req.secure) { 
+        if (!req.secure) {
           // Break out of current call chain, redirect to https url.
           return res.redirect('https://' + req.get('host') + req.url);
         }
@@ -55,6 +56,8 @@ module.exports = function(app, config, passport) {
       // Must be after passport middleware
       app.use(function(req, res, next) {
         if (req.user == null && req.path.indexOf('/app') === 0) {
+          // Remember where they were going
+          req.session.returnTo = req.originalUrl;
           res.redirect('/login');
         } else {
           next();
