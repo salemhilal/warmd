@@ -1,8 +1,8 @@
 var DB = require('bookshelf').DB,
-    Artist = DB.Artist,
+    Artist = require('../models/artist').model,
     Artists = DB.Collection.extend({
       model: Artist
-    }).forge(); 
+    }).forge();
 
 module.exports = {
 
@@ -25,23 +25,23 @@ module.exports = {
   show: function(req, res) {
     res.format( {
       json: function() {
-        res.json(req.artist.attributes);
+        res.json(200, req.artist.attributes);
       },
       default: function() {
-        res.json(req.artist.attributes);
+        res.json(200, req.artist.attributes);
       }
-             //TODO: other views? 
+             //TODO: other views?
     });
   },
 
   query: function(req, res) {
     var query = req.body.query;
+    var limit = req.body.limit;
 
     // Make sure this query is a thang.
     if(!query) {
-      res.json({
-        error: "bad request",
-        code: 400
+      res.json(400, {
+        error: "bad request"
       });
     }
 
@@ -50,12 +50,18 @@ module.exports = {
       qb.where("Artist", "like", query)
         .orWhere("ShortName", "like", query)
         .orWhere("Artist", "like", "%" + query + "%")
-        .orWhere("ShortName", "like", "%" + query + "%")
-        .limit(10);   
+        .orWhere("ShortName", "like", "%" + query + "%");
+
+      if (limit && typeof limit === "number") {
+        qb.limit(limit);
+      }
+        // .limit(10);
     }).fetch()
       .then(function(collection) {
-        res.json(collection.toJSON({shallow: true}));
-      }); 
+        res.json(200, collection.toJSON({shallow: true}));
+      }, function(err) {
+        res.json(500, err);
+      });
   }
 
 }

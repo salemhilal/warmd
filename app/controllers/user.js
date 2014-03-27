@@ -1,5 +1,6 @@
 var DB = require('bookshelf').DB,
-    User = DB.User;
+    User = require('../models/user').model,
+    Users = require('../models/user').collection;
 
 module.exports = {
 
@@ -72,7 +73,34 @@ module.exports = {
 
   create: function(req, res) {
     console.log(req.body);
+    // TODO: Implement this behind privileged auth
     res.json({response: "aww yeah"});
+
+  },
+
+  query: function(req, res) {
+    var query = req.body.query;
+    var limit = req.body.limit;
+
+    Users.
+      forge().
+      query(function(qb) {
+        qb.
+          where("User", "like", "%" + query + "%").
+          orWhere("FName", "like", "%" + query + "%").
+          orWhere("LName", "like", "%" + query + "%");
+
+        if (limit && typeof limit === "number") {
+          qb.limit(limit);
+        }
+      }).
+      fetch().
+      then(function(collection) {
+        res.json(200, collection.toJSON({shallow: true}));
+      }, function(err) {
+        console.log("LOOK AT THIS SHIT", err)
+        res.json(500, { message: "Something went wrong", err: err.toString()});
+      });
 
   },
 

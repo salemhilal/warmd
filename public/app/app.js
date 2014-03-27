@@ -1,7 +1,7 @@
 "use strict";
 
 var warmdApp = angular.module('warmdApp', [
-  'ngRoute',
+  'ngRoute', 'ui'
 ])
 .config(function ($routeProvider) {
   $routeProvider
@@ -20,6 +20,10 @@ var warmdApp = angular.module('warmdApp', [
     .when('/user/:id', {
       templateUrl: '/app/views/user.html',
       controller: 'UserCtrl',
+    })
+    .when('/playlist/new/:programID', {
+      templateUrl: '/app/views/playlist.html',
+      controller: 'PlaylistCtrl',
     })
     .otherwise({
       redirectTo: '/'
