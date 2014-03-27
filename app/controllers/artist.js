@@ -20,6 +20,8 @@ module.exports = {
       });
   },
 
+  // Get data about a specific user.
+  // TODO: JSON only.
   show: function(req, res) {
     res.format( {
       json: function() {
@@ -28,10 +30,10 @@ module.exports = {
       default: function() {
         res.json(200, req.artist.attributes);
       }
-             //TODO: other views?
     });
   },
 
+  //
   query: function(req, res) {
     var query = req.body.query;
     var limit = req.body.limit;

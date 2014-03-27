@@ -6,6 +6,23 @@ module.exports = {
 
   // Render a user login page
   login: function(req, res) {
+
+    res.format({
+      // Asking for JSON but aren't authed.
+      json: function () {
+        // TODO: Make sure JSON errors are formatted uniformly. Maybe a util function?
+        res.json(401, {
+          error: "You don't have permission to view this resource. Try loggin in."
+        })
+      },
+
+      // They were rerouted from something else, should just log in.
+      html: function () {
+        res.render('users/login');
+      }
+    });
+
+
     res.render('users/login');
   },
 
@@ -22,13 +39,17 @@ module.exports = {
       if (req.isAuthenticated()) {
         return next();
       } else {
-        res.redirect('/login')
+        // Remember where they were going
+        req.session.returnTo = req.originalUrl;
+        res.redirect('/login');
       }
     });
   },
 
   // Redirect users properly after logging in
   session: function(req, res) {
+
+    // Redirect to where they were
     var redirectTo = req.session.returnTo ? req.session.returnTo : '/';
     delete req.session.returnTo;
     res.redirect(returnTo);

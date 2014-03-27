@@ -23,7 +23,7 @@ module.exports = function(app, config, passport) {
   app.get('/logout', users.logout);
   app.post('/users/session',
     passport.authenticate('local', {
-      successRedirect: '/app',
+      successRedirect: '/app', //TODO: Send to req.session.returnTo if exists
       failureRedirect: '/login?success=false'
     }));
 
