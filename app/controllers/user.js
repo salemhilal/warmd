@@ -82,6 +82,8 @@ module.exports = {
     var query = req.body.query;
     var limit = req.body.limit;
 
+    // var q1 = DB.knex("Users").select(DB.knex./  )
+
     Users.
       forge().
       query(function(qb) {
