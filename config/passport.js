@@ -1,7 +1,8 @@
 var LocalStrategy = require('passport-local').Strategy,
    crypto = require('crypto'),
+   wlog = require('winston'),
    DB = require('bookshelf').DB,
-   User = DB.User;
+   User = require('../app/models/user').model;
 
 // Password verification functions
 
@@ -32,7 +33,9 @@ module.exports = function(passport) {
       User.forge({
          userID: id
       })
-      .fetch() // Make sure we find a matching ID
+      .fetch({
+        withRelated: ['programs'],
+        })
       .then(function(user) {
         if(!user) { // No user found
           done(null, false);
@@ -56,20 +59,18 @@ module.exports = function(passport) {
          User: username
        })
        .fetch({
-         //require: true
+         withRelated:['programs'],
        })
        .then(function(user) {
          if(!user) {
           return done(null, false);
          }
          // Found user
-         console.log("User: ", user);
          console.log("Found user: ", user.attributes.User);
-         console.log("Stored Hash: ", user.attributes.Password);
-         console.log("Passed Hash: ", encryptPassword(password, user.attributes.User));
          if (encryptPassword(password, user.attributes.User) === user.attributes.Password){
             return done(null, user);
          } else {
+            wlog.auth("Incorrect Password ",{User: user.attributes.User});
             return done(null, false);
          }
         }, function(err) { // Could not find user / something went wrong
