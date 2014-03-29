@@ -1,56 +1,64 @@
+<!-- TODO: Put this in angular at some point, so that logging in is faster
+    and so that we can handle things like redirections to intended pages. -->
+<!doctype html>
+<html lang="en">
+
 <head>
-<link rel="stylesheet" href="/resources/css/style.css">
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="/resources/css/flat-ui.css">
-<style type="text/css" media="screen">
-  body {
-    background-color: #34495e;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <title>WRCT: Login</title>
+  <link rel="stylesheet" href="/resources/css/style.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/resources/css/flat-ui.css">
+  <style type="text/css" media="screen">
+    body {
+      background-color: #34495e;
+    }
+  </style>
 </head>
 
 <body>
-<div class="container">
+  <div class="container">
+    <div class="login-form tile">
 
-  <div class="login-form tile">
+      <h1>WRCT</h1>
 
-    <h1>Login</h1>
+      <form action="/users/session" method="post" role="form"  >
+        <!-- Error message -->
+        <div id="login-err" class="alert alert-warning alert-dismissable">
+          <strong>Hmm, something's not correct.</strong> <br>Make sure your username and password are right.
+        </div>
 
-    <form action="/users/session" method="post" role="form"  >
+        <!-- Username -->
+        <div class="form-group">
+          <input id="username" type="text" name="username" class="form-control input-lg login-field" placeholder="Enter your username" autofocus>
+          <label class="login-field-icon fui-user" for="username"></label>
+        </div>
 
-      <!-- Error message -->
-      <div id="login-err" class="alert alert-warning alert-dismissable">
-        <strong>Hmm, something's not correct.</strong> <br>Make sure your username and password are right.
-      </div>
+        <!-- Password -->
+        <div class="form-group">
+          <input type="password" class="form-control input-lg login-field" name="password" id="password" placeholder="...and your password">
+          <label class="login-field-icon fui-lock" for="password"></label>
+        </div>
 
-      <!-- Username -->
-      <div class="form-group">
-        <input id="username" type="text" name="username" class="form-control input-lg login-field" placeholder="Enter your username" autofocus>
-        <label class="login-field-icon fui-user" for="username"></label>
-      </div>
+        <!-- Login button -->
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+      </form>
 
-      <!-- Password -->
-      <div class="form-group">
-        <input type="password" class="form-control input-lg login-field" name="password" id="password" placeholder="...and your password">
-        <label class="login-field-icon fui-lock" for="password"></label>
-      </div>
-
-      <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
-    </form>
-
+    </div>
   </div>
-</div>
-<script type="text/javascript" charset="utf-8">
-  var alert = document.getElementById("login-err")
-  alert.style.display = "none";
+  <script type="text/javascript" charset="utf-8">
+    var alert = document.getElementById("login-err")
+    alert.style.display = "none";
 
-  // This is an unsuccessful login attempt, let the user know.
-  if(window.location.href.indexOf("success=false") != -1) {
-    if (!alert) { // Log errors
-      console.error("Can't select login form");
-    } else {
-      alert.style.display = "";
+    // This is an unsuccessful login attempt, let the user know.
+    if(window.location.href.indexOf("success=false") != -1) {
+      if (!alert) { // Log errors
+        console.error("Can't select login form");
+      } else {
+        alert.style.display = "";
+      }
     }
-  }
-</script>
+  </script>
+
 </body>
+</html>

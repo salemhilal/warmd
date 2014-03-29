@@ -71,8 +71,8 @@ module.exports = {
     // Of those, make sure they're distinct, and enforce an ordering and a limit.
     // We order first by relevancy, then by name. Relevancy is ordered as per the above queries.
     var qb = DB.knex("Artists").              // Create a query builder on the Artists table
-        select().                             // select
-        distinct("*").                        // distinct *
+        select("*").                          // select *
+        groupBy("ArtistID").                  // group by ArtistID
         from(DB.knex.raw("((" +               // from (
             q1.toString() + ") union (" +     //   q1 union
             q2.toString() + ") union (" +     //   q2 union
@@ -91,6 +91,8 @@ module.exports = {
     }, function (err) {
       res.json(500, err.toString());
     });
+
+
 
 
   }

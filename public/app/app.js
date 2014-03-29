@@ -2,8 +2,8 @@
 
 var warmdApp = angular.module('warmdApp', [
   'ngRoute', 'ui'
-])
-.config(function ($routeProvider) {
+]).
+config(function ($routeProvider) {
   $routeProvider
     .when('/', {
       templateUrl: '/app/views/home.html',
@@ -28,4 +28,16 @@ var warmdApp = angular.module('warmdApp', [
     .otherwise({
       redirectTo: '/'
     })
+}).
+// This bit here is for removing shows that are "hidden," in the old db.
+filter('activePrograms', function() {
+  return function(programs) {
+    var filtered = [];
+    angular.forEach(programs, function(program) {
+        if(!(program.StartTime == program.EndTime)) {
+          filtered.push(program);
+        }
+    });
+    return filtered;
+  }
 });

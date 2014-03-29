@@ -56,6 +56,6 @@ warmdApp.controller("QueryCtrl", ["$scope", "$http", function QueryCtrl($scope, 
           console.error(data);
         });
 
-    }, 200)
+    }, 300)
 
 }]);

@@ -19,6 +19,7 @@
   <script src="/app/app.js"></script>
 
   <!--   Literally every controller we may want to use -->
+  <script src="/app/filters/filters.js"></script>
   <script src="/app/controllers/home.js"></script>
   <script src="/app/controllers/playlist.js"></script>
   <script src="/app/controllers/login.js"></script>
@@ -46,10 +47,6 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li ng-repeat="item in menu" ng-class="{active: isActive(item.route)}"><a href="{{item.prefix}}{{item.route}}">{{item.name}}</a></li>
-        <!--<li class="active"><a href="#">Home</a></li>
-        <li><a href="#/query">Search</a></li>
-        <li><a href="/logout">Logout</a></li>-->
-
       </ul>
     </div><!--/.navbar-collapse -->
   </nav>
