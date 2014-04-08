@@ -1,5 +1,5 @@
 var Bookshelf = require('bookshelf').DB,
-    Playlist = require('./playlist').model;
+    Playlist = require('./playlist');
 
 var Program = Bookshelf.Model.extend({
 
@@ -7,7 +7,7 @@ var Program = Bookshelf.Model.extend({
   idAttribute: "ProgramID",
 
   playlists: function() {
-    return this.hasMany(Playlist, "ProgramID");
+    return this.hasMany(Playlist.model, "ProgramID");
   },
 
 

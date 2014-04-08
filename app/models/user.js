@@ -1,5 +1,5 @@
 var DB = require('bookshelf').DB,
-    Program = require('./program').model;
+    Program = require('./program');
 
 var User = DB.Model.extend({
 
@@ -7,11 +7,12 @@ var User = DB.Model.extend({
   idAttribute: "UserID", // The column representing sentinel id's
 
   programs: function() {
-    return this.hasMany(Program, "UserID");
+    return this.hasMany(Program.model, "UserID");
   },
 
   // Effectively how we define a schema?
   // Didn't include id, as that's something the DB should be handling, not the server
+  // TODO: put this in classProperties, not here. It does nothing here. 
   permittedAttributes: [
     "permissions", // What role are they / what privs do they have?
     "fname",

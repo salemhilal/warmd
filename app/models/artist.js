@@ -1,7 +1,8 @@
 var DB = require('bookshelf').DB;
 
 var Artist = DB.Model.extend({
-  tableName: "Artists"
+  tableName: "Artists",
+  idAttribute: "ArtistID",
 });
 
 var Artists = DB.Collection.extend({
