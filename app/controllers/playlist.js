@@ -42,15 +42,16 @@ module.exports = {
   },
 
   update: function(req, res) {
-    var id = req.playlist.PlayListID,
-        updatedPlaylist = req.body;
-        new Playlist({ PlayListID: id }).
-          save(updatedPlaylist, { patch: true }).
-          then(function(model) {
-            res.json(200, model);
-          }, function(err) {
-            res.json(404, {error: "No such playlist", details: err});
-          });
+    if(!req.playlist) {
+      res.json(404, {error: "No such playlist"});
+    } else {
+      req.playlist.save(req.body, {patch: true}).
+        then(function(model) {
+          res.json(200, model);
+        }, function(err) {
+          res.json(404, {error: "No such playlist", details: err});
+        })
+    }
 
   },
 

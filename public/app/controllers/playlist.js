@@ -7,29 +7,39 @@ warmdApp.controller("PlaylistCtrl", ["$scope", "$http", "$routeParams", function
 
   $scope.$watch('plays', function() {
     console.log("CHANGE!!!");
-    console.log($scope.plays.map(function(elem){
-      return elem.TrackName;
-    }))
+    angular.forEach($scope.plays, function(index, play) {
+      
+    });
   }, true);
-
-  $scope.sortableOpts = {
-    stop: function(event, ui) {
-      console.log("STOP!!!");
-      console.log($scope.plays.map(function(elem){
-        return elem.TrackName;
-      }))
-    }
-  }
 
 
   $http({method: 'GET', url: '/playlists/' + $routeParams.programID + '.json'}).
     success(function(data, status, headers, config) {
-      console.log(data);
-      $scope.plays = data.plays;
+      // Update the program data
       $scope.program = data.program;
+
+      // Check to see if all plays have an ordering
+      var hasOrdering = true
+      for(i in data.plays) {
+        if(!data.plays[i].Ordering) {
+          hasOrdering = false;
+          break;
+        }
+      }
+
+      // Sort accordingly
+      if(!hasOrdering) {
+        $scope.plays = data.plays.sort(function(a, b) {
+          return new Date(a.Time).getTime() - new Date(b.Time).getTime();
+        });
+      } else {
+        $scope.plays = data.plays.sort(function(a, b) {
+          return a.Ordering - b.Ordering
+        });
+      }
     }).
     error(function(data, status, headers, config) {
-      console.log("Loser");
+      console.log("Error occurred:");
       console.error(data, status, headers, config);
     });
 
