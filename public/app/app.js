@@ -1,7 +1,7 @@
 "use strict";
 
 var warmdApp = angular.module('warmdApp', [
-  'ngRoute', 'ui'
+  'ngRoute', 'ui.sortable'
 ]).
 config(function ($routeProvider) {
   $routeProvider

@@ -37,7 +37,7 @@ module.exports = {
     if(req.playlist) {
       res.json(200, req.playlist);
     } else {
-      res.json(404, {error: "No such playlist"})
+      res.json(404, {error: "Playlist not found"});
     }
   },
 

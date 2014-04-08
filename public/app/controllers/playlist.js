@@ -1,25 +1,32 @@
 warmdApp.controller("PlaylistCtrl", ["$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
 
   console.log("PlayistCtrl");
-  console.log($routeParams.programID);
-  console.log($scope.user);
-  $scope.programID = $routeParams.programID;
 
-  // TODO: Just to prototype
   $scope.plays = [];
+  $scope.program = {};
+
+  $scope.$watch('plays', function() {
+    console.log("CHANGE!!!");
+    console.log($scope.plays.map(function(elem){
+      return elem.TrackName;
+    }))
+  }, true);
+
   $scope.sortableOpts = {
-    update: function(event, ui) {
-      console.log("Event", event);
-      console.log("UI", ui);
+    stop: function(event, ui) {
+      console.log("STOP!!!");
+      console.log($scope.plays.map(function(elem){
+        return elem.TrackName;
+      }))
     }
   }
 
 
   $http({method: 'GET', url: '/playlists/' + $routeParams.programID + '.json'}).
     success(function(data, status, headers, config) {
+      console.log(data);
       $scope.plays = data.plays;
-      console.log("Winner");
-      console.log(data, status, headers, config);
+      $scope.program = data.program;
     }).
     error(function(data, status, headers, config) {
       console.log("Loser");

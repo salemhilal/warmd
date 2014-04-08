@@ -4,6 +4,19 @@ var DB = require('bookshelf').DB,
 
 
 module.exports = {
+	load: function(req, res, next, id) {
+		Play.
+			forge({PlayID: id}).
+			fetch({
+				withRelated: ['artist'],
+			}).
+			then(function(play){
+				req.play = play;
+				next();
+			}, function(err) {
+				net(err);
+			})
+	},
 
 	create: function(req, res) {
 		var newPlay = req.body;
@@ -22,6 +35,14 @@ module.exports = {
 		then(function(play) {
 			res.json(200, play);
 		});
+	},
+
+	show: function(req, res) {
+		if(req.play) {
+			res.json(200, req.play);
+		} else {
+			res.json(404, {error: "Play not found"});
+		}
 	},
 
 	query: function(req, res) {
