@@ -21,7 +21,7 @@
     </div>
   </form>
   <hr>
-  <ul class="list-group" ui-sortable ng-model="plays">
-    <li class="list-group-item" ng-repeat="play in plays">{{play}}</li>
+  <ul class="list-group" ui-sortable="sortableOpts" ng-model="plays">
+    <li class="list-group-item" ng-repeat="play in plays">{{play.TrackName ? play.TrackName : "NULL"}}</li>
   </ul>
 </div>
