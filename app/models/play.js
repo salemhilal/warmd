@@ -6,11 +6,6 @@ var DB = require('bookshelf').DB,
 var Play = DB.Model.extend({
   tableName: "Plays",
   idAttribute: "PlayID",
-});
-
-// Play collection
-var Plays = DB.Collection.extend({
-  model: Play,
 
   // The playlist that this play belongs to
   // TODO: Should probably lazily load this one
@@ -28,6 +23,11 @@ var Plays = DB.Collection.extend({
   // album: function() {
   //   return this.hasOne(Album.model, "AlbumID");
   // }
+});
+
+// Play collection
+var Plays = DB.Collection.extend({
+  model: Play,
 });
 
 exports.model = Play;

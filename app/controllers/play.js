@@ -1,11 +1,9 @@
 var DB = require('bookshelf').DB,
-		Play = require('../models/play').model,
-		Plays = require('../models/play').collection.forge();
-
+		Play = require('../models/play');
 
 module.exports = {
 	load: function(req, res, next, id) {
-		Play.
+		Play.model.
 			forge({PlayID: id}).
 			fetch({
 				withRelated: ['artist'],
@@ -14,13 +12,13 @@ module.exports = {
 				req.play = play;
 				next();
 			}, function(err) {
-				net(err);
+				next(err);
 			})
 	},
 
 	create: function(req, res) {
 		var newPlay = req.body;
-		new Play({
+		new Play.model({
 			Time: newPlay.time,
 			PlayListID: newPlay.playListID,
 			ArtistID: newPlay.artistID,
@@ -45,11 +43,25 @@ module.exports = {
 		}
 	},
 
+	update: function(req, res) {
+		if(!req.play) {
+			res.json(404, {error: "Play not found"});
+		} else {
+			req.play.
+				save(req.body, {patch: true}).
+				then(function(model) {
+					res.json(200, model);
+				}, function(err) {
+					res.json(404, {error: "No such play", details: err});
+				})
+		}
+	},
+
 	query: function(req, res) {
 		var playlistID = req.body.playlistID;
 		var limit = req.body.limit
 
-		Plays.
+		Play.collection.forge().
 			query(function (qb) {
 				qb.where('PlayListID', '=', playlistID);
 

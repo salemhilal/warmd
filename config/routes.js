@@ -56,8 +56,11 @@ module.exports = function(app, config, passport) {
   app.put('/playlists/:playlist', users.isAuthed, playlists.update);
 
   /* Play Routes */
+  app.param('play', plays.load);
   app.post('/plays', plays.create);
   app.post('/plays/query', plays.query);
+  app.get('/plays/:play', plays.show);
+  app.put('/plays/:play', plays.update);
 
   /* Dead last thing to match */
   app.get('/', function(req, res, next) {

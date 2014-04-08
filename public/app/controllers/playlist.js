@@ -6,9 +6,25 @@ warmdApp.controller("PlaylistCtrl", ["$scope", "$http", "$routeParams", function
   $scope.program = {};
 
   $scope.$watch('plays', function() {
-    console.log("CHANGE!!!");
-    angular.forEach($scope.plays, function(index, play) {
-      
+    angular.forEach($scope.plays, function(play, index) {
+      console.log("index ", index);
+      console.log("play ", play);
+
+      $http({
+        method: 'PUT',
+        url: '/plays/' + play.PlayID,
+        data: {
+          Ordering: index
+        }
+      }).
+        success(function(data) {
+          console.log(data);
+        }).
+        error(function(data) {
+          console.error("ERROR UPDATING ORDERING:", data);
+        })
+
+
     });
   }, true);
 
