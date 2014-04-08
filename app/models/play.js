@@ -1,4 +1,6 @@
-var DB = require('bookshelf').DB;
+var DB = require('bookshelf').DB,
+    Playlist = require('./playlist'),
+    Artist = require('./artist');
 
 // Play model
 var Play = DB.Model.extend({

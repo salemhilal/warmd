@@ -8,8 +8,8 @@ module.exports = {
     Playlist.
       forge({ PlayListID: id}).
       fetch({
-        withRelated: ['plays'],
-        require: true,
+        withRelated: ['plays', 'program'],
+        // require: true,
       }).
       then(function(playlist) {
         req.playlist = playlist;
@@ -25,7 +25,8 @@ module.exports = {
       StartTime: newPlaylist.startTime,
       EndTime: newPlaylist.endTime,
       UserID: newPlaylist.userID,
-      Comment: newPlaylist.comment
+      Comment: newPlaylist.comment,
+      ProgramID: newPlaylist.programID,
     }).save().then(function(model) {
       res.json(200, model);
     });
@@ -33,7 +34,11 @@ module.exports = {
 
   show: function(req, res) {
     // TODO: Do we need an HTML view here?
-    res.json(req.playlist);
+    if(req.playlist) {
+      res.json(200, req.playlist);
+    } else {
+      res.json(404, {error: "No such playlist"})
+    }
   },
 
   update: function(req, res) {

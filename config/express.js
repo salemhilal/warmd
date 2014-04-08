@@ -79,6 +79,11 @@ module.exports = function(app, config, passport) {
           return next();
         }
 
+        if(err.message && err.message.indexOf("Unexpected") != -1) {
+          res.json(400, {err: "Malformed request: " +err.message});
+          return
+        }
+
         // log it
         // TODO: send emails
         console.error(err.stack);

@@ -17,11 +17,11 @@ config(function ($routeProvider) {
       templateUrl: '/app/views/login.html',
       controller: 'LoginCtrl',
     })
-    .when('/user/:id', {
+    .when('/users/:id', {
       templateUrl: '/app/views/user.html',
       controller: 'UserCtrl',
     })
-    .when('/playlist/new/:programID', {
+    .when('/playlists/:programID', {
       templateUrl: '/app/views/playlist.html',
       controller: 'PlaylistCtrl',
     })

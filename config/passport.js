@@ -70,7 +70,7 @@ module.exports = function(passport) {
          if (encryptPassword(password, user.attributes.User) === user.attributes.Password){
             return done(null, user);
          } else {
-            wlog.auth("Incorrect Password ",{User: user.attributes.User});
+            //wlog.auth("Incorrect Password ",{User: user.attributes.User});
             return done(null, false);
          }
         }, function(err) { // Could not find user / something went wrong

@@ -9,7 +9,7 @@ warmdApp.controller("PlaylistCtrl", ["$scope", "$http", "$routeParams", function
   $scope.plays = ["one", "two", "three", "four", "five", "six"];
 
 
-  $http({method: 'GET', url: '/playlists/214.json'}).
+  $http({method: 'GET', url: '/playlists/' + $routeParams.programID + '.json'}).
     success(function(data, status, headers, config) {
       console.log("Winner");
       console.log(data, status, headers, config);

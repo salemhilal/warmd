@@ -48,7 +48,7 @@ module.exports = {
 
     /* I do my best to replicate the following query:
 
-      select distinct *
+      select *
       from (
         select *, 1 as rank from `Artists` where `Artist` like 'death'
         union
