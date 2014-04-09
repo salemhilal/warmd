@@ -15,7 +15,7 @@ var Play = DB.Model.extend({
 
   // The artist of this play
   artist: function() {
-    return this.hasOne(Artist.model, "ArtistID");
+    return this.belongsTo(Artist.model, "ArtistID");
   },
 
   // The album of this play, if any

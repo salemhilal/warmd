@@ -12,8 +12,11 @@ module.exports = {
         // require: true,
       }).
       then(function(playlist) {
-        req.playlist = playlist;
-        next();
+        playlist.related('plays').load(['artist']).then(function(plays){
+          req.playlist = playlist;
+          req.playlist.plays = plays;
+          next();
+        });
       }, function(err) {
         next(err);
       });

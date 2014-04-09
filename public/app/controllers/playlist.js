@@ -5,10 +5,10 @@ warmdApp.controller("PlaylistCtrl", ["$scope", "$http", "$routeParams", function
   $scope.plays = [];
   $scope.program = {};
 
+
   $scope.$watch('plays', function() {
+    console.log('HERE LOOK', $scope.plays)
     angular.forEach($scope.plays, function(play, index) {
-      console.log("index ", index);
-      console.log("play ", play);
 
       $http({
         method: 'PUT',
@@ -29,8 +29,9 @@ warmdApp.controller("PlaylistCtrl", ["$scope", "$http", "$routeParams", function
   }, true);
 
 
-  $http({method: 'GET', url: '/playlists/' + $routeParams.programID + '.json'}).
+  $http({method: 'GET', url: '/playlists/' + $routeParams.playlistID}).
     success(function(data, status, headers, config) {
+      console.log(data);
       // Update the program data
       $scope.program = data.program;
 

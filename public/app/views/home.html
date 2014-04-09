@@ -5,7 +5,9 @@
       <h4>Shows</h4>
 
       <!-- List shows -->
-      <div ng-repeat="program in filteredPrograms = (programs | activePrograms)">{{program.Program}}</div>
+      <div ng-repeat="program in filteredPrograms = (programs | activePrograms)">
+        <a ng-href="#/programs/{{program.ProgramID}}">{{program.Program}}</a>
+      </div>
       <div ng-show="!filteredPrograms.length">No shows</div>
 
       <!-- Start new playlist -->
