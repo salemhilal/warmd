@@ -1,13 +1,17 @@
 var DB = require('bookshelf').DB,
     Artist = require('../models/artist').model,
-    Artists = require('../models/artist').collection;
+    Artists = require('../models/artist').collection,
+    Album = require('../models/album').model;
+
 
 module.exports = {
 
   // Look up artist in context of request
   load: function(req, res, next, id) {
     Artist.forge({ ArtistID: id })
-      .fetch({ require: true })
+      .fetch({
+        withRelated: ['albums'],
+       })
       .then(function (artist) {
         req.artist = artist;
         next();
@@ -23,14 +27,11 @@ module.exports = {
   // Get data about a specific user.
   // TODO: JSON only.
   show: function(req, res) {
-    res.format( {
-      json: function() {
-        res.json(200, req.artist.attributes);
-      },
-      default: function() {
-        res.json(200, req.artist.attributes);
-      }
-    });
+    if(req.artist){
+      res.json(200, req.artist);
+    } else {
+      res.json(404, {error: "Artist not found"})
+    }
   },
 
   //

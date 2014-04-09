@@ -4,6 +4,7 @@ warmdApp.controller("PlaylistCtrl", ["$scope", "$http", "$routeParams", function
 
   $scope.plays = [];
   $scope.program = {};
+  $scope.playlist = {};
 
 
   $scope.$watch('plays', function() {
@@ -33,6 +34,7 @@ warmdApp.controller("PlaylistCtrl", ["$scope", "$http", "$routeParams", function
     success(function(data, status, headers, config) {
       console.log(data);
       // Update the program data
+      $scope.playlist = data.playlist;
       $scope.program = data.program;
 
       // Check to see if all plays have an ordering

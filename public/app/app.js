@@ -29,6 +29,10 @@ config(function ($routeProvider) {
       templateUrl: '/app/views/program.html',
       controller: 'ProgramCtrl',
     })
+    .when('/artists/:artistID', {
+      templateUrl: '/app/views/artist.html',
+      controller: 'ArtistCtrl',
+    })
     .otherwise({
       redirectTo: '/'
     });
