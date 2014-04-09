@@ -36,6 +36,7 @@ warmdApp.controller("PlaylistCtrl", ["$scope", "$http", "$routeParams", function
 
       // Check to see if all plays have an ordering
       var hasOrdering = true
+      pub = data.plays
       for(i in data.plays) {
         if(!data.plays[i].Ordering) {
           hasOrdering = false;

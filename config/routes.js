@@ -46,8 +46,10 @@ module.exports = function(app, config, passport) {
 
   /* Program Routes */
   app.param('program', programs.load);
+  //TODO: Get rid of :format stuff. This should all be json.
   app.get('/programs/:program.:format', programs.show);
   app.get('/programs/:program', programs.show);
+  app.put('/programs/:program', programs.update);
 
   /* Playlist Routes */
   app.param('playlist', playlists.load);

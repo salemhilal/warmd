@@ -50,7 +50,7 @@ module.exports = {
         then(function(model) {
           res.json(200, model);
         }, function(err) {
-          res.json(404, {error: "No such playlist", details: err});
+          res.json(400, {error: "Error updating playlist", details: err});
         })
     }
   },
