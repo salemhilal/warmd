@@ -8,8 +8,9 @@ warmdApp.controller("QueryCtrl", ["$scope", "$http", function QueryCtrl($scope, 
         format: function(artist) {
           return {
             name: artist.Artist,
-            id: artist.ArtistID
-          }
+            id: artist.ArtistID,
+            url: "/artists/" + artist.ArtistID,
+          };
         }
       },
       {
@@ -18,7 +19,8 @@ warmdApp.controller("QueryCtrl", ["$scope", "$http", function QueryCtrl($scope, 
         format: function(user) {
           return {
             name: user.User,
-            id: user.UserID
+            id: user.UserID,
+            url: "/users/" + user.UserID
           };
         }
       },

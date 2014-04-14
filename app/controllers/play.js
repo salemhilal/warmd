@@ -13,7 +13,7 @@ module.exports = {
 				next();
 			}, function(err) {
 				next(err);
-			})
+			});
 	},
 
 	create: function(req, res) {
@@ -27,7 +27,8 @@ module.exports = {
 			TrackName: newPlay.trackName,
 			Mark: newPlay.mark,
 			B: newPlay.B,
-			R: newPlay.R
+			R: newPlay.R,
+			Ordering: newPlay.ordering,
 		}).
 		save().
 		then(function(play) {

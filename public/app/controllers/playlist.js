@@ -8,7 +8,6 @@ warmdApp.controller("PlaylistCtrl", ["$scope", "$http", "$routeParams", function
 
 
   $scope.$watch('plays', function() {
-    console.log('HERE LOOK', $scope.plays)
     angular.forEach($scope.plays, function(play, index) {
 
       $http({
@@ -23,24 +22,46 @@ warmdApp.controller("PlaylistCtrl", ["$scope", "$http", "$routeParams", function
         }).
         error(function(data) {
           console.error("ERROR UPDATING ORDERING:", data);
-        })
+        });
 
 
     });
   }, true);
 
+  $scope.addPlay = function() {
+    $http({
+      method: 'POST',
+      url: '/plays',
+      data: {
+        time: new Date().toISOString().slice(0, 19).replace('T', ' '),
+        playListID: $scope.playlist.PlayListID,
+        artistID: 1, // TODO: NOT THIS PLEASE EVER
+        albumID: 1,
+        trackName: $scope.track,
+        Mark: false, B: false, R: false, // TODO: Do bin cut stuff
+        ordering: $scope.plays.length,
+      }
+    }).
+      success(function(data) {
+        console.log(data);
+        $scope.plays.push(data);
+      }).
+      error(function(data) {
+        console.error(data);
+      });
+  };
 
   $http({method: 'GET', url: '/playlists/' + $routeParams.playlistID}).
     success(function(data, status, headers, config) {
       console.log(data);
       // Update the program data
-      $scope.playlist = data.playlist;
+      $scope.playlist = data;
       $scope.program = data.program;
 
       // Check to see if all plays have an ordering
-      var hasOrdering = true
-      pub = data.plays
-      for(i in data.plays) {
+      var hasOrdering = true;
+      pub = data.plays;
+      for(var i in data.plays) {
         if(!data.plays[i].Ordering) {
           hasOrdering = false;
           break;
@@ -54,7 +75,7 @@ warmdApp.controller("PlaylistCtrl", ["$scope", "$http", "$routeParams", function
         });
       } else {
         $scope.plays = data.plays.sort(function(a, b) {
-          return a.Ordering - b.Ordering
+          return a.Ordering - b.Ordering;
         });
       }
     }).
