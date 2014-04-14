@@ -80,7 +80,6 @@ var server = https.createServer(options, app).listen(port, function(){
    //app.listen(port);
    wlog.info("\n\nWARMD now running on port " + port);
    wlog.info("running in " + env + " environment");
-   wlog.fatal("WARMD STARTED! Call the cops.");
    if(config.verbose) {
      console.log("Verbose mode on");
    }

@@ -1,6 +1,7 @@
 var LocalStrategy = require('passport-local').Strategy,
    crypto = require('crypto'),
    wlog = require('winston'),
+   acl = require('./auth'),
    DB = require('bookshelf').DB,
    User = require('../app/models/user').model;
 
@@ -68,6 +69,7 @@ module.exports = function(passport) {
          // Found user
          console.log("Found user: ", user.attributes.User);
          if (encryptPassword(password, user.attributes.User) === user.attributes.Password){
+            acl.addUserRoles(user.attributes.UserID, user.attributes.AuthLevel);
             return done(null, user);
          } else {
             wlog.auth("Incorrect Password ",{User: user.attributes.User});
