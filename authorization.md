@@ -7,8 +7,8 @@ Note: an emphasis (ie. _U_) indicates that a user is allowed to apply that actio
 | Auth Level |  Albums | Artists | Plays | Playlists | Programs | Users |
 |------------|:-------:|:-------:|:-----:|:---------:|:--------:|:-----:|
 |  None      |    x    |    x    |   x   |     R     |     R    |   x   |
-|  Trainee   |    RU   |    RU   |   R   |     R     |     R    |  R_U_ |
-|  User      |   CRU   |   CRU   |_CRUD_ |   _CRUD_  |    R_U_  |  R_U_ |
+|  Trainee   |    RU   |    RU   |   R   |     R     |     R    | R _U_ |
+|  User      |   CRU   |   CRU   |_CRUD_ |   _CRUD_  |    R _U_ | R _U_ |
 |  Exec      |   CRU   |   CRU   | CRUD  |    CRUD   |    CRU   | CR_U_ |
 |  Admin     |   CRUD  |   CRUD  | CRUD  |    CRUD   |   CRUD   | CRUD  |
 
