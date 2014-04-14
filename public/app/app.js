@@ -4,36 +4,40 @@ var warmdApp = angular.module('warmdApp', [
   'ngRoute', 'ui.sortable'
 ]).
 config(function ($routeProvider) {
-  $routeProvider
-    .when('/', {
+  $routeProvider.
+    when('/', {
       templateUrl: '/app/views/home.html',
       controller: 'HomeCtrl',
-    })
-    .when('/query', {
+    }).
+    when('/query', {
       templateUrl: '/app/views/query.html',
       controller: 'QueryCtrl',
-    })
-    .when('/login', {
+    }).
+    when('/login', {
       templateUrl: '/app/views/login.html',
       controller: 'LoginCtrl',
-    })
-    .when('/users/:id', {
+    }).
+    when('/users/:id', {
       templateUrl: '/app/views/user.html',
       controller: 'UserCtrl',
-    })
-    .when('/playlists/:playlistID', {
+    }).
+    when('/playlists/:playlistID', {
       templateUrl: '/app/views/playlist.html',
       controller: 'PlaylistCtrl',
-    })
-    .when('/programs/:programID', {
+    }).
+    when('/programs/:programID', {
       templateUrl: '/app/views/program.html',
       controller: 'ProgramCtrl',
-    })
-    .when('/artists/:artistID', {
+    }).
+    when('/artists/:artistID', {
       templateUrl: '/app/views/artist.html',
       controller: 'ArtistCtrl',
-    })
-    .otherwise({
+    }).
+    when('/albums/:albumID', {
+      templateUrl: '/app/views/album.html',
+      controller: 'AlbumCtrl',
+    }).
+    otherwise({
       redirectTo: '/'
     });
 }).

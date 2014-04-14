@@ -70,8 +70,8 @@ module.exports = function(app, config, passport) {
   /* Album routes */
   //TODO: Move this into the albums controller
   app.param('album', album.load);
-  app.get('/album/:album', album.show);
-  app.put('/album/:album', album.update);
+  app.get('/albums/:album', album.show);
+  app.put('/albums/:album', album.update);
   app.get('/cover', album.cover);
 
   /* Dead last thing to match */
