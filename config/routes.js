@@ -3,6 +3,7 @@ var users = require('../app/controllers/user.js'),
     programs = require('../app/controllers/program.js'),
     playlists = require('../app/controllers/playlist.js'),
     plays = require('../app/controllers/play.js'),
+    album = require('../app/controllers/album.js'),
     express = require('express'),
     request = require('request-json'),
     iTunes = request.newClient('https://itunes.apple.com');
@@ -68,16 +69,10 @@ module.exports = function(app, config, passport) {
 
   /* Album routes */
   //TODO: Move this into the albums controller
-  app.get('/cover', function(req, res) {
-    console.log("Looking up:", req.query);
-    iTunes.get('/search?term=' + encodeURI(req.query.term), function(err, meta, body) {
-      if(err) {
-        res.json(400, {error: err})
-      } else {
-        res.json(200, body);
-      }
-    })
-  })
+  app.param('album', album.load);
+  app.get('/album/:album', album.show);
+  app.put('/album/:album', album.update);
+  app.get('/cover', album.cover);
 
   /* Dead last thing to match */
   app.get('/', function(req, res, next) {
