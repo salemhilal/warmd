@@ -4,9 +4,7 @@ var users = require('../app/controllers/user.js'),
     playlists = require('../app/controllers/playlist.js'),
     plays = require('../app/controllers/play.js'),
     album = require('../app/controllers/album.js'),
-    express = require('express'),
-    request = require('request-json'),
-    iTunes = request.newClient('https://itunes.apple.com');
+    express = require('express');
 
 module.exports = function(app, config, passport) {
 

@@ -1,5 +1,7 @@
 var DB = require('bookshelf').DB,
-		Album = require('../models/album').model;
+		Album = require('../models/album').model,
+		request = require('request-json'),
+		iTunes = request.newClient('https://itunes.apple.com');
 
 module.exports = {
 
