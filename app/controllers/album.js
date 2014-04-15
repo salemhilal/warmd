@@ -48,7 +48,8 @@ module.exports = {
 	// TODO: Make this a bit smarter. i.e. have return only one album, for example.
 	cover: function(req, res) {
 		console.log("Looking up:", req.query.artist, req.query.album);
-		iTunes.get('/search?term=' + encodeURI(req.query.artist) + "+" + encodeURI(req.query.album), function(err, meta, body) {
+		console.log("Querying iTunes for " + '/search?term=' + encodeURI(req.query.artist) + "+" + encodeURI(req.query.album));
+		iTunes.get('/search?term=' + encodeURI(req.query.artist) + "%20" + encodeURI(req.query.album), function(err, meta, body) {
 			if(!err) {
 				res.json(200, body);
 			} else {

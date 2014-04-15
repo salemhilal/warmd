@@ -12,7 +12,7 @@ var Album = DB.Model.extend({
 
 	// The album's artist
 	artist: function() {
-		return this.hasOne(Artist.model, "ArtistID");
+		return this.belongsTo(Artist.model, "ArtistID");
 	},
 });
 
