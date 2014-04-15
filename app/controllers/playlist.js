@@ -8,15 +8,12 @@ module.exports = {
     Playlist.
       forge({ PlayListID: id}).
       fetch({
-        withRelated: ['plays', 'program'],
+        withRelated: ['plays.artist', 'program'],
         // require: true,
       }).
       then(function(playlist) {
-        playlist.related('plays').load(['artist']).then(function(plays){
-          req.playlist = playlist;
-          req.playlist.plays = plays;
-          next();
-        });
+        req.playlist = playlist;
+        next();
       }, function(err) {
         next(err);
       });
