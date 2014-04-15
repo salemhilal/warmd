@@ -26,7 +26,18 @@ module.exports = {
       }
     });
   },
-
+  isPriv: function(req, res, next) {
+   if (
+      acl.isAllowed(req.user.attributes.userID, req.url, req.method,
+         function(err, allowed) {
+            return allowed;
+         }
+      ) === true) {
+         return next();
+      } else {
+         res.redirect('/app') //TODO: redirect to previous page.
+      }
+   },
   // Redirect users properly after logging in
   session: function(req, res) {
     var redirectTo = req.session.returnTo ? req.session.returnTo : '/';
