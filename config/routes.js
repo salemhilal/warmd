@@ -3,7 +3,7 @@ var users = require('../app/controllers/user.js'),
     programs = require('../app/controllers/program.js'),
     playlists = require('../app/controllers/playlist.js'),
     plays = require('../app/controllers/play.js'),
-    acl = require('./auth.js'),
+    acl = require('./auth.js').acl,
     express = require('express');
 
 module.exports = function(app, config, passport) {
@@ -36,7 +36,10 @@ module.exports = function(app, config, passport) {
   app.param('user', users.load);
   app.post('/users/new', users.create);
   app.get('/users/:user.:format', users.isAuthed, users.show);
-  app.get('/users/:user', users.isAuthed, acl.middleware(), users.show);
+  app.get('/users/:user', users.isAuthed, acl.middleware(1, function(req, res) {
+    // Tell ACL how to get a unique identifier for a user.
+    return req.user.attributes.UserID;
+  }), users.show);
   app.post('/users/query', users.query);
 
   /* Artist Routes */

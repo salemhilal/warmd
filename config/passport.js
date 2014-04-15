@@ -1,14 +1,16 @@
 var LocalStrategy = require('passport-local').Strategy,
    crypto = require('crypto'),
    wlog = require('winston'),
-   acl = require('./auth'),
+   acl = require('./auth').acl,
    DB = require('bookshelf').DB,
    User = require('../app/models/user').model;
 
 // Password verification functions
 
 encryptPassword = function(password, username){
-   if (!password) return ''
+   if (!password) {
+     return '';
+   }
    var encrypted, salt;
    try {
       salt = crypto.createCipher('aes256', password+username).final('hex');
@@ -17,7 +19,7 @@ encryptPassword = function(password, username){
    } catch  (err) {
       return 'There was error!';
    }
-}
+};
 
 
 
@@ -25,7 +27,7 @@ module.exports = function(passport) {
 
    // user -> id
    passport.serializeUser(function(user, done) {
-      done(null, user.attributes.UserID)
+      done(null, user.attributes.UserID);
    });
 
    // id -> user
@@ -70,9 +72,10 @@ module.exports = function(passport) {
          console.log("Found user: ", user.attributes.User);
          if (encryptPassword(password, user.attributes.User) === user.attributes.Password){
             acl.addUserRoles(user.attributes.UserID, user.attributes.AuthLevel);
+            console.log("========= ADDED AUTH LEVEL: "+user.attributes.UserID+" is level '"+user.attributes.AuthLevel+"' ================");
             return done(null, user);
          } else {
-            wlog.auth("Incorrect Password ",{User: user.attributes.User});
+            wlog.auth("Incorrect Password ", {User: user.attributes.User});
             return done(null, false);
          }
         }, function(err) { // Could not find user / something went wrong

@@ -27,10 +27,10 @@ module.exports = function(app, config, passport) {
 
       // Set headings for requests that forget to set headings
       app.use(acceptOverride());
-      
+
       // Ensure https is used by default
       app.use(function(req, res, next) {
-        if (!req.secure) { 
+        if (!req.secure) {
           // Break out of current call chain, redirect to https url.
           return res.redirect('https://' + req.get('host') + req.url);
         }
@@ -48,8 +48,8 @@ module.exports = function(app, config, passport) {
       }));
 
       // use passport session
-      app.use(passport.initialize())
-      app.use(passport.session())
+      app.use(passport.initialize());
+      app.use(passport.session());
 
       // Place app behind password protection.
       // Must be after passport middleware
@@ -78,11 +78,11 @@ module.exports = function(app, config, passport) {
 
         // log it
         // TODO: send emails
-        console.error(err.stack);
+        console.error(err.msg, err.stack);
 
         // error page
         res.status(500).render('500', {
-            error: err.stack
+            error: err.stack,
         });
       });
 

@@ -27,5 +27,5 @@ var warmdApp = angular.module('warmdApp', [
     })
     .otherwise({
       redirectTo: '/'
-    })
+    });
 });
