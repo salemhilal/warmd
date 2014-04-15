@@ -4,6 +4,21 @@ warmdApp.controller("AlbumCtrl", ["$scope", "$http", "$routeParams", function ($
 	console.log($routeParams.albumID);
 
 	$scope.album = {};
+	$scope.statuses = [
+		"Bin",
+		"Library",
+		"Missing",
+		"N&WC",
+		"NBNB",
+		"NIB",
+		"OOB",
+		"TBR",
+	]
+
+	// Watch album for changes
+	$scope.$watch('album', function(){
+
+	});
 
 	$http({method: 'GET', url: '/albums/' + $routeParams.albumID}).
 		success(function(data) {
@@ -19,7 +34,7 @@ warmdApp.controller("AlbumCtrl", ["$scope", "$http", "$routeParams", function ($
 					}
 				});
 
-			console.log("Album data", data);
+			console.log("Album data", $scope.album);
 		}).
 		error(function(data, status, headers, config) {
 			console.error(data);
