@@ -1,6 +1,7 @@
 var DB = require('bookshelf').DB,
     User = require('../models/user').model,
-    Users = require('../models/user').collection;
+    Users = require('../models/user').collection,
+    acl = require('../../config/auth.js').acl;
 
 module.exports = {
 
@@ -26,9 +27,11 @@ module.exports = {
       }
     });
   },
-
+  // Ensure users are of the proper privilege
+  // TODO: check specific permissions that only apply in certain cases.
+  // For example, only let users write/update their own playlists
   isPriv: function(req, res, next) {
-      acl.middleware(1, req.user.attributes.UserID);
+    acl.middleware(1, req.user.attributes.UserID)(req, res, next);
    },
   // Redirect users properly after logging in
   session: function(req, res) {

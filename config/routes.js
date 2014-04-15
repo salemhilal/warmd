@@ -3,7 +3,6 @@ var users = require('../app/controllers/user.js'),
     programs = require('../app/controllers/program.js'),
     playlists = require('../app/controllers/playlist.js'),
     plays = require('../app/controllers/play.js'),
-    acl = require('./auth.js').acl,
     express = require('express');
 
 module.exports = function(app, config, passport) {
