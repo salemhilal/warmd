@@ -10,7 +10,7 @@ module.exports = {
 		Album.
 			forge({ AlbumID: id}).
 			fetch({
-				withRelated: ['artist']
+				withRelated: ['artist', 'reviews']
 			}).
 			then(function(album) { // Request returned (may or may not have found it)
 				req.album = album;

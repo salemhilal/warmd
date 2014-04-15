@@ -1,5 +1,6 @@
 var DB = require('bookshelf').DB,
-		Artist = require('./artist');
+		Artist = require('./artist'),
+		Review = require('./review');
 
 var Album = DB.Model.extend({
 	tableName: "Albums",
@@ -14,6 +15,10 @@ var Album = DB.Model.extend({
 	artist: function() {
 		return this.belongsTo(Artist.model, "ArtistID");
 	},
+
+	reviews: function() {
+		return this.hasMany(Review.model, "AlbumID");
+	}
 });
 
 var Albums = DB.Collection.extend({

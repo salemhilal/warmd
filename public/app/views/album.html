@@ -1,12 +1,32 @@
 <div class="row">
-	<div class="col-md-12">
-		<h3>{{album.Album}} <small>{{album.artist.Artist}}</small></h3>
-	</div>
+	<!-- Album art -->
 	<div class="col-md-4">
-		<img src="{{cover || '/resources/images/cover.jpg'}}" alt="{{album.Album}}" width="100%"/>
+		<img src="{{cover || '/resources/images/cover.jpg'}}" alt="{{album.Album}}" width="100%" style="margin-bottom: 30px"/>
 	</div>
 
+	<!-- Album info -->
 	<div class="col-md-8">
+		<h3>{{album.artist.Artist}} - <em>{{album.Album}}</em></h3>
+
+		<!-- 'Bin','N&WC','NIB','TBR','OOB','Missing','Library','NBNB' -->
+		<span ng-show="album.Status=='Bin'" class="label label-danger">In the bin</span>
+		<span ng-show="album.Status=='N&WC'" class="label label-primary">New and Way Cool</span>
+		<span ng-show="album.Status=='NIB'" class="label label-default">Not in Bin</span>
+		<span ng-show="album.Status=='TBR'" class="label label-success">To be reviewed</span>
+		<span ng-show="album.Status=='OOB'" class="label label-default">Out of bin</span>
+		<span ng-show="album.Status=='Missing'" class="label label-warning">Missing</span>
+		<span ng-show="album.Status=='Library'" class="label label-default">In the library</span>
+		<span ng-show="album.Status=='NBNB'" class="label label-info">New but not in bin</span>
+
+		<span ng-show="album.Year">&nbsp;&bull;&nbsp; {{album.Year}}</span>
+		<span ng-show="album.ReleaseNum">&nbsp;&bull;&nbsp; {{album.ReleaseNum}}</span>
 
 	</div>
+
+	<div ng-repeat="review in album.reviews" class="col-md-12">
+		<blockquote>
+			{{review.Review}}
+		</blockquote>
+	</div>
+
 </div>
