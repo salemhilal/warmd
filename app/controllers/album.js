@@ -45,10 +45,10 @@ module.exports = {
 	},
 
 	// Gives album art results the given query. Returns the first result. Not very creative.
-	// TODO: Make this a bit smarter. i.e. have it take in different parameters, return only one album, etc.
+	// TODO: Make this a bit smarter. i.e. have return only one album, for example.
 	cover: function(req, res) {
-		console.log("Looking up:", req.query);
-		iTunes.get('/search?term=' + encodeURI(req.query.term), function(err, meta, body) {
+		console.log("Looking up:", req.query.artist, req.query.album);
+		iTunes.get('/search?term=' + encodeURI(req.query.artist) + "+" + encodeURI(req.query.album), function(err, meta, body) {
 			if(!err) {
 				res.json(200, body);
 			} else {
