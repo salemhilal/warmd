@@ -1,7 +1,8 @@
 var DB = require('bookshelf').DB,
 		Album = require('../models/album').model,
 		request = require('request-json'),
-		iTunes = request.newClient('https://itunes.apple.com');
+		iTunes = request.newClient('https://itunes.apple.com'),
+		_ = require('lodash');
 
 module.exports = {
 
@@ -34,8 +35,9 @@ module.exports = {
 		if(!req.album) {
 			res.json(404, {error: "Album not found"});
 		} else {
+			console.log("UPDATIHG WITH THIS BODY", _.pick(req.body, Album.permittedAttributes));
 			req.album.
-				save(req.body, {patch: true}).
+				save(_.pick(req.body, Album.permittedAttributes), {patch: true}).
 				then(function(model) {
 					res.json(200, model);
 				}, function(err) {

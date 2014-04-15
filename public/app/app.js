@@ -65,7 +65,7 @@ directive("clickToEdit", function() {
       '<form class="form-inline" ng-show="view.editorEnabled" style="margin-top: 10px">' +
         '<input class="form-control" ng-model="view.editableValue" style="margin-right:5px;" placeholder="{{label}}">' +
         '<div class="btn-group">' +
-          '<button type="button" class="btn btn-primary" ng-click="save()"><span class="fui-check"></span></button>' +
+          '<button type="button" class="btn btn-inverse" ng-click="save()"><span class="fui-check"></span></button>' +
           '<button type="button" class="btn btn-default" ng-click="disableEditor()"><span class="fui-cross"></span></button>' +
         '</div>' +
       '</form>' +
@@ -115,7 +115,7 @@ directive("clickToSelect", function() {
           '<option ng-repeat="select in selections">{{select}}</option>' +
         '</select>' +
         '<div class="btn-group">' +
-          '<button type="button" class="btn btn-primary" ng-click="save()"><span class="fui-check"></span></button>' +
+          '<button type="button" class="btn btn-inverse" ng-click="save()"><span class="fui-check"></span></button>' +
           '<button type="button" class="btn btn-default" ng-click="disableEditor()"><span class="fui-cross"></span></button>' +
         '</div>' +
       '</form>' +
@@ -146,7 +146,6 @@ directive("clickToSelect", function() {
       };
 
       $scope.save = function() {
-        console.log("VIEW", $scope.view);
         $scope.value = $scope.view.editableValue;
         $scope.disableEditor();
       };
