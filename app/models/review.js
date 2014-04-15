@@ -1,12 +1,17 @@
 var DB = require('bookshelf').DB,
-		Album = require('./album');
+		Album = require('./album'),
+		User = require('./user');
 
 var Review = DB.Model.extend({
 	tableName: "Reviews",
 	idAttribute: "ReviewID",
 
 	album: function() {
-		this.belongsTo(Album.model, "AlbumID");
+		return this.belongsTo(Album.model, "AlbumID");
+	},
+
+	user: function() {
+		return this.belongsTo(User.model, "UserID");
 	}
 });
 

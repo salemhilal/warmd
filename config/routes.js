@@ -4,6 +4,7 @@ var users = require('../app/controllers/user.js'),
     playlists = require('../app/controllers/playlist.js'),
     plays = require('../app/controllers/play.js'),
     album = require('../app/controllers/album.js'),
+    review = require('../app/controllers/review.js'),
     express = require('express');
 
 module.exports = function(app, config, passport) {
@@ -71,6 +72,10 @@ module.exports = function(app, config, passport) {
   app.get('/albums/:album', album.show);
   app.put('/albums/:album', album.update);
   app.get('/cover', album.cover);
+
+  /* Review routes */
+  app.param('review', review.load);
+  app.get('/reviews/:review', review.show);
 
   /* Dead last thing to match */
   app.get('/', function(req, res, next) {

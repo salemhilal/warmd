@@ -57,10 +57,10 @@ filter('activePrograms', function() {
 directive("clickToEdit", function() {
   var editorTemplate = '<div class="click-to-edit">' +
       '<div ng-hide="view.editorEnabled">' +
-        '<strong>{{label}}: </strong>' +
+        '<span ng-click="enableEditor()" class="fui-new" style="margin-right:10px; font-size:.9em; color:#bdc3c7"></span>' +
+        '<strong>{{label}}:&nbsp;&nbsp;</strong>' +
         '<span ng-show="value">{{value}}</span>' +
         '<em ng-hide="value">none</em>' +
-        '<span ng-click="enableEditor()" class="fui-new" style="margin-left:10px;"></span>' +
       '</div>' +
       '<form class="form-inline" ng-show="view.editorEnabled" style="margin-top: 10px">' +
         '<input class="form-control" ng-model="view.editableValue" style="margin-right:5px;" placeholder="{{label}}">' +
@@ -105,10 +105,10 @@ directive("clickToEdit", function() {
 directive("clickToSelect", function() {
   var editorTemplate = '<div class="click-to-edit">' +
       '<div ng-hide="view.editorEnabled">' +
-        '<strong>{{label}}: </strong>' +
+        '<span ng-click="enableEditor()" class="fui-new" style="margin-right:10px; font-size:.9em; color:#bdc3c7"></span>' +
+        '<strong>{{label}}:&nbsp;&nbsp;</strong>' +
         '<span ng-show="value">{{value}}</span>' +
         '<em ng-hide="value">none</em>' +
-        '<span ng-click="enableEditor()" class="fui-new" style="margin-left:10px;"></span>' +
       '</div>' +
       '<form class="form-inline" ng-show="view.editorEnabled" style="margin-top: 10px">' +
         '<select class="form-control" style="margin-right:5px;" ng-model="view.editableValue" ng-select="select in selections">' +

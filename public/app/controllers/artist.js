@@ -17,7 +17,6 @@ warmdApp.controller("ArtistCtrl", ["$scope", "$http", "$routeParams", function (
 						if(data.resultCount > 0) {
 							album.cover = data.results[0].artworkUrl100.replace("100x100", "600x600");
 						}
-						console.log(data);
 					});
 			});
 
