@@ -35,8 +35,8 @@ module.exports = {
 		if(!req.album) {
 			res.json(404, {error: "Album not found"});
 		} else {
-			console.log("UPDATIHG WITH THIS BODY", _.pick(req.body, Album.permittedAttributes));
 			req.album.
+				// Only update columns that exist. 
 				save(_.pick(req.body, Album.permittedAttributes), {patch: true}).
 				then(function(model) {
 					res.json(200, model);

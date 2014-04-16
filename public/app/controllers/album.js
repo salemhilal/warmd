@@ -12,11 +12,13 @@ warmdApp.controller("AlbumCtrl", ["$scope", "$http", "$routeParams", function ($
 		"NIB",
 		"OOB",
 		"TBR",
-	]
+	];
 
 	// Watch album for changes
 	$scope.$watch('album', function(){
-		if(!$scope.album){ return }
+		if(!$scope.album){
+			return;
+		}
 
 		$http({
 			method: 'PUT',
@@ -30,6 +32,12 @@ warmdApp.controller("AlbumCtrl", ["$scope", "$http", "$routeParams", function ($
 				console.error(data);
 			});
 	}, true);
+
+
+	$scope.formatDate = function(str) {
+		return new Date(str).toLocaleDateString();
+	};
+
 
 	$http({method: 'GET', url: '/albums/' + $routeParams.albumID}).
 		success(function(data) {

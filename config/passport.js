@@ -16,15 +16,13 @@ encryptPassword = function(password, username){
    } catch  (err) {
       return 'There was error!';
    }
-}
-
-
+};
 
 module.exports = function(passport) {
 
    // user -> id
    passport.serializeUser(function(user, done) {
-      done(null, user.attributes.UserID)
+      done(null, user.attributes.UserID);
    });
 
    // id -> user
@@ -33,9 +31,7 @@ module.exports = function(passport) {
       User.forge({
          userID: id
       })
-      .fetch({
-        withRelated: ['programs'],
-        })
+      .fetch()
       .then(function(user) {
         if(!user) { // No user found
           done(null, false);
@@ -58,9 +54,7 @@ module.exports = function(passport) {
        User.forge({
          User: username
        })
-       .fetch({
-         withRelated:['programs'],
-       })
+       .fetch()
        .then(function(user) {
          if(!user) {
           return done(null, false);

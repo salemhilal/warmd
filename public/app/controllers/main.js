@@ -15,6 +15,7 @@ warmdApp.controller("MainCtrl", ["$scope", "$http", "$location", function MainCt
     // Populate the page with data
     $http({method: 'GET', url: '/me'}).
       success(function(data, status, headers, config) {
+        console.log(data);
         $scope.user = data;
       }).
       error(function(data, status, headers, config) {

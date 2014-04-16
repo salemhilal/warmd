@@ -29,10 +29,18 @@ module.exports = function(app, config, passport) {
       failureRedirect: '/login?success=false'
     }));
 
-  app.get('/me',users.isAuthed, function(req, res, next) {
-    res.json(req.user.toJSON());
+  // Get info about the current user
+  app.get('/me',users.isAuthed, function(req, res) {
+    req.user.
+      load(['programs', 'reviews.album.artist']).
+      then(function(data) {
+        res.json(200, data.toJSON());
+      })
   });
 
+
+  //TODO: Make these have better RESTful names.
+  // i.e. "artists" should refer to collections, "artist" to individuals
   /* User Routes */
   app.param('user', users.load);
   app.post('/users/new', users.create);
@@ -75,7 +83,7 @@ module.exports = function(app, config, passport) {
 
   /* Review routes */
   app.param('review', review.load);
-  app.get('/reviews/:review', review.show);
+  app.get('/review/:review', review.show);
 
   /* Dead last thing to match */
   app.get('/', function(req, res, next) {

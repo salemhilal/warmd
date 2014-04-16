@@ -36,10 +36,17 @@
 		</div>
 	</div>
 
+	<div class="col-md-12">
+		<h5>Reviews</h5>
+	</div>
+
 	<div ng-repeat="review in album.reviews" class="col-md-12">
-		<blockquote>
+		<p>On {{formatDate(review.Time)}},
+			<strong><a href="#/users/{{review.user.UserID}}">{{review.user.FName}} {{review.user.LName}}</a></strong> posted:
+		</p>
+		<blockquote><em>
 			{{review.Review}}
-		</blockquote>
+		</em></blockquote>
 	</div>
 
 </div>

@@ -19,10 +19,9 @@ var Play = DB.Model.extend({
   },
 
   // The album of this play, if any
-  // TODO: Create the album model
-  // album: function() {
-  //   return this.hasOne(Album.model, "AlbumID");
-  // }
+  album: function() {
+    return this.hasOne(Album.model, "AlbumID");
+  }
 });
 
 // Play collection

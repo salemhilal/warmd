@@ -24,4 +24,12 @@ module.exports = {
 			res.json(404, {error: "Review not found"});
 		}
 	},
+
+	batch: {
+		update: function(req, res) {
+			
+		}
+
+	}
+
 }
