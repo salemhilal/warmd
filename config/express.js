@@ -11,6 +11,9 @@ module.exports = function(app, config, passport) {
     // Register public folder as a static dir
     // app.use(express.static(config.root + '/public'));
 
+    // Enable gzipping
+    // app.use(express.compress());
+
     // Set rendering engines
     app.engine('hbs', hbs.express3({
         partialsDir: config.root + '/app/views/partials',
@@ -55,7 +58,7 @@ module.exports = function(app, config, passport) {
       // Place app behind password protection.
       // Must be after passport middleware
       app.use(function(req, res, next) {
-        if (req.user === null && req.path.indexOf('/app') === 0) {
+        if (!req.user && req.path.indexOf('/app') === 0) {
           // Remember where they were going
           req.session.returnTo = req.originalUrl;
           res.redirect('/login');
@@ -64,11 +67,9 @@ module.exports = function(app, config, passport) {
         }
       });
 
-      // Enable gzipping
-      app.use(express.compress());
       // Serve static content
       app.use("/app", express.static(config.root + '/public/app'));
-      app.use("/resources", express.static(config.root + '/public/resources',  { maxAge: 1000 * 60 * 60 * 24 }));
+      app.use("/resources", express.static(config.root + '/public/resources', {maxAge: 1000 * 60 * 60 * 24}));
 
       // routes should be last
       app.use(app.router);
