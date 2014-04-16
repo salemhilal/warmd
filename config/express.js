@@ -49,13 +49,13 @@ module.exports = function(app, config, passport) {
       }));
 
       // use passport session
-      app.use(passport.initialize())
-      app.use(passport.session())
+      app.use(passport.initialize());
+      app.use(passport.session());
 
       // Place app behind password protection.
       // Must be after passport middleware
       app.use(function(req, res, next) {
-        if (req.user == null && req.path.indexOf('/app') === 0) {
+        if (req.user === null && req.path.indexOf('/app') === 0) {
           // Remember where they were going
           req.session.returnTo = req.originalUrl;
           res.redirect('/login');
@@ -64,8 +64,11 @@ module.exports = function(app, config, passport) {
         }
       });
 
+      // Enable gzipping
+      app.use(express.compress());
+      // Serve static content
       app.use("/app", express.static(config.root + '/public/app'));
-      app.use("/resources", express.static(config.root + '/public/resources'));
+      app.use("/resources", express.static(config.root + '/public/resources',  { maxAge: 1000 * 60 * 60 * 24 }));
 
       // routes should be last
       app.use(app.router);
@@ -81,7 +84,7 @@ module.exports = function(app, config, passport) {
 
         if(err.message && err.message.indexOf("Unexpected") != -1) {
           res.json(400, {err: "Malformed request: " +err.message});
-          return
+          return;
         }
 
         // log it
