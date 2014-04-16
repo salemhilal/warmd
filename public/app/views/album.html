@@ -1,7 +1,10 @@
 <div class="row">
 	<!-- Album art -->
 	<div class="col-sm-4">
-		<img src="{{cover || '/resources/images/cover.jpg'}}" alt="{{album.Album}}" width="100%" style="margin-bottom: 30px"/>
+		<div class="tile">
+			<img src="{{cover || '/resources/images/cover.jpg'}}" alt="{{album.Album}}" width="100%"/>
+			<em><small ng-show="cover"><a ng-href="{{cover || '/resources/images/cover.jpg'}}">Album art courtesy of iTunes</a></small></em>
+		</div>
 	</div>
 
 	<!-- Album info -->
