@@ -18,6 +18,9 @@
 
 <!-- Results -->
 <div class="row">
+  <div ng-show="results.length === 0 && query.length !== 0">
+    <center>Sorry, I couldn't find anything. Perhaps check your spelling?</center>
+  </div>
   <div class="col-md-4" ng-repeat="item in results">
     <a ng-href="#{{item.url}}">
       <div class="tile">

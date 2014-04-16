@@ -26,7 +26,6 @@ warmdApp.controller("QueryCtrl", ["$scope", "$http", function QueryCtrl($scope, 
       },
     ],
 
-    $scope.results = [],
     $scope.toQuery = $scope.types[0],
 
     $scope.selected = function(idx) {
@@ -42,6 +41,7 @@ warmdApp.controller("QueryCtrl", ["$scope", "$http", function QueryCtrl($scope, 
       var query = $scope.query.trim();
       var format = $scope.toQuery.format;
 
+      $scope.returned = false;
       $http({
           method: "POST",
           url: url,
@@ -50,14 +50,14 @@ warmdApp.controller("QueryCtrl", ["$scope", "$http", function QueryCtrl($scope, 
         success(function(data, status, headers, config) {
           console.log("found this", data);
           $scope.results = data.map(format).filter(function(item) {
-            return item.name.trim() != "";
+
+            return item.name.trim() !== "";
           });
-          console.log("found this", $scope.results);
         }).
         error(function(data, status, headers, config) {
           console.error(data);
         });
 
-    }, 300)
+    }, 300);
 
 }]);
