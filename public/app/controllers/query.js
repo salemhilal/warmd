@@ -34,7 +34,7 @@ warmdApp.controller("QueryCtrl", ["$scope", "$http", function QueryCtrl($scope, 
     },
 
     $scope.autocomplete = _.debounce(function(){
-      if(!$scope.query) {
+      if(!$scope.query || $scope.query.length < 3) {
         return;
       }
 
@@ -45,7 +45,7 @@ warmdApp.controller("QueryCtrl", ["$scope", "$http", function QueryCtrl($scope, 
       $http({
           method: "POST",
           url: url,
-          data: { query: query, limit: 10 }
+          data: { query: query }
       }).
         success(function(data, status, headers, config) {
           console.log("found this", data);

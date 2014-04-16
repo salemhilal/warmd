@@ -40,6 +40,7 @@ module.exports = function(app, config, passport) {
 
 
   //TODO: Make these have better RESTful names.
+  //TODO: Auth all of these as necessary, you idiot.
   // i.e. "artists" should refer to collections, "artist" to individuals
   /* User Routes */
   app.param('user', users.load);
@@ -84,6 +85,7 @@ module.exports = function(app, config, passport) {
   /* Review routes */
   app.param('review', review.load);
   app.get('/review/:review', review.show);
+  app.post('/review', review.create);
 
   /* Dead last thing to match */
   app.get('/', function(req, res, next) {

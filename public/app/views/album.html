@@ -22,30 +22,30 @@
 		<span ng-show="album.Status=='Library'" class="label label-default">In the library</span>
 		<span ng-show="album.Status=='NBNB'" class="label label-info">New but not in bin</span>
 
-		<span ng-show="album.Year">&nbsp;&bull;&nbsp; {{album.Year}}</span>
-		<span ng-show="album.ReleaseNum">&nbsp;&bull;&nbsp; {{album.ReleaseNum}}</span>
-
 		<hr>
 
 		<div class="row">
 			<div class="col-sm-6">
 				<div click-to-edit="album.Album" edit-label="Name"></div>
 				<div click-to-edit="album.Year" edit-label="Year"></div>
+				<div click-to-edit="album.ReleaseNum" edit-label="Release"></div>
 			</div>
 			<div class="col-sm-6">
-				<div click-to-edit="album.ReleaseNum" edit-label="Release"></div>
 				<div click-to-select="album.Status" edit-label="Status" edit-selections="statuses"></div>
+				<div click-to-edit-date="album.DateAdded" edit-label="Added"></div>
+				<div click-to-edit-date="album.DateRemoved" edit-label="Removed"></div>
 			</div>
 		</div>
 	</div>
 
 	<div class="col-md-12">
+		<hr>
 		<h5>Reviews</h5>
 	</div>
 
 	<div ng-repeat="review in album.reviews" class="col-md-12">
 		<p>On {{formatDate(review.Time)}},
-			<strong><a href="#/users/{{review.user.UserID}}">{{review.user.FName}} {{review.user.LName}}</a></strong> posted:
+			<strong><a href="#/users/{{review.user.UserID}}">{{review.user.FName}} {{review.user.LName}}</a></strong> wrote:
 		</p>
 		<blockquote><em>
 			{{review.Review}}

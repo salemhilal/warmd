@@ -25,11 +25,20 @@ module.exports = {
 		}
 	},
 
-	batch: {
-		update: function(req, res) {
-			
-		}
-
+	create: function(req, res) {
+		var newReview = req.body;
+		new Review({
+			ReviewID: null,
+			UserID: newReview.userID,
+			AlbumID: newReview.albumID,
+			Review: newReview.review,
+		}).
+			save().
+			then(function(review){
+				res.json(200, review);
+			}, function(err) {
+				res.json(400, {error: err});
+			});
 	}
 
-}
+};

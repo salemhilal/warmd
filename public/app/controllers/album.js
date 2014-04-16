@@ -1,8 +1,6 @@
 warmdApp.controller("AlbumCtrl", ["$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
 	console.log("AlbumCtrl");
 
-	console.log($routeParams.albumID);
-
 	$scope.statuses = [
 		"Bin",
 		"Library",
@@ -14,11 +12,15 @@ warmdApp.controller("AlbumCtrl", ["$scope", "$http", "$routeParams", function ($
 		"TBR",
 	];
 
+	$scope.dateAdded = new Date(2013, 9, 20);
+
 	// Watch album for changes
 	$scope.$watch('album', function(){
 		if(!$scope.album){
 			return;
 		}
+		// $scope.album.DateAdded = $scope.dateAdded.toISOString().slice(0, 19).replace('T', ' ');
+		// $scope.album.DateRemoved = $scope.dateRemoved.toISOString().slice(0, 19).replace('T', ' ');
 
 		$http({
 			method: 'PUT',
@@ -42,6 +44,8 @@ warmdApp.controller("AlbumCtrl", ["$scope", "$http", "$routeParams", function ($
 	$http({method: 'GET', url: '/albums/' + $routeParams.albumID}).
 		success(function(data) {
 			$scope.album = data;
+			var add = new Date(data.DateAdded);
+			// $scope.dateAdded = new Date(add.getFullYear(), add.getMonth(), add.getDate());
 
 			$http({
 				method: 'GET',

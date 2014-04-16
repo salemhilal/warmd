@@ -16,10 +16,13 @@
 
 </div><!--/.row -->
 
+<!-- Results -->
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
-    <ul class="list-group">
-        <li class="list-group-item" ng-repeat="item in results"><a ng-href="#{{item.url}}">{{item.name}}</a></li>
-    </ul>
+  <div class="col-md-4" ng-repeat="item in results">
+    <a ng-href="#{{item.url}}">
+      <div class="tile">
+        {{item.name}}
+      </div>
+    </a>
   </div>
 </div>

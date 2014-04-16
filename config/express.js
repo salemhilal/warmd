@@ -3,16 +3,20 @@ var express = require('express'),
     acceptOverride = require('connect-acceptoverride');
 
 module.exports = function(app, config, passport) {
-    // Log every request.
+
+    // Show stack errors.
     app.set('showStackError', config.showStackError || true);
-    app.use(express.logger());
-
-
-    // Register public folder as a static dir
-    // app.use(express.static(config.root + '/public'));
 
     // Enable gzipping
-    // app.use(express.compress());
+    // app.use(express.compress({
+    //   filter: function (req, res) {
+    //     return /text|javascript|css/.test(res.getHeader('Content-Type'));
+    //   },
+    //   level: 9
+    // }));
+
+    // Log requests
+    app.use(express.logger());
 
     // Set rendering engines
     app.engine('hbs', hbs.express3({

@@ -46,7 +46,7 @@ filter('activePrograms', function() {
   return function(programs) {
     var filtered = [];
     angular.forEach(programs, function(program) {
-      if (program.StartTime != program.EndTime) {
+      if (program.isActive) {
         filtered.push(program);
       }
     });
@@ -63,7 +63,7 @@ directive("clickToEdit", function() {
         '<em ng-hide="value">none</em>' +
       '</div>' +
       '<form class="form-inline" ng-show="view.editorEnabled" style="margin-top: 10px">' +
-        '<input class="form-control" ng-model="view.editableValue" style="margin-right:5px;" placeholder="{{label}}">' +
+        '<input type="text" class="form-control" ng-model="view.editableValue" style="margin-right:5px;" placeholder="{{label}}">' +
         '<div class="btn-group">' +
           '<button type="button" class="btn btn-inverse" ng-click="save()"><span class="fui-check"></span></button>' +
           '<button type="button" class="btn btn-default" ng-click="disableEditor()"><span class="fui-cross"></span></button>' +
@@ -77,7 +77,55 @@ directive("clickToEdit", function() {
     template: editorTemplate,
     scope: {
       value: "=clickToEdit",
-      label: "@editLabel"
+      label: "@editLabel",
+    },
+    controller: function($scope) {
+      $scope.view = {
+        editableValue: $scope.value,
+        editorEnabled: false
+      };
+
+      $scope.enableEditor = function() {
+        $scope.view.editorEnabled = true;
+        $scope.view.editableValue = $scope.value;
+      };
+
+      $scope.disableEditor = function() {
+        $scope.view.editorEnabled = false;
+      };
+
+      $scope.save = function() {
+        $scope.value = $scope.view.editableValue;
+        $scope.disableEditor();
+      };
+    }
+  };
+}).
+// Click to edit date!
+directive("clickToEditDate", function() {
+  var editorTemplate = '<div class="click-to-edit">' +
+      '<div ng-hide="view.editorEnabled">' +
+        '<span ng-click="enableEditor()" class="fui-new" style="margin-right:10px; font-size:.9em; color:#bdc3c7"></span>' +
+        '<strong>{{label}}:&nbsp;&nbsp;</strong>' +
+        '<span ng-show="value">{{value | date: "MM/dd/yy"}}</span>' +
+        '<em ng-hide="value">none</em>' +
+      '</div>' +
+      '<form class="form-inline" ng-show="view.editorEnabled" style="margin-top: 10px">' +
+        '<input type="date" class="form-control" ng-model="view.editableValue" style="margin-right:5px;" placeholder="{{label}}">' +
+        '<div class="btn-group">' +
+          '<button type="button" class="btn btn-inverse" ng-click="save()"><span class="fui-check"></span></button>' +
+          '<button type="button" class="btn btn-default" ng-click="disableEditor()"><span class="fui-cross"></span></button>' +
+        '</div>' +
+      '</form>' +
+    '</div>';
+
+  return {
+    restrict: "A",
+    replace: true,
+    template: editorTemplate,
+    scope: {
+      value: "=clickToEditDate",
+      label: "@editLabel",
     },
     controller: function($scope) {
       $scope.view = {

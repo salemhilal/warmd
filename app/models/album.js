@@ -21,8 +21,8 @@ var Album = DB.Model.extend({
   }
 }, {
   permittedAttributes: [
-    "Album",
 		// "AlbumID", <-- Don't want anything changing its own id
+    "Album",
 		"ArtistID",
 		"Comp",
 		"DateAdded",
