@@ -24,7 +24,8 @@
   <div class="col-md-4" ng-repeat="item in results">
     <a ng-href="#{{item.url}}">
       <div class="tile">
-        {{item.name}}
+        <div>{{item.name}}</div>
+        <small ng-show="item.sub">{{item.sub}}</small>
       </div>
     </a>
   </div>

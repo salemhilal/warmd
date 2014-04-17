@@ -18,7 +18,7 @@ warmdApp.controller("QueryCtrl", ["$scope", "$http", function QueryCtrl($scope, 
         format: function(album) {
           return {
             name: album.Album,
-            sub: album.artist.Artist
+            sub: album.artist.Artist,
             url: "/albums/" + album.AlbumID,
           };
         }
