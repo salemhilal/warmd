@@ -96,7 +96,11 @@ module.exports = {
 		qb.
 			// Eager load the artists of the selected albums
 			then(function(results) {
-				return Albums.forge(results).load('artist');
+				if(results.length > 0) {
+					return Albums.forge(results).load('artist');
+				} else {
+					return results;
+				}
 			}).
 			// Return the results
 			then(function(results) {
