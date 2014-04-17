@@ -61,6 +61,7 @@ module.exports = {
 
     */
 
+    // TODO: Replace things like " and ", " the ", " + ", " & ", etc. with " % "
     // Query exact matches (most relevant)
     var q1 = DB.knex("Artists").select(DB.knex.raw("*, 1 as `rank`")).from("Artists").where("Artist", "like", query);
     // Query "starts with" matches
@@ -87,15 +88,23 @@ module.exports = {
     }
 
     // Define promise resolution. Boy do I like promises.
-    qb.then(function(results) {
-      res.json(200, results);
-    }, function (err) {
-      res.json(500, err.toString());
-    });
+    qb.
+      then(function(results) {
+        if(results.length > 0) {
+          return Artists.forge(results).load('albums');
+        } else {
+          return results;
+        }
+      }).
+      then(function(results) {
+        res.json(200, results);
+      }, function (err) {
+        res.json(500, err.toString());
+      });
 
 
 
 
   }
 
-}
+};

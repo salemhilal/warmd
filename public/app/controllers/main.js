@@ -27,6 +27,9 @@ warmdApp.controller("MainCtrl", ["$scope", "$http", "$location", function MainCt
   // Were we supposed to go somewhere?
   var goto = localStorage.getItem("warmd_goto_url");
   if(goto) {
+    // Get rid of the redirection in localStorage
+    localStorage.removeItem("warmd_goto_url");
+    // Go to where you should have gone
     $location.path(goto);
   }
 }]);

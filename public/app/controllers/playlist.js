@@ -7,7 +7,7 @@ warmdApp.controller("PlaylistCtrl", ["$scope", "$http", "$routeParams", function
   $scope.playlist = {};
   $scope.state = 0;
 
-  $scope.newArtist = {};
+  $scope.newArtist = {}; // query, results, selection
   $scope.newAlbum = {};
   $scope.newTrack = {};
 
@@ -47,18 +47,29 @@ warmdApp.controller("PlaylistCtrl", ["$scope", "$http", "$routeParams", function
       data: {query: $scope.newArtist.query},
     }).
       success(function(data) {
-        if(data.length === 0){
-          return;
-        }
-
         $scope.newArtist.results = data;
-        $scope.newArtist.results[0].active = true;
       }).
       error(function(err) {
         console.error(err);
       });
 
   }, 300));
+
+  // We've selected an artist!
+  $scope.submitArtist = function(artist) {
+    $scope.newArtist.selection = artist;
+
+    // Did they pick an artist in the db or what?
+    if(typeof artist === "object") {
+      $scope.newAlbum.results = artist.albums;
+    } else {
+      $scope.newAlbum.results = [];
+    }
+
+    // Update the state
+    $scope.state = 1;
+
+  };
 
   // On "Submit", run this
   $scope.addPlay = function() {
@@ -84,6 +95,7 @@ warmdApp.controller("PlaylistCtrl", ["$scope", "$http", "$routeParams", function
       });
   };
 
+  // Load playlist data from the server
   $http({method: 'GET', url: '/playlists/' + $routeParams.playlistID}).
     success(function(data, status, headers, config) {
       console.log(data);
@@ -116,7 +128,5 @@ warmdApp.controller("PlaylistCtrl", ["$scope", "$http", "$routeParams", function
       console.log("Error occurred:");
       console.error(data, status, headers, config);
     });
-
-
 
 }]);
