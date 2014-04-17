@@ -5,6 +5,11 @@ warmdApp.controller("PlaylistCtrl", ["$scope", "$http", "$routeParams", function
   $scope.plays = [];
   $scope.program = {};
   $scope.playlist = {};
+  $scope.state = 0;
+
+  $scope.newArtist = {};
+  $scope.newAlbum = {};
+  $scope.newTrack = {};
 
 
   $scope.$watch('plays', function() {
@@ -28,6 +33,34 @@ warmdApp.controller("PlaylistCtrl", ["$scope", "$http", "$routeParams", function
     });
   }, true);
 
+  // WATCH FOR NEW ARTISTS
+  $scope.$watch('newArtist.query', _.debounce(function() {
+    if(!$scope.newArtist.query || $scope.newArtist.query.length < 3) {
+      return;
+    }
+
+    console.log("About to query", $scope.newArtist.query);
+
+    $http({
+      method: "POST",
+      url: "/artists/query",
+      data: {query: $scope.newArtist.query},
+    }).
+      success(function(data) {
+        if(data.length === 0){
+          return;
+        }
+
+        $scope.newArtist.results = data;
+        $scope.newArtist.results[0].active = true;
+      }).
+      error(function(err) {
+        console.error(err);
+      });
+
+  }, 300));
+
+  // On "Submit", run this
   $scope.addPlay = function() {
     $http({
       method: 'POST',

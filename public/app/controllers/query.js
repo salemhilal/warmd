@@ -33,9 +33,9 @@ warmdApp.controller("QueryCtrl", ["$scope", "$http", function QueryCtrl($scope, 
           };
         }
       },
-    ],
+    ];
 
-    $scope.toQuery = $scope.types[0],
+    $scope.toQuery = $scope.types[0];
     $scope.$watch('toQuery', function() {
       console.log("ToQuery", $scope.toQuery);
     });
@@ -56,7 +56,6 @@ warmdApp.controller("QueryCtrl", ["$scope", "$http", function QueryCtrl($scope, 
       var query = $scope.query.trim();
       var format = $scope.toQuery.format;
 
-      $scope.returned = false;
       $http({
           method: "POST",
           url: url,
