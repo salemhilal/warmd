@@ -58,6 +58,21 @@
         alert.style.display = "";
       }
     }
+
+    // Hmm, they were going somewhere?
+    if(window.location.href.indexOf("#/") != -1) {
+      var goto = window.location.href.slice(window.location.href.indexOf("#/")+2);
+      if (goto) {
+        localStorage.setItem("warmd_goto_url", goto)
+      }
+    }
+    // They aren't trying to log in, and the aren't trying to go somewhere,
+    // so make sure localStorage is empty
+    else if(window.location.href.indexOf("success=false") == -1) {
+      localStorage.removeItem("warmd_goto_url");
+    }
+
+    console.log("Going to ", localStorage.getItem("warmd_goto_url"));
   </script>
 
 </body>
