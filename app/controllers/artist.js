@@ -30,7 +30,7 @@ module.exports = {
     if(req.artist){
       res.json(200, req.artist);
     } else {
-      res.json(404, {error: "Artist not found"})
+      res.json(404, {error: "Artist not found"});
     }
   },
 

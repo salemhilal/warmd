@@ -1,5 +1,6 @@
 var DB = require('bookshelf').DB,
 		Album = require('../models/album').model,
+		Albums = require('../models/album').collection,
 		request = require('request-json'),
 		iTunes = request.newClient('https://itunes.apple.com'),
 		_ = require('lodash');
@@ -36,7 +37,7 @@ module.exports = {
 			res.json(404, {error: "Album not found"});
 		} else {
 			req.album.
-				// Only update columns that exist. 
+				// Only update columns that exist.
 				save(_.pick(req.body, Album.permittedAttributes), {patch: true}).
 				then(function(model) {
 					res.json(200, model);
@@ -58,5 +59,51 @@ module.exports = {
 				res.json(400, {error: err});
 			}
 		});
+	},
+
+	query: function(req, res) {
+		var query = req.body.query;
+		var limit = req.body.limit;
+
+		// Make sure this query is a thang.
+		if(!query || typeof query !== "string") {
+			res.json(400, {
+				error: "bad request"
+			});
+		}
+
+		// Sub-queries
+		var q1 = DB.knex("Albums").select(DB.knex.raw("*, 1 as `rank`")).from("Albums").where("Album", "like", query);
+		var q2 = DB.knex("Albums").select(DB.knex.raw("*, 2 as `rank`")).from("Albums").where("Album", "like", query + "%");
+		var q3 = DB.knex("Albums").select(DB.knex.raw("*, 3 as `rank`")).from("Albums").where("Album", "like", "%" + query + "%");
+
+		// Cumulate these queries together
+		var qb = DB.knex("Albums").
+			select("*").
+			groupBy("AlbumID").
+			from(DB.knex.raw("((" +
+				q1.toString() + ") union (" +
+				q2.toString() + ") union (" +
+				q3.toString() + ")) X")).
+			orderBy("rank").
+			orderBy("Album");
+
+		// If there's a limit, add it to the query builder.
+		if(limit) {
+			qb.limit(limit);
+		}
+
+		qb.
+			// Eager load the artists of the selected albums
+			then(function(results) {
+				return Albums.forge(results).load('artist');
+			}).
+			// Return the results
+			then(function(results) {
+				res.json(200, results);
+			}, function (err) {
+				res.json(500, {error: err.toString()});
+			});
+
 	}
 };

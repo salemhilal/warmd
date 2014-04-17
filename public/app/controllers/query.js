@@ -8,8 +8,18 @@ warmdApp.controller("QueryCtrl", ["$scope", "$http", function QueryCtrl($scope, 
         format: function(artist) {
           return {
             name: artist.Artist,
-            id: artist.ArtistID,
             url: "/artists/" + artist.ArtistID,
+          };
+        }
+      },
+      {
+        name: "Albums",
+        url: "/albums/query",
+        format: function(album) {
+          return {
+            name: album.Album,
+            sub: album.artist.Artist
+            url: "/albums/" + album.AlbumID,
           };
         }
       },
@@ -19,7 +29,6 @@ warmdApp.controller("QueryCtrl", ["$scope", "$http", function QueryCtrl($scope, 
         format: function(user) {
           return {
             name: user.User,
-            id: user.UserID,
             url: "/users/" + user.UserID
           };
         }
@@ -27,15 +36,21 @@ warmdApp.controller("QueryCtrl", ["$scope", "$http", function QueryCtrl($scope, 
     ],
 
     $scope.toQuery = $scope.types[0],
+    $scope.$watch('toQuery', function() {
+      console.log("ToQuery", $scope.toQuery);
+    });
 
     $scope.selected = function(idx) {
       $scope.toQuery = $scope.types[idx];
     },
 
     $scope.autocomplete = _.debounce(function(){
+
       if(!$scope.query || $scope.query.length < 3) {
         return;
       }
+
+      console.log("About to query", $scope.query);
 
       var url = $scope.toQuery.url;
       var query = $scope.query.trim();

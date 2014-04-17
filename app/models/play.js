@@ -1,5 +1,6 @@
 var DB = require('bookshelf').DB,
     Playlist = require('./playlist'),
+    Album = require('./album'),
     Artist = require('./artist');
 
 // Play model

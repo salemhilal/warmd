@@ -80,6 +80,7 @@ module.exports = function(app, config, passport) {
   app.param('album', album.load);
   app.get('/albums/:album', album.show);
   app.put('/albums/:album', album.update);
+  app.post('/albums/query', album.query);
   app.get('/cover', album.cover);
 
   /* Review routes */
