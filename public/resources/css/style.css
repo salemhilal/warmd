@@ -67,3 +67,9 @@ div.click-to-edit{
 div.click-to-edit form {
   margin-top: 0;
 }
+
+.help-link {
+  font-style: italic;
+  cursor: pointer;
+  color: #bdc3c7;
+}

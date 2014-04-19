@@ -7,14 +7,6 @@ module.exports = function(app, config, passport) {
     // Show stack errors.
     app.set('showStackError', config.showStackError || true);
 
-    // Enable gzipping
-    // app.use(express.compress({
-    //   filter: function (req, res) {
-    //     return /text|javascript|css/.test(res.getHeader('Content-Type'));
-    //   },
-    //   level: 9
-    // }));
-
     // Log requests
     app.use(express.logger());
 
@@ -73,7 +65,8 @@ module.exports = function(app, config, passport) {
 
       // Serve static content
       app.use("/app", express.static(config.root + '/public/app'));
-      app.use("/resources", express.static(config.root + '/public/resources', {maxAge: 1000 * 60 * 60 * 24}));
+      // TODO: Have cache conditional on development/production variable
+      app.use("/resources", express.static(config.root + '/public/resources' /*, {maxAge: 1000 * 60 * 60 * 24}*/));
 
       // routes should be last
       app.use(app.router);

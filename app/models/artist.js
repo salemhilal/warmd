@@ -12,7 +12,7 @@ var Artist = DB.Model.extend({
 
 var Artists = DB.Collection.extend({
   model: Artist,
-})
+});
 
 exports.model = Artist;
 exports.collection = Artists;

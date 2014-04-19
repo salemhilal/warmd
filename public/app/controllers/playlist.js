@@ -29,22 +29,43 @@ warmdApp.controller("PlaylistCtrl", ["$scope", "$http", "$routeParams", function
           console.error("ERROR UPDATING ORDERING:", data);
         });
 
-
     });
   }, true);
 
-  // WATCH FOR NEW ARTISTS
+  // Helper function for formatting dates
+  $scope.formatDate = function(str) {
+    return new Date(str).toLocaleDateString();
+  };
+
+  // Formats times properly
+  $scope.formatTime = function(str) {
+    // TODO: Do something smarter to peel off the seconds
+    return new Date(str).toLocaleTimeString().replace(":00 ", " ");
+  };
+
+  // Watch for new artists
   $scope.$watch('newArtist.query', _.debounce(function() {
-    if(!$scope.newArtist.query || $scope.newArtist.query.length < 3) {
+    console.log("CHANGE");
+
+    // Ignore useless queries
+    if(!$scope.newArtist.query || $scope.newArtist.query.length < 2) {
+      $scope.$apply(function(){
+        $scope.newArtist.results = [];
+      });
       return;
     }
 
-    console.log("About to query", $scope.newArtist.query);
+    // If they type in a short query, they better mean it.
+    var data = { query: $scope.newArtist.query };
+    if($scope.newArtist.query.length < 4) {
+      data.limit = 20;
+    }
 
+    // Make the request, update the scope with the results.
     $http({
       method: "POST",
       url: "/artists/query",
-      data: {query: $scope.newArtist.query},
+      data: data,
     }).
       success(function(data) {
         $scope.newArtist.results = data;
