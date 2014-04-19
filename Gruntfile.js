@@ -26,7 +26,7 @@ module.exports = function(grunt) {
       update: 'npm install',
       updateProd: 'npm install --production',
       start: 'NODE_ENV=development ./node_modules/.bin/nodemon server.js',
-      test: 'NODE_ENV=test ./node_modules/.bin/mocha --reporter spec test/test-*.js',
+      test: '', //TODO: THIS RIGHT AWAY PLEASE AHH
       startProd: 'NODE_ENV=production ./node_modules/.bin/nodemon server.js'
     },
 
