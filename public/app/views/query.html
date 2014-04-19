@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-5 col-sm-offset-2">
+  <div class="col-sm-9">
     <input type="text" class="form-control" ng-model="query" ng-keyup="autocomplete()" placeholder="Just start typing" style="margin-bottom:20px;" autofocus>
   </div>
 
@@ -16,10 +16,17 @@
 
 </div><!--/.row -->
 
+<!-- Results -->
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
-    <ul class="list-group">
-        <li class="list-group-item" ng-repeat="item in results">{{item.name}}</li>
-    </ul>
+  <div ng-show="results.length === 0 && query.length !== 0">
+    <center>Sorry, I couldn't find anything. Perhaps check your spelling?</center>
+  </div>
+  <div class="col-md-4" ng-repeat="item in results">
+    <a ng-href="#{{item.url}}">
+      <div class="tile">
+        <div>{{item.name}}</div>
+        <small ng-show="item.sub">{{item.sub}}</small>
+      </div>
+    </a>
   </div>
 </div>

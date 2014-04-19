@@ -1,27 +1,91 @@
-<h3>Add a new track</h3>
-<br />
+
+<!-- Program title -->
 <div class="row">
-  <form class="form-horizontal" role="form">
-    <div class="form-group">
-      <label for="artist" class="col-sm-2 control-label">Artist</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="artist" placeholder="Daft Punk">
-      </div>
+
+  <!-- Playlist Column -->
+  <div class="col-md-7">
+    <h3><a href="#/programs/{{program.ProgramID}}">{{program.Program}} </a> <small> hosted by {{program.DJName}}</small></h3>
+    <span ng-show="program.StartTime">
+      {{formatDate(program.StartTime)}} <span style="padding: 0 5px;">&bull;</span> {{formatTime(program.StartTime)}}
+      to {{formatTime(program.EndTime)}}
+    </span>
+    <hr>
+    <div ng-hide="plays.length">
+      <hr>
+      <center><h5><small>There aren't currently any tracks in this playlist</small></h5></center>
     </div>
-    <div class="form-group">
-      <label for="Album" class="col-sm-2 control-label">Album</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="Album" placeholder="Human After All">
+    <ul class="list-group" ui-sortable ng-model="plays">
+      <li class="list-group-item" ng-repeat="play in plays">
+        <div style="margin-right: 40px"><strong>{{play.artist.Artist || "Unknown artist"}}</strong> - {{play.TrackName || "Untitled"}}</div>
+        <span class="fui-list" style="position: absolute; top:10px; right: 15px; color: #bdc3c7"></span>
+      </li>
+    </ul>
+  </div>
+
+
+  <!-- Add Track column -->
+  <div class="col-md-5">
+
+    <!-- Title, which updates with the artist -->
+    <h6>Add a new track
+      <span ng-show="state==1"> by
+        <a ng-show="newArtist.selection.Artist" ng-href="#/artists/{{newArtist.selection.ArtistID}}" target="_blank">{{newArtist.selection.Artist}}</a>
+        <span ng-hide="newArtist.selection.Artist">{{newArtist.selection}}</span>
+        <small class="help-link" ng-click="state=0">change</small>
+      </span>
+    </h6>
+
+    <form class="form-horizontal" role="form">
+
+      <!-- Artist selection -->
+      <div class="form-group" ng-show="state==0">
+        <label for="artist" class="col-sm-12">Start by typing the name of an artist.</label>
+        <div class="col-sm-12">
+          <input type="text" ng-model="newArtist.query" class="form-control" id="artist" placeholder="Daft Punk">
+        </div>
+        <div class="col-sm-12">
+          <div ng-show="newArtist.query">
+            <center><small class="help-link" ng-click="submitArtist(newArtist.query)">Don't see your artist? Check your spelling, and then click here.</small></center>
+          </div>
+          <div class="list-group" style="margin-top: 20px">
+            <a class="list-group-item" ng-repeat="artist in newArtist.results" style="padding: 5px 15px" ng-click="submitArtist(artist)">
+              {{artist.Artist}}
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">Submit</button>
+
+      <!-- Album selection -->
+      <div class="form-group" ng-show="state==1">
+        <label for="Album" class="col-sm-12">Next, pick an album, or enter your own.</label>
+        <div class="col-sm-12">
+          <input type="text" class="form-control" id="Album" placeholder="Human After All">
+        </div>
+        <div class="col-sm-12">
+          <div class="list-group" style="margin-top: 20px">
+            <a class="list-group-item" ng-repeat="album in newArtist.selection.albums" style="padding: 5px 15px" ng-click="submitAlbum(album)">
+              {{album.Album}}
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-  </form>
-  <hr>
-  <ul class="list-group" ui-sortable ng-model="plays">
-    <li class="list-group-item" ng-repeat="play in plays">{{play}}</li>
-  </ul>
+
+      <!-- Track name -->
+      <div class="form-group" ng-show="state==1">
+        <label for="Track" class="col-sm-12">Track Name</label>
+        <div class="col-sm-12">
+          <input type="text" class="form-control" id="Track" ng-model="track" placeholder="Human After All">
+        </div>
+      </div>
+
+      <!-- Ye Olde Submit Buttone -->
+      <div class="form-group" ng-show="state==1">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default" ng-click="addPlay()">Submit</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
 </div>

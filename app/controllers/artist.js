@@ -1,15 +1,17 @@
 var DB = require('bookshelf').DB,
     Artist = require('../models/artist').model,
-    Artists = DB.Collection.extend({
-      model: Artist
-    }).forge();
+    Artists = require('../models/artist').collection,
+    Album = require('../models/album').model;
+
 
 module.exports = {
 
   // Look up artist in context of request
   load: function(req, res, next, id) {
     Artist.forge({ ArtistID: id })
-      .fetch({ require: true })
+      .fetch({
+        withRelated: ['albums'],
+       })
       .then(function (artist) {
         req.artist = artist;
         next();
@@ -22,46 +24,87 @@ module.exports = {
       });
   },
 
+  // Get data about a specific user.
+  // TODO: JSON only.
   show: function(req, res) {
-    res.format( {
-      json: function() {
-        res.json(200, req.artist.attributes);
-      },
-      default: function() {
-        res.json(200, req.artist.attributes);
-      }
-             //TODO: other views?
-    });
+    if(req.artist){
+      res.json(200, req.artist);
+    } else {
+      res.json(404, {error: "Artist not found"});
+    }
   },
 
+  //
   query: function(req, res) {
     var query = req.body.query;
     var limit = req.body.limit;
 
     // Make sure this query is a thang.
-    if(!query) {
+    if(!query || typeof query !== "string") {
       res.json(400, {
         error: "bad request"
       });
     }
 
-    // Make a knex query
-    Artists.query(function(qb){
-      qb.where("Artist", "like", query)
-        .orWhere("ShortName", "like", query)
-        .orWhere("Artist", "like", "%" + query + "%")
-        .orWhere("ShortName", "like", "%" + query + "%");
 
-      if (limit && typeof limit === "number") {
-        qb.limit(limit);
-      }
-        // .limit(10);
-    }).fetch()
-      .then(function(collection) {
-        res.json(200, collection.toJSON({shallow: true}));
-      }, function(err) {
-        res.json(500, err);
+    /* I do my best to replicate the following query:
+
+      select *
+      from (
+        select *, 1 as rank from `Artists` where `Artist` like 'death'
+        union
+        select *, 2 as rank from `Artists` where `Artist` like 'death%'
+        union
+        select *, 3 as rank from `Artists` where `Artist` like '%death%'
+      ) X
+      order by rank
+
+    */
+
+    // TODO: Replace things like " and ", " the ", " + ", " & ", etc. with " % "
+    // Query exact matches (most relevant)
+    var q1 = DB.knex("Artists").select(DB.knex.raw("*, 1 as `rank`")).from("Artists").where("Artist", "like", query);
+    // Query "starts with" matches
+    var q2 = DB.knex("Artists").select(DB.knex.raw("*, 2 as `rank`")).from("Artists").where("Artist", "like", query + "%");
+    // Query "contains" matches (least relevant)
+    var q3 = DB.knex("Artists").select(DB.knex.raw("*, 3 as `rank`")).from("Artists").where("Artist", "like", "%" + query + "%");
+
+
+    // Of those, make sure they're distinct, and enforce an ordering and a limit.
+    // We order first by relevancy, then by name. Relevancy is ordered as per the above queries.
+    var qb = DB.knex("Artists").              // Create a query builder on the Artists table
+        select("*").                          // select *
+        groupBy("ArtistID").                  // group by ArtistID
+        from(DB.knex.raw("((" +               // from (
+            q1.toString() + ") union (" +     //   q1 union
+            q2.toString() + ") union (" +     //   q2 union
+            q3.toString() + ")) X")).         //   q3
+        orderBy("rank").                      // ) order by rank, Artist
+        orderBy("Artist");                    //
+
+    // If there's a limit, add it to the query builder.
+    if(limit) {
+      qb.limit(limit);
+    }
+
+    // Define promise resolution. Boy do I like promises.
+    qb.
+      then(function(results) {
+        if(results.length > 0) {
+          return Artists.forge(results).load('albums');
+        } else {
+          return results;
+        }
+      }).
+      then(function(results) {
+        res.json(200, results);
+      }, function (err) {
+        res.json(500, err.toString());
       });
+
+
+
+
   }
 
-}
+};

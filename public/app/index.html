@@ -14,12 +14,17 @@
   <script src="//cdn.jsdelivr.net/angularjs/1.2/angular.min.js"></script>
   <script src="//cdn.jsdelivr.net/angularjs/1.2/angular-route.min.js"></script>
   <script src="//cdn.jsdelivr.net/bootstrap/3/js/bootstrap.min.js"></script>
-  <script src="//cdn.jsdelivr.net/angularui/0.4/angular-ui.min.js"></script>
+  <script src="/resources/libs/sortable.js"></script>
   <script src="//cdn.jsdelivr.net/lodash/2.4.1/lodash.min.js"></script>
   <script src="/app/app.js"></script>
 
   <!--   Literally every controller we may want to use -->
+  <!-- TODO: DEFINITELY concat and minify these -->
+  <script src="/app/filters/filters.js"></script>
   <script src="/app/controllers/home.js"></script>
+  <script src="/app/controllers/artist.js"></script>
+  <script src="/app/controllers/album.js"></script>
+  <script src="/app/controllers/program.js"></script>
   <script src="/app/controllers/playlist.js"></script>
   <script src="/app/controllers/login.js"></script>
   <script src="/app/controllers/query.js"></script>
@@ -46,10 +51,6 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li ng-repeat="item in menu" ng-class="{active: isActive(item.route)}"><a href="{{item.prefix}}{{item.route}}">{{item.name}}</a></li>
-        <!--<li class="active"><a href="#">Home</a></li>
-        <li><a href="#/query">Search</a></li>
-        <li><a href="/logout">Logout</a></li>-->
-
       </ul>
     </div><!--/.navbar-collapse -->
   </nav>

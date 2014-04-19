@@ -1,23 +1,43 @@
 <div class="row">
   <div class="col-md-4">
+    <!-- TODO: Hide this tile if they're not a dj or producer -->
     <div class="tile">
       <h4>Shows</h4>
-      <div ng-repeat="program in programs">{{program.Program}}</div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-          Start a new playlist <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-          <li ng-repeat="program in programs"><a href="#/playlist/new/{{program.ProgramID}}">{{program.Program}}</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Random Playlist</a></li>
-        </ul>
+
+      <!-- List shows -->
+      <div ng-repeat="program in filteredPrograms = (user.programs | activePrograms)">
+        <a ng-href="#/programs/{{program.ProgramID}}">{{program.Program}}</a>
       </div>
+      <div ng-show="!filteredPrograms.length">No shows</div>
+
+      <!-- Start new playlist -->
+      <div class="row">
+        <div class="btn-group col-xs-12">
+          <button type="button" class="btn btn-block btn-default dropdown-toggle" data-toggle="dropdown">
+            Start a new playlist <span class="caret"></span>
+            </button>
+          <ul class="dropdown-menu dropdown-inverse" role="menu" style="width:100%">
+            <li ng-repeat="program in filteredPrograms"><a href="#/playlist/new/{{program.ProgramID}}">{{program.Program}}</a></li>
+            <li ng-hide="!filteredPrograms.length" class="divider"></li>
+            <li><a href="#">Random Playlist</a></li>
+          </ul>
+        </div>
+      </div>
+
     </div>
   </div>
+
+  <!-- Reviews -->
   <div class="col-md-4">
     <div class="tile">
       <h4>Reviews</h4>
+      <div style="text-align: left;">
+        <ul>
+          <li ng-repeat="review in user.reviews">
+            <a ng-href="#/albums/{{review.album.AlbumID}}">{{review.album.artist.Artist}} - {{review.album.Album}}</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="col-md-4">

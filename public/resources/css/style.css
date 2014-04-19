@@ -40,6 +40,15 @@
   background: #EEE;
 }
 
+.route-view {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.left-align{
+  text-align: left;
+}
+
 /* Bootstrap overwrites */
 /* NOTE: May include !important flags, as we're
    loading bootstrap from a CDN. */
@@ -49,4 +58,18 @@
 
 .tile {
   margin-bottom:20px;
+}
+
+div.click-to-edit{
+  margin: 15px 0;
+}
+
+div.click-to-edit form {
+  margin-top: 0;
+}
+
+.help-link {
+  font-style: italic;
+  cursor: pointer;
+  color: #bdc3c7;
 }

@@ -1,13 +1,12 @@
 var LocalStrategy = require('passport-local').Strategy,
    crypto = require('crypto'),
    DB = require('bookshelf').DB,
-   User = require('../app/models/user').model;
+   User = DB.User;
 
 // Password verification functions
 
-<<<<<<< HEAD
 encryptPassword = function(password, username){
-   if (!password) return ''
+   if (!password) return '';
    var encrypted, salt;
    try {
       salt = crypto.createCipher('aes256', password+username).final('hex');
@@ -16,20 +15,7 @@ encryptPassword = function(password, username){
    } catch  (err) {
       return 'There was error!';
    }
-=======
-encryptPassword = function(password){
-  if (!password) {
-    return '';
-  }
-  var encrypted
-  try {
-    encrypted = crypto.createCipher('aes256', password).setAutoPadding(auto_padding=true).final('hex')
-    return encrypted
-  } catch  (err) {
-    return 'There was error!'
-  }
->>>>>>> 72a37e6cc591a06870209098d8a312b1353d649f
-}
+};
 
 
 
@@ -37,7 +23,7 @@ module.exports = function(passport) {
 
    // user -> id
    passport.serializeUser(function(user, done) {
-      done(null, user.attributes.UserID)
+      done(null, user.attributes.UserID);
    });
 
    // id -> user
@@ -46,9 +32,7 @@ module.exports = function(passport) {
       User.forge({
          userID: id
       })
-      .fetch({
-        withRelated: ['programs'],
-      })
+      .fetch() // Make sure we find a matching ID
       .then(function(user) {
         if(!user) { // No user found
           done(null, false);
@@ -72,23 +56,18 @@ module.exports = function(passport) {
          User: username
        })
        .fetch({
-         withRelated: ['programs'],
+         //require: true
        })
        .then(function(user) {
          if(!user) {
           return done(null, false);
          }
          // Found user
-<<<<<<< HEAD
          console.log("User: ", user);
          console.log("Found user: ", user.attributes.User);
          console.log("Stored Hash: ", user.attributes.Password);
          console.log("Passed Hash: ", encryptPassword(password, user.attributes.User));
          if (encryptPassword(password, user.attributes.User) === user.attributes.Password){
-=======
-         console.log("Found user: ", user.attributes.User);
-         if (encryptPassword(password) === user.attributes.Password){
->>>>>>> 72a37e6cc591a06870209098d8a312b1353d649f
             return done(null, user);
          } else {
             return done(null, false);

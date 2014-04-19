@@ -1,5 +1,6 @@
 var DB = require('bookshelf').DB,
-    Program = require('./program').model;
+    Program = require('./program'),
+    Review = require('./review');
 
 var User = DB.Model.extend({
 
@@ -7,26 +8,14 @@ var User = DB.Model.extend({
   idAttribute: "UserID", // The column representing sentinel id's
 
   programs: function() {
-    return this.hasMany(Program, "UserID");
+    return this.hasMany(Program.model, "UserID");
   },
 
-  // Effectively how we define a schema?
-  // Didn't include id, as that's something the DB should be handling, not the server
-  permittedAttributes: [
-    "permissions", // What role are they / what privs do they have?
-    "fname",
-    "lname",
-    "phone",
-    "email",
-    "djName",       // on-air DJ name TODO: do we put this under shows?
-    "dateTrained",  // Date of training
-    "userName",     // Their username (i.e. shilal)
-    "password"
-  ],
+  reviews: function() {
+    return this.hasMany(Review.model, "UserID");
+  }
 
-  relations: [
-    'programs', // has many
-  ]
+}, {
 
 });
 
