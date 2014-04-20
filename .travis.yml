@@ -1,0 +1,5 @@
+# .travis.yml
+# Used for continuous integration testing.
+language: node_js
+node_js:
+  - "0.10"
