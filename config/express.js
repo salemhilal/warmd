@@ -1,14 +1,19 @@
 var express = require('express'),
     hbs = require('express-hbs'),
-    acceptOverride = require('connect-acceptoverride');
+    bodyParser = require('body-parser'),
+    session = require('express-session'),
+    cookieParser = require('cookie-parser'),
+    morgan = require('morgan'),
+    methodOverride = require('method-override');
 
 module.exports = function(app, config, passport) {
 
     // Show stack errors.
     app.set('showStackError', config.showStackError || true);
 
-    // Log requests
-    app.use(express.logger());
+    // Log requests. Should probably remove this when Winston
+    // becomes a more implemented thing.
+    app.use(morgan());
 
     // Set rendering engines
     app.engine('hbs', hbs.express3({
@@ -24,9 +29,6 @@ module.exports = function(app, config, passport) {
     // use configure(env, callback()) for other environments
     app.configure(function() {
 
-      // Set headings for requests that forget to set headings
-      app.use(acceptOverride());
-
       // Ensure https is used by default
       // FIXME: lol this does nothing.
       app.use(function(req, res, next) {
@@ -38,12 +40,10 @@ module.exports = function(app, config, passport) {
       });
 
       // Cookie parser before sessions, as sessions rely on cookies
-      app.use(express.cookieParser());
-
-      app.use(express.bodyParser());
-      app.use(express.methodOverride());
-
-      app.use(express.session({
+      app.use(cookieParser());
+      app.use(bodyParser());
+      app.use(methodOverride());
+      app.use(session({
         secret: 'shilalisababby' // <-- lol
       }));
 
