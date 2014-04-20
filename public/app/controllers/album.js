@@ -49,7 +49,7 @@ warmdApp.controller("AlbumCtrl", ["$scope", "$http", "$routeParams", function ($
 
 			$http({
 				method: 'GET',
-				url: '/cover?artist=' + data.artist.Artist + "&album=" + data.Album
+				url: '/albums/cover?artist=' + data.artist.Artist + "&album=" + data.Album
 			}).
 				success(function(data) {
 					if(data.resultCount > 0) {

@@ -12,7 +12,7 @@ warmdApp.controller("ArtistCtrl", ["$scope", "$http", "$routeParams", function (
 
 			// Get album art for each of them
 			angular.forEach($scope.artist.albums, function(album) {
-				$http({method: 'GET', url: '/cover?artist=' + $scope.artist.Artist + "&album=" + album.Album}).
+				$http({method: 'GET', url: '/albums/cover?artist=' + $scope.artist.Artist + "&album=" + album.Album}).
 					success(function(data, status, headers, config) {
 						if(data.resultCount > 0) {
 							album.cover = data.results[0].artworkUrl100.replace("100x100", "600x600");
