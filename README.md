@@ -20,7 +20,18 @@ Say you have a fresh ubuntu box and want to deploy this server.
 3. ```mv config/keys.example.config config/keys.config```, add DB info in ```keys.config```
 4. ```./scripts/ubuntu_setup.sh``` to install dependencies / node.
 5. ```npm install``` to install node dependencies
-6. ```npm start``` to get that server goin'
+6. ```npm run deploy``` to get that server goin' (using Forever)
+
+
+Running
+-------
+
+There are a handful of commands defined in the ```package.json```. They're listed below:
+
+1. ```npm start``` or ```npm run start``` - Starts the server in development mode
+2. ```npm test``` or ```npm run test``` - Runs the Vows test suite
+3. ```npm run deploy``` - Deploys the server using Forever
+4. ```npm run halt``` - Halts the server, if deployed. Errors if not. 
 
 
 API
