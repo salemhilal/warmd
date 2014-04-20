@@ -6,7 +6,6 @@
 
 // Imports
 var express = require('express'),
-    expressValidator = require('express-validator'),
     passport = require('passport'),
     crypto = require('crypto'),
     https = require('https'), // uncomment for production on current.
