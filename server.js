@@ -62,11 +62,8 @@ Bookshelf.DB = Bookshelf.initialize({
 // Passport
 require('./config/passport')(passport, config);
 
-// Express
+// Express config, routes
 require("./config/express")(app, config, passport);
-
-// Routes
-require('./config/routes')(app, config, passport);
 
 //================================
 // Initialize ====================

@@ -39,13 +39,13 @@ module.exports = function(app, config, passport) {
   });
 
 
-  //TODO: Make these have better RESTful names.
   //TODO: Auth all of these as necessary, you idiot.
+  //TODO: Make these have better RESTful names.
   // i.e. "artists" should refer to collections, "artist" to individuals
+
   /* User Routes */
   app.param('user', users.load);
   app.post('/users/new', users.create);
-  app.get('/users/:user.:format', users.isAuthed, users.show);
   app.get('/users/:user', users.isAuthed, users.show);
   app.post('/users/query', users.query);
 
