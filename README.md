@@ -1,6 +1,8 @@
 warmd
 =====
 
+[![Dependency Status](https://gemnasium.com/bichiliad/warmd.svg)](https://gemnasium.com/bichiliad/warmd)
+
 WRCT: A Radio Music Database
 
 
