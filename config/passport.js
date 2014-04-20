@@ -61,10 +61,7 @@ module.exports = function(passport) {
           return done(null, false);
          }
          // Found user
-         console.log("User: ", user);
          console.log("Found user: ", user.attributes.User);
-         console.log("Stored Hash: ", user.attributes.Password);
-         console.log("Passed Hash: ", encryptPassword(password, user.attributes.User));
          if (encryptPassword(password, user.attributes.User) === user.attributes.Password){
             return done(null, user);
          } else {
