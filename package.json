@@ -32,8 +32,6 @@
     "bookshelf": "~0.6.2",
     "passport": "~0.2.0",
     "express-hbs": "~0.7.8",
-    "connect-acceptoverride": "0.0.3",
-    "express-validator": "~1.0.1",
     "passport-local": "~1.0.0",
     "bluebird": "~1.2.2",
     "request-json": "~0.4.10",

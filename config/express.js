@@ -1,13 +1,13 @@
 var express = require('express'),
-    hbs = require('express-hbs'),
-    acceptOverride = require('connect-acceptoverride');
-
+    hbs = require('express-hbs');
+    
 module.exports = function(app, config, passport) {
 
     // Show stack errors.
     app.set('showStackError', config.showStackError || true);
 
     // Log requests
+    // TODO: Remove this for express 4.0
     app.use(express.logger());
 
     // Set rendering engines
@@ -24,9 +24,6 @@ module.exports = function(app, config, passport) {
     // use configure(env, callback()) for other environments
     app.configure(function() {
 
-      // Set headings for requests that forget to set headings
-      app.use(acceptOverride());
-
       // Ensure https is used by default
       // FIXME: lol this does nothing.
       app.use(function(req, res, next) {
@@ -38,11 +35,10 @@ module.exports = function(app, config, passport) {
       });
 
       // Cookie parser before sessions, as sessions rely on cookies
+      // TODO: These need to be removed to upgrade express to 4.0
       app.use(express.cookieParser());
-
       app.use(express.bodyParser());
       app.use(express.methodOverride());
-
       app.use(express.session({
         secret: 'shilalisababby' // <-- lol
       }));
