@@ -10,27 +10,27 @@ var users = require('../app/controllers/user.js'),
 module.exports = function(app, config, passport) {
 
   // Health & sanity checking
-  app.get("/ping", function(req,res) {
+  app.route("/ping").get(function(req,res) {
    res.end("pong");
   });
 
   /* Login and Session Routes */
-  app.get('/login', function(req, res, next) {
+  app.route('/login').get(function(req, res, next) {
     if(req.user) {
       res.redirect('/');
     }
     next();
   }, users.login);
-
-  app.get('/logout', users.logout);
-  app.post('/users/session',
-    passport.authenticate('local', {
+  app.route('/logout').get(users.logout);
+  app.route('/users/session').
+    post(passport.authenticate('local', {
       successRedirect: '/app', //TODO: Send to req.session.returnTo if exists
       failureRedirect: '/login?success=false'
     }));
 
   // Get info about the current user
-  app.get('/me',users.isAuthed, function(req, res) {
+  // TODO: Move to Users controller
+  app.route('/me').get(users.isAuthed, function(req, res) {
     req.user.
       load(['programs', 'reviews.album.artist']).
       then(function(data) {
