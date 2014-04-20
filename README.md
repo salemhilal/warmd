@@ -1,6 +1,7 @@
 warmd
 =====
 
+[![Build Status](https://travis-ci.org/bichiliad/warmd.svg?branch=master)](https://travis-ci.org/bichiliad/warmd)
 [![Dependency Status](https://gemnasium.com/bichiliad/warmd.svg)](https://gemnasium.com/bichiliad/warmd)
 
 WRCT: A Radio Music Database
