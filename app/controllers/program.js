@@ -42,7 +42,7 @@ module.exports = {
           res.json(200, model);
         }, function(err) {
           res.json(400, {error: "Error updating program", details: err});
-        })
+        });
     }
   },
 
