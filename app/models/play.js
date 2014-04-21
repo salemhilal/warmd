@@ -1,16 +1,12 @@
 var DB = require('bookshelf').DB,
     Playlist = require('./playlist'),
+    Album = require('./album'),
     Artist = require('./artist');
 
 // Play model
 var Play = DB.Model.extend({
   tableName: "Plays",
   idAttribute: "PlayID",
-});
-
-// Play collection
-var Plays = DB.Collection.extend({
-  model: Play,
 
   // The playlist that this play belongs to
   // TODO: Should probably lazily load this one
@@ -20,14 +16,18 @@ var Plays = DB.Collection.extend({
 
   // The artist of this play
   artist: function() {
-    return this.hasOne(Artist.model, "ArtistID");
+    return this.belongsTo(Artist.model, "ArtistID");
   },
 
   // The album of this play, if any
-  // TODO: Create the album model
-  // album: function() {
-  //   return this.hasOne(Album.model, "AlbumID");
-  // }
+  album: function() {
+    return this.hasOne(Album.model, "AlbumID");
+  }
+});
+
+// Play collection
+var Plays = DB.Collection.extend({
+  model: Play,
 });
 
 exports.model = Play;

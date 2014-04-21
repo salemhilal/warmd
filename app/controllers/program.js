@@ -11,7 +11,6 @@ module.exports = {
       Program.forge({ ProgramID: id})
       .fetch({
         withRelated: ['playlists'],
-        require: true,
      })
       .then (function (program) {
          req.program = program;
@@ -26,22 +25,29 @@ module.exports = {
    },
 
    show: function(req, res) {
-      res.format( {
-        json: function () {
-            res.json(200, req.program);
-        },
-        html: function() {
-          res.render('program/show', req.program.attributes);
-        },
-        default: function () {
-          res.json(200, req.program);
-        }
-
-      });
+      if(req.program) {
+        res.json(200, req.program);
+      } else {
+        res.json(404, {error: "Program not found"});
+      }
    },
 
-   query: function(req, res) {
-      var query = req.body.query;
+  update: function(req, res) {
+    if(!req.program) {
+      res.json(404, {error: "Program not found"});
+    } else {
+      req.program.
+        save(req.body, {patch: true}).
+        then(function(model) {
+          res.json(200, model);
+        }, function(err) {
+          res.json(400, {error: "Error updating program", details: err});
+        });
+    }
+  },
+
+  query: function(req, res) {
+    var query = req.body.query;
 
       // existance?
       if (!query) {

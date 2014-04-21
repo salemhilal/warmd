@@ -59,3 +59,17 @@
 .tile {
   margin-bottom:20px;
 }
+
+div.click-to-edit{
+  margin: 15px 0;
+}
+
+div.click-to-edit form {
+  margin-top: 0;
+}
+
+.help-link {
+  font-style: italic;
+  cursor: pointer;
+  color: #bdc3c7;
+}

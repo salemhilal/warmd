@@ -8,7 +8,7 @@ module.exports = {
     Playlist.
       forge({ PlayListID: id}).
       fetch({
-        withRelated: ['plays', 'program'],
+        withRelated: ['plays.artist', 'plays.album', 'program'],
         // require: true,
       }).
       then(function(playlist) {
@@ -37,22 +37,23 @@ module.exports = {
     if(req.playlist) {
       res.json(200, req.playlist);
     } else {
-      res.json(404, {error: "No such playlist"})
+      res.json(404, {error: "Playlist not found"});
     }
   },
 
   update: function(req, res) {
-    var id = req.playlist.PlayListID,
-        updatedPlaylist = req.body;
-        new Playlist({ PlayListID: id }).
-          save(updatedPlaylist, { patch: true }).
-          then(function(model) {
-            res.json(200, model);
-          }, function(err) {
-            res.json(404, {error: "No such playlist", details: err});
-          });
-
+    if(!req.playlist) {
+      res.json(404, {error: "No such playlist"});
+    } else {
+      req.playlist.
+        save(req.body, {patch: true}).
+        then(function(model) {
+          res.json(200, model);
+        }, function(err) {
+          res.json(400, {error: "Error updating playlist", details: err});
+        });
+    }
   },
 
 
-}
+};

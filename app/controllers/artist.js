@@ -1,13 +1,17 @@
 var DB = require('bookshelf').DB,
     Artist = require('../models/artist').model,
-    Artists = require('../models/artist').collection;
+    Artists = require('../models/artist').collection,
+    Album = require('../models/album').model;
+
 
 module.exports = {
 
   // Look up artist in context of request
   load: function(req, res, next, id) {
     Artist.forge({ ArtistID: id })
-      .fetch({ require: true })
+      .fetch({
+        withRelated: ['albums'],
+       })
       .then(function (artist) {
         req.artist = artist;
         next();
@@ -23,14 +27,11 @@ module.exports = {
   // Get data about a specific user.
   // TODO: JSON only.
   show: function(req, res) {
-    res.format( {
-      json: function() {
-        res.json(200, req.artist.attributes);
-      },
-      default: function() {
-        res.json(200, req.artist.attributes);
-      }
-    });
+    if(req.artist){
+      res.json(200, req.artist);
+    } else {
+      res.json(404, {error: "Artist not found"});
+    }
   },
 
   //
@@ -60,6 +61,7 @@ module.exports = {
 
     */
 
+    // TODO: Replace things like " and ", " the ", " + ", " & ", etc. with " % "
     // Query exact matches (most relevant)
     var q1 = DB.knex("Artists").select(DB.knex.raw("*, 1 as `rank`")).from("Artists").where("Artist", "like", query);
     // Query "starts with" matches
@@ -86,15 +88,23 @@ module.exports = {
     }
 
     // Define promise resolution. Boy do I like promises.
-    qb.then(function(results) {
-      res.json(200, results);
-    }, function (err) {
-      res.json(500, err.toString());
-    });
+    qb.
+      then(function(results) {
+        if(results.length > 0) {
+          return Artists.forge(results).load('albums');
+        } else {
+          return results;
+        }
+      }).
+      then(function(results) {
+        res.json(200, results);
+      }, function (err) {
+        res.json(500, err.toString());
+      });
 
 
 
 
   }
 
-}
+};

@@ -3,64 +3,103 @@ var users = require('../app/controllers/user.js'),
     programs = require('../app/controllers/program.js'),
     playlists = require('../app/controllers/playlist.js'),
     plays = require('../app/controllers/play.js'),
+    album = require('../app/controllers/album.js'),
+    review = require('../app/controllers/review.js'),
     express = require('express');
 
 module.exports = function(app, config, passport) {
 
   // Health & sanity checking
-  app.get("/ping", function(req,res) {
+  app.route("/ping").get(function(req,res) {
    res.end("pong");
   });
 
   /* Login and Session Routes */
-  app.get('/login', function(req, res, next) {
+  app.route('/login').get(function(req, res, next) {
     if(req.user) {
       res.redirect('/');
     }
     next();
   }, users.login);
-
-  app.get('/logout', users.logout);
-  app.post('/users/session',
-    passport.authenticate('local', {
+  app.route('/logout').get(users.logout);
+  app.route('/users/session').
+    post(passport.authenticate('local', {
       successRedirect: '/app', //TODO: Send to req.session.returnTo if exists
       failureRedirect: '/login?success=false'
     }));
 
-  app.get('/me',users.isAuthed, function(req, res, next) {
-    res.json(req.user.toJSON());
+  // Get info about the current user
+  // TODO: Move to Users controller
+  app.route('/me').get(users.isAuthed, function(req, res) {
+    req.user.
+      load(['programs', 'reviews.album.artist']).
+      then(function(data) {
+        res.json(200, data.toJSON());
+      });
   });
 
+
+  //TODO: Auth all of these as necessary, you idiot.
+  //TODO: Make these have better RESTful names.
+  // i.e. "artists" should refer to collections, "artist" to individuals
+
   /* User Routes */
-  app.param('user', users.load);
-  app.post('/users/new', users.create);
-  app.get('/users/:user.:format', users.isAuthed, users.show);
-  app.get('/users/:user', users.isAuthed, users.show);
-  app.post('/users/query', users.query);
+  var userRouter = express.Router().
+    param('user', users.load).
+    post('/new', users.create).
+    get('/:user', users.isAuthed, users.show).
+    post('/query', users.query);
+  app.use('/users', userRouter);
 
   /* Artist Routes */
-  app.param('artist', artists.load);
-  app.post('/artists/query', users.isAuthed, artists.query);
-  app.get('/artists/:artist.:format', users.isAuthed, artists.show);
-  app.get('/artists/:artist', users.isAuthed, artists.show);
+  var artistRouter = express.Router().
+    param('artist', artists.load).
+    post('/query', users.isAuthed, artists.query).
+    get('/:artist', users.isAuthed, artists.show);
+  app.use('/artists', artistRouter);
 
   /* Program Routes */
-  app.param('program', programs.load);
-  app.get('/programs/:program.:format', programs.show);
-  app.get('/programs/:program', programs.show);
+  var programRouter = express.Router().
+    param('program', programs.load).
+    get('/:program', programs.show).
+    put('/:program', programs.update);
+  app.use('/programs', programRouter);
 
   /* Playlist Routes */
-  app.param('playlist', playlists.load);
-  app.post('/playlists', users.isAuthed, playlists.create);
-  app.get('/playlists/:playlist', playlists.show);
-  app.put('/playlists/:playlist', users.isAuthed, playlists.update);
+  var playlistRouter = express.Router().
+    param('playlist', playlists.load).
+    post('/', users.isAuthed, playlists.create).
+    get('/:playlist', playlists.show).
+    put('/:playlist', users.isAuthed, playlists.update);
+  app.use('/playlists', playlistRouter);
 
   /* Play Routes */
-  app.post('/plays', plays.create);
-  app.post('/plays/query', plays.query);
+  var playRouter = express.Router().
+    param('play', plays.load).
+    post('/', plays.create).
+    post('/query', plays.query).
+    get('/:play', plays.show).
+    put('/:play', plays.update);
+  app.use('/plays', playRouter);
+
+  /* Album routes */
+  var albumRouter = express.Router().
+    param('album', album.load).
+    post('/query', album.query).
+    get('/cover', album.cover).
+    get('/:album', album.show).
+    put('/:album', album.update);
+  app.use('/albums', albumRouter);
+
+  /* Review routes */
+  var reviewRouter = express.Router().
+    param('review', review.load).
+    get('/:review', review.show).
+    post('/', review.create);
+  app.use('/reviews', reviewRouter);
 
   /* Dead last thing to match */
-  app.get('/', function(req, res, next) {
+  app.get('/', function(req, res) {
     res.redirect('/app');
   });
 

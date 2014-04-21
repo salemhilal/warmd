@@ -14,12 +14,6 @@ var Playlist = DB.Model.extend({
     return this.belongsTo(Program.model, "ProgramID");
   },
 
-  defaults: {
-    StartTime: new Date(),
-    EndTime: new Date(),
-    UserID: 0,
-    Comment: null,
-  },
 });
 
 exports.model = Playlist;

@@ -5,7 +5,9 @@
       <h4>Shows</h4>
 
       <!-- List shows -->
-      <div ng-repeat="program in filteredPrograms = (programs | activePrograms)">{{program.Program}}</div>
+      <div ng-repeat="program in filteredPrograms = (user.programs | activePrograms)">
+        <a ng-href="#/programs/{{program.ProgramID}}">{{program.Program}}</a>
+      </div>
       <div ng-show="!filteredPrograms.length">No shows</div>
 
       <!-- Start new playlist -->
@@ -24,9 +26,18 @@
 
     </div>
   </div>
+
+  <!-- Reviews -->
   <div class="col-md-4">
     <div class="tile">
       <h4>Reviews</h4>
+      <div style="text-align: left;">
+        <ul>
+          <li ng-repeat="review in user.reviews">
+            <a ng-href="#/albums/{{review.album.AlbumID}}">{{review.album.artist.Artist}} - {{review.album.Album}}</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="col-md-4">

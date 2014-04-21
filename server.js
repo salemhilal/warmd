@@ -6,7 +6,6 @@
 
 // Imports
 var express = require('express'),
-    expressValidator = require('express-validator'),
     passport = require('passport'),
     crypto = require('crypto'),
     https = require('https'),
@@ -64,11 +63,8 @@ Bookshelf.DB = Bookshelf.initialize({
 // Passport
 require('./config/passport')(passport, config);
 
-// Express
+// Express config, routes
 require("./config/express")(app, config, passport);
-
-// Routes
-require('./config/routes')(app, config, passport);
 
 //================================
 // Initialize ====================

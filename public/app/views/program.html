@@ -1,0 +1,32 @@
+<div class="row">
+	<div class="col-md-offset-2 col-md-8">
+
+		<div class="row">
+			<!-- Title and host -->
+			<div class="col-md-12">
+				<h3>{{program.Program}} <small>hosted by {{program.DJName}}</small></h3>
+			</div>
+
+			<!-- Promo -->
+			<div class="col-md-12">
+				<p><strong>Time:</strong> {{day()}}s at {{time()}}
+				<p><strong>Length:</strong> {{duration()}}</p>
+				<p><strong>Promo:</strong> {{program.Promo}}</p>
+				<hr>
+			</div>
+
+			<!-- Playlists -->
+			<div class="col-md-12">
+				<h6>Playlists</h6>
+				<ul class="list-group">
+					<li class="list-group-item" ng-repeat="playlist in playlists | orderBy:'StartTime':true">
+						<a href="#/playlists/{{playlist.PlayListID}}">{{formatDate(playlist.StartTime)}}</a>
+						<span ng-show="playlist.Comment"> - {{playlist.Comment}}</span>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+</div>

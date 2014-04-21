@@ -1,20 +1,21 @@
 var LocalStrategy = require('passport-local').Strategy,
-   crypto = require('crypto'),
-   DB = require('bookshelf').DB,
-   User = require('../app/models/user').model;
+    crypto = require('crypto'),
+    wlog = require('winston'),
+    DB = require('bookshelf').DB,
+    User = require('../app/models/user').model;
 
 // Password verification functions
 
 encryptPassword = function(password, username){
-   if (!password) return '';
-   var encrypted, salt;
-   try {
-      salt = crypto.createCipher('aes256', password+username).final('hex');
-      encrypted = crypto.createHmac('sha1', salt).update(password).digest('hex');
-      return encrypted;
-   } catch  (err) {
-      return 'There was error!';
-   }
+  if (!password) return '';
+  var encrypted, salt;
+  try {
+    salt = crypto.createCipher('aes256', password+username).final('hex');
+    encrypted = crypto.createHmac('sha1', salt).update(password).digest('hex');
+    return encrypted;
+  } catch  (err) {
+    return 'There was error!';
+  }
 };
 
 module.exports = function(passport) {
@@ -53,9 +54,7 @@ module.exports = function(passport) {
        User.forge({
          User: username
        })
-       .fetch({
-         //require: true
-       })
+       .fetch()
        .then(function(user) {
          if(!user) {
           return done(null, false);
