@@ -1,15 +1,7 @@
 #!/bin/bash
 
-# Install node deps
-sudo apt-get -qq install make
-sudo apt-get -qq install g++ curl libssl-dev apache2-utils 
+# Install node deps, and also node
+sudo add-apt-repository -qq ppa:chris-lea/node.js
+sudo apt-get update
+sudo apt-get -qq install python-software-properties python g++ make nodejs
 sudo apt-get -qq install git-core
-
-# Install node
-git clone git://github.com/ry/node.git node
-cd node
-./configure
-make
-sudo make install
-cd ..
-rm -rf node
