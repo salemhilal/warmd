@@ -10,7 +10,9 @@ module.exports = {
   },
 
   'production': {
-
+    port: 443,
+    root: root,
+    debug: false,
   }
 
 };
