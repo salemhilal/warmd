@@ -13,15 +13,32 @@ We aim to fix that. We're writing the project in Node, because we can't see Java
 Installation
 ------------
 
-Say you have a fresh ubuntu box and want to deploy this server.
+To get started developing, do these things
 
-1. ```cd``` into a directory of your choosing.
-2. ```git clone https://github.com/bichiliad/warmd.git```
-3. ```mv config/keys.example.config config/keys.config```, add DB info in ```keys.config```
-4. ```./scripts/ubuntu_setup.sh``` to install dependencies / node.
+1. Get [node.js](http://nodejs.org/)
+2. Clone the repo: ```git clone https://github.com/bichiliad/warmd.git```
+3. ```mv config/keys.example.js config/keys.js```, add DB info in ```keys.config```
 5. ```npm install``` to install node dependencies
-6. ```npm run deploy``` to get that server goin' (using Forever)
+6. ```npm start``` to start the server up with nodemon.
 
+Deployment
+----------
+
+Here are the steps to getting everything you need ready to deploy on a fresh production server
+(only available in the ```frontend``` branch at the moment):
+
+```bash
+# Clone the repo
+git clone https://github.com/bichiliad/warmd.git
+# Install dependencies
+cd warmd && ./scripts/ubuntu_setup.sh
+# Populate the keys.js file with mysql login info
+mv config/keys.example.js config/keys.js && vi config/keys.js
+# Generate a security certificate
+cd scripts && gencerts.sh
+# Start 'er up
+npm run deploy
+```
 
 Running
 -------
@@ -31,7 +48,7 @@ There are a handful of commands defined in the ```package.json```. They're liste
 1. ```npm start``` or ```npm run start``` - Starts the server in development mode
 2. ```npm test``` or ```npm run test``` - Runs the Vows test suite
 3. ```npm run deploy``` - Deploys the server using Forever
-4. ```npm run halt``` - Halts the server, if deployed. Errors if not. 
+4. ```npm run halt``` - Halts the server, if deployed. Errors if not.
 
 
 API
