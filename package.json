@@ -20,39 +20,42 @@
   "main": "server.js",
   "scripts": {
     "start": "NODE_ENV=development ./node_modules/.bin/grunt start",
-    "test": "NODE_ENV=test ./node_modules/.bin/mocha --reporter spec test/test-*.js"
+    "test": "NODE_ENV=test echo Not yet implemented",
+    "postinstall": "mkdir -p logs"
   },
   "engines": {
     "node": "~0.10.22",
-    "npm": "~1.3.15"
+    "npm": "^1.4.3"
   },
   "dependencies": {
-    "express": "~3.4.7",
     "knex": "~0.5.4",
     "bookshelf": "~0.6.2",
-    "mysql": "~2.0.1",
     "passport": "~0.2.0",
     "express-hbs": "~0.7.8",
-    "connect-acceptoverride": "0.0.3",
-    "express-validator": "~1.0.1",
-    "swig": "~1.3.2",
-    "connect-flash": "~0.1.1",
-    "passport-local": "~0.1.6",
-    "bluebird": "~1.1.1"
+    "passport-local": "~1.0.0",
+    "bluebird": "~1.2.2",
+    "request-json": "~0.4.10",
+    "lodash": "~2.4.1",
+    "mysql": "~2.1.1",
+    "winston": "~0.7.3",
+    "winston-mail": "~0.2.7",
+    "nodemailer": "~0.6.3",
+    "body-parser": "~1.0.2",
+    "method-override": "~1.0.0",
+    "cookie-parser": "~1.0.1",
+    "express-session": "~1.0.2",
+    "morgan": "~1.0.0",
+    "express": "~4.0.0"
   },
   "devDependencies": {
-    "nodemon": "latest",
-    "karma": "latest",
-    "mocha": "latest",
-    "should": "latest",
-    "supertest": "latest",
-    "grunt": "~0.4.2",
-    "grunt-contrib-jshint": "~0.8.0",
-    "load-grunt-tasks": "~0.3.0",
+    "nodemon": "~1.0.17",
+    "grunt": "~0.4.4",
+    "grunt-contrib-jshint": "~0.10.0",
+    "load-grunt-tasks": "~0.4.0",
     "grunt-shell": "~0.6.4",
     "grunt-nodemon": "~0.2.0",
     "grunt-node-inspector": "~0.1.2",
-    "grunt-concurrent": "~0.4.3",
+    "grunt-concurrent": "~0.5.0",
     "grunt-cli": "~0.1.13"
   }
 }

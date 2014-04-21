@@ -1,13 +1,12 @@
 var LocalStrategy = require('passport-local').Strategy,
    crypto = require('crypto'),
-   wlog = require('winston'),
    DB = require('bookshelf').DB,
    User = require('../app/models/user').model;
 
 // Password verification functions
 
 encryptPassword = function(password, username){
-   if (!password) return ''
+   if (!password) return '';
    var encrypted, salt;
    try {
       salt = crypto.createCipher('aes256', password+username).final('hex');
@@ -16,15 +15,13 @@ encryptPassword = function(password, username){
    } catch  (err) {
       return 'There was error!';
    }
-}
-
-
+};
 
 module.exports = function(passport) {
 
    // user -> id
    passport.serializeUser(function(user, done) {
-      done(null, user.attributes.UserID)
+      done(null, user.attributes.UserID);
    });
 
    // id -> user
@@ -33,9 +30,7 @@ module.exports = function(passport) {
       User.forge({
          userID: id
       })
-      .fetch({
-        withRelated: ['programs'],
-        })
+      .fetch() // Make sure we find a matching ID
       .then(function(user) {
         if(!user) { // No user found
           done(null, false);
@@ -59,7 +54,7 @@ module.exports = function(passport) {
          User: username
        })
        .fetch({
-         withRelated:['programs'],
+         //require: true
        })
        .then(function(user) {
          if(!user) {
@@ -70,7 +65,6 @@ module.exports = function(passport) {
          if (encryptPassword(password, user.attributes.User) === user.attributes.Password){
             return done(null, user);
          } else {
-            //wlog.auth("Incorrect Password ",{User: user.attributes.User});
             return done(null, false);
          }
         }, function(err) { // Could not find user / something went wrong
