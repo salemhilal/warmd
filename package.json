@@ -21,7 +21,7 @@
   "scripts": {
     "start": "NODE_ENV=development ./node_modules/.bin/grunt start",
     "test": "NODE_ENV=test echo Not yet implemented",
-    "deploy": "NODE_ENV=production ./node_modules/forever/bin/forever start server.js",
+    "deploy": "sudo NODE_ENV=production ./node_modules/forever/bin/forever start -a -l forever.log -o output.log -e errors.log server.js",
     "halt": "NODE_ENV=production ./node_modules/forever/bin/forever stop server.js"
   },
   "engines": {

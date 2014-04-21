@@ -10,7 +10,7 @@ module.exports = {
   },
 
   'production': {
-    port: 3000, //TODO: 443 at some point
+    port: 443, //TODO: 443 at some point
     root: root,
     debug: false,
   }
