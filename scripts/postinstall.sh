@@ -14,3 +14,6 @@ mkdir -p ../logs
 if [ "$TRAVIS" = true ]; then
 	cp ../config/keys.example.js ../config/keys.js
 fi
+
+# Generate certs
+./gencerts.sh
