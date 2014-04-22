@@ -1,0 +1,31 @@
+[ req ]
+default_bits = 1024
+encrypt_key = yes
+distinguished_name = req_dn
+x509_extensions = cert_type
+prompt = no
+
+[ req_dn ]
+# country (2 letter code)
+#C=US
+
+# State or Province Name (full name)
+#ST=Pennsylvania
+
+# Locality Name (eg. city)
+#L=Pittsburgh
+
+# Organization (eg. company)
+#O=Carnegie Mellon University
+
+# Organizational Unit Name (eg. section)
+OU=WRCT-FM
+
+# Common Name (*.example.com is also possible)
+CN=timbuk4
+
+# E-mail contact
+emailAddress=ism@wrct.org
+
+[ cert_type ]
+nsCertType = server

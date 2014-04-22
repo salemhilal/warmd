@@ -13,13 +13,19 @@ module.exports = function(app, config, passport) {
   if('development' == env) {
     // Show stack errors.
     app.set('showStackError', config.showStackError || true);
-  }
-  else if ('test' == env) {}
-  else if ('production' == env) {}
 
-  // Log requests. Should probably remove this when Winston
-  // becomes a more implemented thing.
-  app.use(morgan());
+    // Log requests. Should probably remove this when Winston
+    // becomes a more implemented thing.
+    app.use(morgan());
+  } else if ('test' == env) {
+
+  } else if ('production' == env) {
+    // Log requests. Should probably remove this when Winston
+    // becomes a more implemented thing.
+    app.use(morgan());
+  }
+
+
 
   // Set rendering engines
   app.engine('hbs', hbs.express3({

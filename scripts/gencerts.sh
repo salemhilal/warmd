@@ -1,13 +1,46 @@
 #!/bin/bash
 
-# Generate, and self-sign certs for testing.
+# Generates a self-signed certificate.
+# Edit openssl.cnf before running this.
 
-openssl genrsa -out ../config/server-key.pem
+OPENSSL=`which openssl`
+SSLDIR=`pwd`/../config # ../config for testing, in real deployment use
+#SSLDIR=/etc/ssl
+OPENSSLCONFIG='openssl.cnf'
 
-openssl req -new -key ../config/server-key.pem -out ../config/server-csr.pem
+CERTDIR=$SSLDIR
+KEYDIR=$SSLDIR
+#Again, for actual deployment, we want these certs to be used by any web
+# service.
+#CERTDIR=$SSLDIR/certs
+#KEYDIR=$SSLDIR/private
 
-openssl x509 -req -in ../config/server-csr.pem -signkey ../config/server-key.pem -out ../config/server-cert.pem
 
-# We could
-# rm ../config/server-csr.pem
-# but we don't really need to.
+CERTFILE=$CERTDIR/server-cert.pem
+KEYFILE=$KEYDIR/server-key.pem
+
+if [ ! -d $CERTDIR ]; then
+  echo "$SSLDIR/certs directory doesn't exist"
+  exit 1
+fi
+
+if [ ! -d $KEYDIR ]; then
+  echo "$SSLDIR/private directory doesn't exist"
+  exit 1
+fi
+
+if [ -f $CERTFILE ]; then
+  echo "$CERTFILE already exists, won't overwrite"
+  exit 1
+fi
+
+if [ -f $KEYFILE ]; then
+  echo "$KEYFILE already exists, won't overwrite"
+  exit 1
+fi
+
+$OPENSSL req -new -x509 -nodes -config $OPENSSLCONFIG -out $CERTFILE -keyout $KEYFILE -days 365 || exit 2
+chmod 0600 $KEYFILE
+echo
+$OPENSSL x509 -subject -fingerprint -noout -in $CERTFILE || exit 2
+

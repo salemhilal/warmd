@@ -22,14 +22,14 @@ var env = process.env.NODE_ENV || 'development',
 
 // HTTPS/SSL
 var options = {
-   key: fs.readFileSync('./config/server-key.pem'),
-   cert: fs.readFileSync('./config/server-cert.pem'),
-   // This is only necessary if using the client cert authentication
-   requestCert: true,
+  key: fs.readFileSync('./config/server-key.pem'),
+  cert: fs.readFileSync('./config/server-cert.pem'),
+  // This is only necessary if using the client cert authentication
+  requestCert: true,
 
-   // This is only necessary if client uses self-signed cert
-   //ca: [ fs.readFileSync('client-cert.pem')]
-   };
+  // This is only necessary if client uses self-signed cert
+  //ca: [ fs.readFileSync('client-cert.pem')]
+};
 
 // Get the keys, check to make sure they exist
 var keys;
@@ -73,7 +73,7 @@ require("./config/express")(app, config, passport);
 // Start app
 var port = process.env.PORT || config.port || 3000;
 var server = https.createServer(options, app).listen(port, function(){
-   //app.listen(port);
+
    wlog.info("\n\nWARMD now running on port " + port);
    wlog.info("running in " + env + " environment");
    if(config.verbose) {
