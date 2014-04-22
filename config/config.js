@@ -8,6 +8,12 @@ module.exports = {
     root: root,
     debug: false,
   },
+  
+  'test': {
+    port: 3000,
+    root: root,
+    debug: false
+  },
 
   'production': {
     port: 443, //TODO: 443 at some point

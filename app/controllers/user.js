@@ -1,3 +1,5 @@
+"use strict";
+
 var DB = require('bookshelf').DB,
   User = require('../models/user').model,
   Users = require('../models/user').collection;
@@ -51,7 +53,7 @@ module.exports = {
     // Redirect to where they were
     var redirectTo = req.session.returnTo ? req.session.returnTo : '/';
     delete req.session.returnTo;
-    res.redirect(returnTo);
+    res.redirect(redirectTo);
   },
 
   // Look up user

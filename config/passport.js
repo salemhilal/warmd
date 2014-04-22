@@ -1,3 +1,5 @@
+"use strict";
+
 var LocalStrategy = require('passport-local').Strategy,
     crypto = require('crypto'),
     wlog = require('winston'),
@@ -6,8 +8,8 @@ var LocalStrategy = require('passport-local').Strategy,
 
 // Password verification functions
 
-encryptPassword = function(password, username){
-  if (!password) return '';
+var encryptPassword = function(password, username){
+  if (!password) { return ''; }
   var encrypted, salt;
   try {
     salt = crypto.createCipher('aes256', password+username).final('hex');
@@ -31,7 +33,7 @@ module.exports = function(passport) {
       User.forge({
          userID: id
       })
-      .fetch()
+      .fetch() // Make sure we find a matching ID
       .then(function(user) {
         if(!user) { // No user found
           done(null, false);
@@ -64,7 +66,6 @@ module.exports = function(passport) {
          if (encryptPassword(password, user.attributes.User) === user.attributes.Password){
             return done(null, user);
          } else {
-            //wlog.auth("Incorrect Password ",{User: user.attributes.User});
             return done(null, false);
          }
         }, function(err) { // Could not find user / something went wrong
