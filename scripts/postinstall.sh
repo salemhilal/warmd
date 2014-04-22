@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo Running postinstall.sh
+
 # Enhance path with node binaries
 # export PATH=$PATH:./node_modules/.bin
 
