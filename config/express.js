@@ -13,6 +13,7 @@ module.exports = function(app, config, passport) {
   if('development' == env) {
     // Show stack errors.
     app.set('showStackError', config.showStackError || true);
+
     // Log requests. Should probably remove this when Winston
     // becomes a more implemented thing.
     app.use(morgan());
@@ -88,7 +89,7 @@ module.exports = function(app, config, passport) {
 
     // error page
     res.status(500).render('500', {
-        error: err.stack
+      error: err.stack
     });
   });
 

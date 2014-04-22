@@ -1,10 +1,9 @@
 "use strict";
 
 var LocalStrategy = require('passport-local').Strategy,
-    crypto = require('crypto'),
-    wlog = require('winston'),
-    DB = require('bookshelf').DB,
-    User = require('../app/models/user').model;
+   crypto = require('crypto'),
+   DB = require('bookshelf').DB,
+   User = require('../app/models/user').model;
 
 // Password verification functions
 
@@ -56,13 +55,14 @@ module.exports = function(passport) {
        User.forge({
          User: username
        })
-       .fetch()
+       .fetch({
+         //require: true
+       })
        .then(function(user) {
          if(!user) {
           return done(null, false);
          }
          // Found user
-         console.log("Found user: ", user.attributes.User);
          if (encryptPassword(password, user.attributes.User) === user.attributes.Password){
             return done(null, user);
          } else {
