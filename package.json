@@ -23,7 +23,7 @@
     "test": "NODE_ENV=test ./node_modules/.bin/mocha --reporter spec --timeout 10000 tests/*-tests.js",
     "deploy": "sudo NODE_ENV=production ./node_modules/forever/bin/forever start -a -l forever.log -o output.log -e errors.log server.js",
     "halt": "NODE_ENV=production ./node_modules/forever/bin/forever stop server.js",
-    "postinstall": "mkdir -p logs"
+    "postinstall": "./scripts/postinstall.sh"
   },
   "engines": {
     "node": "~0.10.22",
