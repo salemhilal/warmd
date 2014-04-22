@@ -1,3 +1,5 @@
+"use strict";
+
 var LocalStrategy = require('passport-local').Strategy,
     crypto = require('crypto'),
     wlog = require('winston'),
@@ -6,8 +8,8 @@ var LocalStrategy = require('passport-local').Strategy,
 
 // Password verification functions
 
-encryptPassword = function(password, username){
-  if (!password) return '';
+var encryptPassword = function(password, username){
+  if (!password) { return ''; }
   var encrypted, salt;
   try {
     salt = crypto.createCipher('aes256', password+username).final('hex');

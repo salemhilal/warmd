@@ -1,3 +1,5 @@
+"use strict";
+
 var users = require('../app/controllers/user.js'),
     artists = require('../app/controllers/artist.js'),
     programs = require('../app/controllers/program.js'),
