@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Generates a self-signed certificate.
 # Edit openssl.cnf before running this.
