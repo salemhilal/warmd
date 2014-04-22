@@ -8,13 +8,15 @@ var should = require('should'),
     app = require('../server'),
     context = describe;
 
+var user, pass;
+
 describe('Users', function() {
       describe('Authentication', function() {
 
          it('should log in successfully', function(done) {
             request.agent(app).
             post('/users/session').
-            send({ username: 'shilal', password: 'mustache' }).
+            send({ username: 'Tom', password: 'test' }).
             end(function(err, res){
                // Catch any errors
                if (err) { return done(err); }
@@ -42,18 +44,3 @@ describe('Users', function() {
             });
       });
 });
-
-
-
-/* THIS IS HOW TO TEST LOGINS
-
-   var request = require('superagent');
-   var user1 = request.agent();
-   user1
-   .post('http://localhost:4000/signin')
-   .send({ user: 'hunter@hunterloftis.com', password: 'password' })
-   .end(function(err, res) {
-// user1 will manage its own cookies
-// res.redirects contains an Array of redirects
-});
-*/
