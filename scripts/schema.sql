@@ -275,7 +275,7 @@ CREATE TABLE `Users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-INSERT INTO  `wrct`.`Users` (
+INSERT INTO  `warmd`.`Users` (
 `UserID` ,
 `User` ,
 `FName` ,
