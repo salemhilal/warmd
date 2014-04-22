@@ -1,4 +1,5 @@
 CREATE DATABASE IF NOT EXISTS warmd;
+USE warmd;
 GRANT USAGE ON *.* TO travis@localhost;
 GRANT ALL PRIVILEGES ON warmd TO travis@localhost;
 FLUSH PRIVILEGES;
@@ -291,4 +292,3 @@ INSERT INTO  `warmd`.`Users` (
 VALUES (
 '40' ,  'Tom',  'Tom',  'TOM', NULL ,  '405cb660517215b80487f363001c8fd2c2b829f4', NULL , NULL , NULL , NULL ,  ''
 );
-
