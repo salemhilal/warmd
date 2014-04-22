@@ -1,9 +1,9 @@
--- MySQL dump 10.13  Distrib 5.5.35, for debian-linux-gnu (i686)
---
--- Host: localhost    Database: wrct
--- ------------------------------------------------------
--- Server version	5.5.35-0ubuntu0.12.04.2
+CREATE DATABASE IF NOT EXISTS warmd;
+GRANT USAGE ON *.* TO travis@localhost;
+GRANT ALL PRIVILEGES ON warmd TO travis@localhost;
+FLUSH PRIVILEGES;
 
+-- MySQL dump 10.13  Distrib 5.5.35, for debian-linux-gnu (i686)
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -275,4 +275,20 @@ CREATE TABLE `Users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-22 14:25:20
+INSERT INTO  `wrct`.`Users` (
+`UserID` ,
+`User` ,
+`FName` ,
+`LName` ,
+`DJName` ,
+`Password` ,
+`Phone` ,
+`Email` ,
+`AuthLevel` ,
+`DateTrained` ,
+`WRCTUser`
+)
+VALUES (
+'40' ,  'Tom',  'Tom',  'TOM', NULL ,  '405cb660517215b80487f363001c8fd2c2b829f4', NULL , NULL , NULL , NULL ,  ''
+);
+
