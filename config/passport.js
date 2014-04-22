@@ -7,18 +7,6 @@ var LocalStrategy = require('passport-local').Strategy,
 
 // Password verification functions
 
-<<<<<<< HEAD
-encryptPassword = function(password, username){
-   if (!password) return '';
-   var encrypted, salt;
-   try {
-      salt = crypto.createCipher('aes256', password+username).final('hex');
-      encrypted = crypto.createHmac('sha1', salt).update(password).digest('hex');
-      return encrypted;
-   } catch  (err) {
-      return 'There was error!';
-   }
-=======
 var encryptPassword = function(password, username){
   if (!password) { return ''; }
   var encrypted, salt;
@@ -29,7 +17,6 @@ var encryptPassword = function(password, username){
   } catch  (err) {
     return 'There was error!';
   }
->>>>>>> api
 };
 
 module.exports = function(passport) {
