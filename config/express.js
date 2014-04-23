@@ -1,3 +1,5 @@
+"use strict";
+
 var express = require('express'),
     hbs = require('express-hbs'),
     bodyParser = require('body-parser'),
