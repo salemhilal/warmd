@@ -29,12 +29,8 @@ var message = {
      wlog.error(error.message);
      return;
   } else {
-    wlog.info(response);
     wlog.info('Message sent successfully');
   }
 });*/
-
-
-
 
 module.exports = transport;
