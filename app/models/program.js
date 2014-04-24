@@ -1,3 +1,5 @@
+"use strict";
+
 var Bookshelf = require('bookshelf').DB,
     Playlist = require('./playlist');
 

@@ -1,3 +1,5 @@
+"use strict";
+
 var DB = require('bookshelf').DB,
     Album = require('./album');
 

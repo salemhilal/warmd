@@ -1,3 +1,5 @@
+"use strict";
+
 var DB = require('bookshelf').DB,
     Play = require('./play'),
     Program = require('./program');
