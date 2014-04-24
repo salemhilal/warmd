@@ -7,7 +7,7 @@
   text-decoration: underline;
 }
 .main {
-  margin: 20px;
+  margin: 10px;
 }
 .login-form {
   margin: 40px auto 0;
@@ -58,6 +58,7 @@
 
 .tile {
   margin-bottom:20px;
+  border-radius: none;
 }
 
 div.click-to-edit{

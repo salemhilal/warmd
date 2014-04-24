@@ -1,3 +1,5 @@
+"use strict";
+
 var DB = require('bookshelf').DB,
   Artist = require('./artist'),
   Review = require('./review');

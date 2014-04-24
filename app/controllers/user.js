@@ -82,17 +82,17 @@ module.exports = {
 
       // They want JSON
       json: function() {
-        res.json(req.userData.attributes);
+        res.json(req.userData.toJSON());
       },
 
       // They want HTML
       html: function() {
-        res.render('users/show', req.userData.attributes);
+        res.render('users/show', req.userData.toJSON());
       },
 
       // They don't know what they want, give em HTML
       default: function() {
-        res.render('user/show', req.userData.attributes);
+        res.render('user/show', req.userData.toJSON());
       }
     });
   },

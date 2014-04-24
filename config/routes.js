@@ -25,6 +25,9 @@ module.exports = function(app, config, passport) {
   }, users.login);
   app.route('/logout').get(users.logout);
   app.route('/users/session').
+    get(function(req, res) {
+      res.redirect('/');
+    }).
     post(passport.authenticate('local', {
       successRedirect: '/app', //TODO: Send to req.session.returnTo if exists
       failureRedirect: '/login?success=false'
