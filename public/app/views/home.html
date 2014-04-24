@@ -1,28 +1,39 @@
 <div class="row">
   <div class="col-md-4">
+
     <!-- TODO: Hide this tile if they're not a dj or producer -->
     <div class="tile">
       <h4>Shows</h4>
 
-      <!-- List shows -->
-      <div ng-repeat="program in filteredPrograms = (user.programs | activePrograms)">
-        <a ng-href="#/programs/{{program.ProgramID}}">{{program.Program}}</a>
-      </div>
-      <div ng-show="!filteredPrograms.length">No shows</div>
-
-      <!-- Start new playlist -->
       <div class="row">
-        <div class="btn-group col-xs-12">
-          <button type="button" class="btn btn-block btn-default dropdown-toggle" data-toggle="dropdown">
-            Start a new playlist <span class="caret"></span>
-            </button>
-          <ul class="dropdown-menu dropdown-inverse" role="menu" style="width:100%">
-            <li ng-repeat="program in filteredPrograms"><a href="#/playlist/new/{{program.ProgramID}}">{{program.Program}}</a></li>
-            <li ng-hide="!filteredPrograms.length" class="divider"></li>
-            <li><a href="#">Random Playlist</a></li>
+
+        <!-- List shows -->
+        <div class="col-md-12">
+          <ul style="text-align: left;" class="list-group">
+            <li class="list-group-item" ng-repeat="program in filteredPrograms = (user.programs | activePrograms)">
+              <a ng-href="#/programs/{{program.ProgramID}}">{{program.Program}}
+              <br/>
+              <small class="help-link">{{getProgramTime(program)}}</small></a>
+            </li>
           </ul>
+          <div ng-show="!filteredPrograms.length">No shows</div>
         </div>
-      </div>
+
+        <!-- Start new playlist -->
+        <div class="col-md-12">
+          <div class="btn-group row" style="width:100%">
+            <button type="button" class="btn btn-block btn-default dropdown-toggle col-md-12" data-toggle="dropdown">
+              Start a new playlist <span class="caret"></span>
+              </button>
+            <ul class="dropdown-menu dropdown-inverse col-md-12" role="menu" style="width:100%">
+              <li ng-repeat="program in filteredPrograms"><a href="#/playlist/new/{{program.ProgramID}}">{{program.Program}}</a></li>
+              <li ng-hide="!filteredPrograms.length" class="divider"></li>
+              <li><a href="#">Random Playlist</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div><!-- /.rows -->
 
     </div>
   </div>
@@ -32,9 +43,9 @@
     <div class="tile">
       <h4>Reviews</h4>
       <div style="text-align: left;">
-        <ul>
-          <li ng-repeat="review in user.reviews">
-            <a ng-href="#/albums/{{review.album.AlbumID}}">{{review.album.artist.Artist}} - {{review.album.Album}}</a>
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="review in user.reviews">
+            <a ng-href="#/albums/{{review.album.AlbumID}}">{{review.album.Album}}  &nbsp; <small><em>by {{review.album.artist.Artist}}</em></small></a>
           </li>
         </ul>
       </div>
