@@ -7,6 +7,20 @@
 
       <div class="row">
 
+        <!-- Start new playlist -->
+        <div class="col-md-12">
+          <div class="btn-group row" style="width:100%; margin-bottom: 15px;">
+            <button type="button" class="btn btn-block btn-default dropdown-toggle col-md-12" data-toggle="dropdown">
+              Start a new playlist <span class="caret"></span>
+              </button>
+            <ul class="dropdown-menu dropdown-inverse col-md-12" role="menu" style="width:100%">
+              <li ng-repeat="program in filteredPrograms"><a href="#/playlist/new/{{program.ProgramID}}">{{program.Program}}</a></li>
+              <li ng-hide="!filteredPrograms.length" class="divider"></li>
+              <li><a href="#">Random Playlist</a></li>
+            </ul>
+          </div>
+        </div>
+
         <!-- List shows -->
         <div class="col-md-12">
           <ul style="text-align: left;" class="list-group">
@@ -19,19 +33,6 @@
           <div ng-show="!filteredPrograms.length">No shows</div>
         </div>
 
-        <!-- Start new playlist -->
-        <div class="col-md-12">
-          <div class="btn-group row" style="width:100%">
-            <button type="button" class="btn btn-block btn-default dropdown-toggle col-md-12" data-toggle="dropdown">
-              Start a new playlist <span class="caret"></span>
-              </button>
-            <ul class="dropdown-menu dropdown-inverse col-md-12" role="menu" style="width:100%">
-              <li ng-repeat="program in filteredPrograms"><a href="#/playlist/new/{{program.ProgramID}}">{{program.Program}}</a></li>
-              <li ng-hide="!filteredPrograms.length" class="divider"></li>
-              <li><a href="#">Random Playlist</a></li>
-            </ul>
-          </div>
-        </div>
 
       </div><!-- /.rows -->
 
@@ -42,6 +43,7 @@
   <div class="col-md-4">
     <div class="tile">
       <h4>Reviews</h4>
+      <button type="button" class="btn btn-block btn-default" style="margin-bottom: 15px">Write a review</button>
       <div style="text-align: left;">
         <ul class="list-group">
           <li class="list-group-item" ng-repeat="review in user.reviews">
@@ -53,7 +55,7 @@
   </div>
   <div class="col-md-4">
     <div class="tile">
-      <h4>Something else</h4>
+      <h4>Trending Albums</h4>
     </div>
   </div>
 </div>
