@@ -52,6 +52,7 @@ catch (err) {
 
 // DB connection
 
+// TODO: All this in a config file mayhaps? 
 // We add the db to the scope of the library
 // Because javascript and awkward best practices.
 Bookshelf.DB = Bookshelf.initialize({
@@ -59,6 +60,8 @@ Bookshelf.DB = Bookshelf.initialize({
   connection: keys.mysql,
   debug: config.debug
 });
+// Use bookshelf plugins
+Bookshelf.DB.plugin('visibility');
 
 // Passport
 require('./config/passport')(passport, config);

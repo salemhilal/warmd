@@ -58,6 +58,7 @@
 
 .tile {
   margin-bottom:20px;
+  border-radius: none;
 }
 
 div.click-to-edit{

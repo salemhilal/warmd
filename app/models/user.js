@@ -1,3 +1,5 @@
+"use strict";
+
 var DB = require('bookshelf').DB,
     Program = require('./program'),
     Review = require('./review');
@@ -6,6 +8,8 @@ var User = DB.Model.extend({
 
   tableName: "Users",    // What table we're querying from
   idAttribute: "UserID", // The column representing sentinel id's
+
+  hidden: ["Password"],
 
   programs: function() {
     return this.hasMany(Program.model, "UserID");
