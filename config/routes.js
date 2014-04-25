@@ -51,9 +51,9 @@ module.exports = function(app, config, passport) {
   /* User Routes */
   var userRouter = express.Router().
     param('user', users.load).
+    post('/query', users.query).
     post('/new', users.create).
-    get('/:user', users.isAuthed, users.show).
-    post('/query', users.query);
+    get('/:user', users.isAuthed, users.show);
   app.use('/users', userRouter);
 
   /* Artist Routes */
