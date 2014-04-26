@@ -97,7 +97,7 @@ describe('Users', function() {
 
             it('should see mcbaron at 571', function (done) {
                Tom.
-               get('/app/users/571').
+               get('/app/#/users/571').
                end(function(err, res){
                   should.not.exist(err);
                   should.exist(res);
@@ -114,7 +114,7 @@ describe('Users', function() {
 
             it('should find an array of "Matt\'s"', function (done) {
                   Tom.
-                  post('/users/query').
+                  post('/app/#/users/query').
                   send('matt').
                   end(function(err, res){
                      should.not.exist(err);
