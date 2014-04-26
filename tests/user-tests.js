@@ -81,7 +81,7 @@ describe('Users', function() {
 
       });
 
-      describe('endpoints', function() {
+      describe('Endpoints', function() {
 
             var Tom;
 
@@ -122,12 +122,42 @@ describe('Users', function() {
                      should.exist(res.body);
                      res.should.be.json;
                      res.should.have.status(200);
-                     res.should.be.type('array');
-                     res.should.not.be.empty;
-                     res.should.containDeep({User: 'msiko'});
+                     res.body.should.be.type('array');
+                     res.body.should.not.be.empty;
+                     res.body.should.containDeep({User: 'msiko'});
 
                      done();
                      });
                   });
       });
+      /* // users/update endpoint doesn't yet exist.
+      describe('Privileges', function() {
+
+            var Tom;
+
+            before(function(done) {
+               Tom = request.agent(app);
+               Tom.post('/users/session').
+               send({ username: 'Tom', password: 'test' }).
+               end(function(err, res) {
+                  if (err) { return done(err); }
+                  done();
+                  });
+               });
+            it('should change Tom to Trainee', function(done) {
+				* Tom.
+				* post('/app/#/users/update').
+				* send('').
+				* end(function(err,res) {
+					* should.not.exist(err);
+					* should.exist(res);
+					* should.not.be.empty(res.body);
+					* res.should.be.json;
+					* res.should.have.status(200);
+					* res.body.AuthLevel.should.be('Trainee');
+					* 
+					* done();
+				});
+			});
+		}); */
 });
