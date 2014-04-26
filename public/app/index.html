@@ -40,30 +40,32 @@
 <div class="main" ng-controller="MainCtrl">
 
   <!-- Nav bar -->
-  <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
-    <!-- Brand + collapsed header -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">WRCT</a>
-    </div><!--/.navbar-header -->
+  <div class="container">
+    <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
+      <!-- Brand + collapsed header -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">WRCT</a>
+      </div><!--/.navbar-header -->
 
-    <!-- The actual menu -->
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li ng-repeat="item in menu" ng-class="{active: isActive(item.route)}"><a href="{{item.prefix}}{{item.route}}">{{item.name}}</a></li>
-      </ul>
-    </div><!--/.navbar-collapse -->
-  </nav>
+      <!-- The actual menu -->
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li ng-repeat="item in menu" ng-class="{active: isActive(item.route)}"><a href="{{item.prefix}}{{item.route}}">{{item.name}}</a></li>
+        </ul>
+      </div><!--/.navbar-collapse -->
+    </nav>
+  </div>
 
 
 
   <!-- Render some views -->
-  <div class="route-view" ng-view></div>
+  <div class="route-view container" ng-view></div>
 
 
 </div>
