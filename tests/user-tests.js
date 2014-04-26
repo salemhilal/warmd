@@ -81,11 +81,11 @@ describe('Users', function() {
 
       });
 
-      describe('endpoints') {
+      describe('endpoints', function() {
 
-         var Tom;
+            var Tom;
 
-         before(function(done) {
+            before(function(done) {
                Tom = request.agent(app);
                Tom.post('/users/session').
                send({ username: 'Tom', password: 'test' }).
@@ -95,7 +95,7 @@ describe('Users', function() {
                   });
                });
 
-         it('should see mcbaron at 571', function (done) {
+            it('should see mcbaron at 571', function (done) {
                Tom.
                get('/app/users/571').
                end(function(err, res){
@@ -112,22 +112,22 @@ describe('Users', function() {
                   });
                });
 
-         it('should find an array of "Matt\'s"', function (done) {
-               Tom.
-               post('/users/query').
-               send('matt').
-               end(function(err, res){
-                  should.not.exist(err);
-                  should.exist(res);
-                  should.exist(res.body);
-                  res.should.be.json;
-                  res.should.have.status(200);
-                  res.should.be.type('array');
-                  res.should.not.be.empty;
-                  res.should.containDeep({User: 'msiko'});
+            it('should find an array of "Matt\'s"', function (done) {
+                  Tom.
+                  post('/users/query').
+                  send('matt').
+                  end(function(err, res){
+                     should.not.exist(err);
+                     should.exist(res);
+                     should.exist(res.body);
+                     res.should.be.json;
+                     res.should.have.status(200);
+                     res.should.be.type('array');
+                     res.should.not.be.empty;
+                     res.should.containDeep({User: 'msiko'});
 
-                  done();
+                     done();
+                     });
                   });
-               });
       });
 });
