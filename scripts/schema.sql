@@ -290,7 +290,7 @@ INSERT INTO  `warmd`.`Users` (
 `WRCTUser`
 )
 VALUES 
-('40' ,  'Tom',  'Tom',  'TOM', NULL ,  '405cb660517215b80487f363001c8fd2c2b829f4', NULL , NULL , 'Admin' , NULL ,  '')
+('40' ,  'Tom',  'Tom',  'TOM', NULL ,  '405cb660517215b80487f363001c8fd2c2b829f4', NULL , NULL , 'Admin' , NULL ,  ''),
 ('35', 'matt', 'Matt', NULL, 'matt', NULL, NULL, NULL, 'Exec', NULL, ''),
 ('61', 'matthewk', 'Matt', NULL, '', NULL, NULL, NULL, 'Exec', NULL, ''),
 ('152', 'mtheisz', 'Matt', NULL, 'other', NULL, NULL, NULL, 'Exec', NULL, ''),
