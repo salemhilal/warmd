@@ -276,6 +276,9 @@ CREATE TABLE `Users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+/* insert some things to test against*/
+
+/* Users */
 INSERT INTO  `warmd`.`Users` (
 `UserID` ,
 `User` ,
@@ -289,7 +292,7 @@ INSERT INTO  `warmd`.`Users` (
 `DateTrained` ,
 `WRCTUser`
 )
-VALUES 
+VALUES
 ('40' ,  'Tom',  'Tom',  'TOM', NULL ,  '405cb660517215b80487f363001c8fd2c2b829f4', NULL , NULL , 'Admin' , NULL ,  ''),
 ('35', 'matt', 'Matt', NULL, 'matt', NULL, NULL, NULL, 'Exec', NULL, ''),
 ('61', 'matthewk', 'Matt', NULL, '', NULL, NULL, NULL, 'Exec', NULL, ''),
@@ -311,4 +314,10 @@ VALUES
 ('575', 'mmastric', 'Matt', NULL, NULL, NULL, NULL, NULL, 'Exec', NULL, ''),
 ('639', 'mpowellp', 'Matt', NULL, NULL, NULL, NULL, NULL, 'User', NULL, ''),
 ('683', 'mgoodnight', 'Matthew', NULL, NULL, NULL, NULL, NULL, 'Trainee', NULL, '');
+
+/* Artists */
+
+NSERT INTO `Artists` (`ArtistID`, `Artist`, `ShortName`, `Comment`) VALUES
+(429, 'Daft Punk', 'daft', NULL);
+
 
