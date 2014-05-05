@@ -317,7 +317,7 @@ VALUES
 
 /* Artists */
 
-NSERT INTO `Artists` (`ArtistID`, `Artist`, `ShortName`, `Comment`) VALUES
+INSERT INTO `Artists` (`ArtistID`, `Artist`, `ShortName`, `Comment`) VALUES
 (429, 'Daft Punk', 'daft', NULL);
 
 
