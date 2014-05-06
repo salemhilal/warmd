@@ -163,7 +163,6 @@ describe('Endpoints', function() {
                should.exist(res.body);
                res.should.be.json;
                res.should.have.status(200);
-               res.body.should.not.be.empty;
                res.body.Album.should.equal('More Than Just a Dream');
                res.body.Year.should.equal('2013');
 
@@ -211,6 +210,34 @@ describe('Endpoints', function() {
 
       });
 
+      describe('dealing with programs', function() {
+         var Tom;
 
+         before(function(done) {
+            Tom = request.agent(app);
+            Tom.post('/users/session').
+            send({ username: 'Tom', password: 'test' }).
+            end(function(err, res) {
+               if (err) { return done(err); }
+               done();
+               });
+            });
+
+         it('should find a show at /program/32', function(done){
+            Tom.
+            get('/program/32').
+            end(function(err, res){
+               should.not.exist(err);
+               should.exist(res);
+               should.exist(res.body);
+               res.should.be.json;
+               res.should.have.status(200);
+               res.body.
+
+               done()
+            });
+
+         });
+      });
 
 });
