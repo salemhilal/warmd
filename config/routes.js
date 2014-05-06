@@ -48,8 +48,8 @@ module.exports = function(app, config, passport) {
   /* User Routes */
   var userRouter = express.Router().
     param('user', users.load).
-    post('/query', users.query).
-    post('/new', users.create).
+    post('/query', users.isAuthed, users.query).
+    post('/new', users.isAuthed, users.create). //
     get('/:user', users.isAuthed, users.show);
   app.use('/users', userRouter);
 
@@ -64,7 +64,7 @@ module.exports = function(app, config, passport) {
   var programRouter = express.Router().
     param('program', programs.load).
     get('/:program', programs.show).
-    put('/:program', programs.update);
+    put('/:program', users.isAuthed, programs.update);
   app.use('/programs', programRouter);
 
   /* Playlist Routes */
@@ -78,19 +78,19 @@ module.exports = function(app, config, passport) {
   /* Play Routes */
   var playRouter = express.Router().
     param('play', plays.load).
-    post('/', plays.create).
+    post('/', users.isAuthed, plays.create).
     post('/query', plays.query).
     get('/:play', plays.show).
-    put('/:play', plays.update);
+    put('/:play', users.isAuthed, plays.update);
   app.use('/plays', playRouter);
 
   /* Album routes */
   var albumRouter = express.Router().
     param('album', album.load).
-    post('/query', album.query).
-    get('/cover', album.cover).
-    get('/:album', album.show).
-    put('/:album', album.update);
+    post('/query', users.isAuthed, album.query).
+    get('/cover', users.isAuthed, album.cover).
+    get('/:album', users.isAuthed, album.show).
+    put('/:album', users.isAuthed, album.update);
   app.use('/albums', albumRouter);
 
   /* Review routes */
