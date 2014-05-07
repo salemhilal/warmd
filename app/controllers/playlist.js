@@ -20,6 +20,8 @@ module.exports = {
   },
 
   create: function(req, res) {
+    //TODO: check if playlist with same start / end times exists  
+
     var newPlaylist = req.body;
     new Playlist({
       StartTime: newPlaylist.startTime,

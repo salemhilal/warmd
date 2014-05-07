@@ -14,15 +14,17 @@
       <hr>
       <center><h5><small>There aren't currently any tracks in this playlist</small></h5></center>
     </div>
-    <ul class="list-group" ui-sortable ng-model="plays">
-      <li class="list-group-item" ng-repeat="play in plays">
-        <div style="margin-right: 40px">
+    <div class="list-group" ui-sortable="sortOptions" ng-model="plays">
+      <a class="list-group-item" ng-repeat="play in plays">
+        <div style="">
           <strong>{{play.artist.Artist || "Unknown artist"}}</strong> - {{play.TrackName || "Untitled"}}
-          <span class="pull-right label label-danger" ng-show="play.B=='Yes'">bin</span>
+          <span class="label label-danger" ng-show="play.B=='Yes'" style="margin-left: 15px;">bin</span>
+          <span class="pull-right handle" style="">
+            <img src="/resources/images/icons/svg/more.svg" alt=""/>
+          </span>
         </div>
-        <span class="fui-list" style="position: absolute; top:10px; right: 15px; color: #bdc3c7"></span>
-      </li>
-    </ul>
+      </a>
+    </div>
   </div>
 
 
@@ -68,7 +70,7 @@
           <div class="list-group" style="margin-top: 20px">
             <a class="list-group-item" ng-repeat="album in newArtist.selection.albums" style="padding: 5px 15px" ng-click="submitAlbum(album)">
               {{album.Album}}
-              <span class="pull-right label label-danger" ng-show="album.Status=='Bin'">bin</span>
+              <span class="label label-danger" ng-show="album.Status=='Bin'" style="margin-left: 15px;">bin</span>
             </a>
           </div>
         </div>

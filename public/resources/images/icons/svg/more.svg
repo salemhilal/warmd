@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.2" baseProfile="tiny" id="Your_Icon" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100" xml:space="preserve">
+<circle cx="45" cy="25" r="3"/>
+<circle cx="45" cy="15" r="3"/>
+<circle cx="55" cy="25" r="3"/>
+<circle cx="55" cy="15" r="3"/>
+<circle cx="45" cy="55" r="3"/>
+<circle cx="45" cy="45" r="3"/>
+<circle cx="55" cy="55" r="3"/>
+<circle cx="55" cy="45" r="3"/>
+<circle cx="45" cy="85" r="3"/>
+<circle cx="45" cy="75" r="3"/>
+<circle cx="55" cy="85" r="3"/>
+<circle cx="55" cy="75" r="3"/>
+</svg>

@@ -11,6 +11,10 @@ warmdApp.controller("PlaylistCtrl", ["$scope", "$http", "$routeParams", function
   $scope.newAlbum = {};
   $scope.newTrack = {};
 
+  $scope.sortOptions = {
+    handle: ".handle" // Only let things be dragged by their handles
+  };
+
 
   $scope.$watch('plays', function() {
     angular.forEach($scope.plays, function(play, index) {

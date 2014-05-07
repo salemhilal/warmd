@@ -1,41 +1,61 @@
 <div class="row">
   <div class="col-md-4">
 
-    <!-- TODO: Hide this tile if they're not a dj or producer -->
-    <div class="tile">
-      <h4>Shows</h4>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="tile">
+          <h4>Your Info</h4>
+          <div style="text-align:left;">
 
-      <div class="row">
-
-        <!-- Start new playlist -->
-        <div class="col-md-12">
-          <div class="btn-group row" style="width:100%; margin-bottom: 15px;">
-            <button type="button" class="btn btn-block btn-default dropdown-toggle col-md-12" data-toggle="dropdown">
-              Start a new playlist <span class="caret"></span>
-              </button>
-            <ul class="dropdown-menu dropdown-inverse col-md-12" role="menu" style="width:100%">
-              <li ng-repeat="program in filteredPrograms"><a href="#/playlist/new/{{program.ProgramID}}">{{program.Program}}</a></li>
-              <li ng-hide="!filteredPrograms.length" class="divider"></li>
-              <li><a href="#">Random Playlist</a></li>
-            </ul>
+            <div><strong>Name:</strong> <span class="pull-right">{{user.FName}} {{user.LName}}</span></div>
+            <div><strong>WRCT ID:</strong> <span class="pull-right">{{user.User}}</span></div>
+            <div><strong>Phone:</strong> <span class="pull-right">{{user.Phone}}</span></div>
+            <div><strong>Email:</strong> <span class="pull-right">{{user.Email}}</span></div>
           </div>
+
         </div>
+      </div>
+    </div>
 
-        <!-- List shows -->
-        <div class="col-md-12">
-          <ul style="text-align: left;" class="list-group">
-            <li class="list-group-item" ng-repeat="program in filteredPrograms = (user.programs | activePrograms)">
-              <a ng-href="#/programs/{{program.ProgramID}}">{{program.Program}}
-              <br/>
-              <small class="help-link">{{getProgramTime(program)}}</small></a>
-            </li>
-          </ul>
-          <div ng-show="!filteredPrograms.length">No shows</div>
+    <div class="row">
+      <div class="col-md-12">
+        <!-- TODO: Hide this tile if they're not a dj or producer -->
+        <div class="tile">
+          <h4>Shows</h4>
+
+          <div class="row">
+
+            <!-- Start new playlist -->
+            <div class="col-md-12">
+              <div class="btn-group row" style="width:100%; margin-bottom: 15px;">
+                <button type="button" class="btn btn-block btn-default dropdown-toggle col-md-12" data-toggle="dropdown">
+                  Start a new playlist <span class="caret"></span>
+                  </button>
+                <div class="dropdown-menu dropdown-inverse col-md-12" role="menu" style="width:100%">
+                  <li ng-repeat="program in filteredPrograms">
+                    <a ng-click="createPlaylist(program)">{{program.Program}}</a>
+                  </li>
+                  <li ng-hide="!filteredPrograms.length" class="divider"></li>
+                  <li><a ng-click="createPlaylist()">Random Playlist</a></li>
+                </div>
+              </div>
+            </div>
+
+            <!-- List shows -->
+            <div class="col-md-12">
+              <ul style="text-align: left;" class="list-group">
+                <li class="list-group-item" ng-repeat="program in filteredPrograms = (user.programs | activePrograms)">
+                  <a ng-href="#/programs/{{program.ProgramID}}">{{program.Program}}
+                  <br/>
+                  <small class="help-link">{{getProgramTime(program)}}</small></a>
+                </li>
+              </ul>
+              <div ng-show="!filteredPrograms.length">No shows</div>
+            </div>
+
+          </div><!-- /.rows -->
         </div>
-
-
-      </div><!-- /.rows -->
-
+      </div>
     </div>
   </div>
 
@@ -53,9 +73,17 @@
       </div>
     </div>
   </div>
+
   <div class="col-md-4">
     <div class="tile">
-      <h4>Trending Albums</h4>
+      <h4>Featured Album</h4>
+      <a href="#/albums/45256">
+        <img style="box-sizing: border-box; padding: 15px" src="http://a2.mzstatic.com/us/r30/Music/v4/40/ba/23/40ba239d-f01a-4f54-14a2-6d9e4d3a2ebf/submotion_Fragments_itunes_2400_2.600x600-75.jpg" width="100%"/>
+        <strong style="padding-top: 15px">Submotion Orchestra - Fragments</strong>
+      </a>
+
     </div>
   </div>
+
+
 </div>

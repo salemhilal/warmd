@@ -44,6 +44,18 @@
   text-align: left;
 }
 
+.handle img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  margin-right: -8px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  opacity: 0.5;
+  cursor: move;
+}
+
 /* Bootstrap overwrites */
 /* NOTE: May include !important flags, as we're
    loading bootstrap from a CDN. */
