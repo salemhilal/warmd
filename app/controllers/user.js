@@ -59,12 +59,12 @@ module.exports = {
   // Look up user
   load: function(req, res, next, id) {
     User.forge({
-      userID: id
-    })
+        userID: id
+      })
       .fetch({
         require: true
       }) // Make sure we find a matching ID
-    .then(function(user) {
+      .then(function(user) {
       // Can't do req.user, interferes with passport
       req.userData = user;
       next();
@@ -113,18 +113,18 @@ module.exports = {
     // var q1 = DB.knex("Users").select(DB.knex./  )
 
     Users.
-    forge().
-    query(function(qb) {
-      qb.
-      where("User", "like", "%" + query + "%").
-      orWhere("FName", "like", "%" + query + "%").
-      orWhere("LName", "like", "%" + query + "%");
+      forge().
+      query(function(qb) {
+        qb.
+          where("User", "like", "%" + query + "%").
+          orWhere("FName", "like", "%" + query + "%").
+        orWhere("LName", "like", "%" + query + "%");
 
-      if (limit && typeof limit === "number") {
-        qb.limit(limit);
-      }
-    }).
-    fetch().
+        if (limit && typeoflimit === "number") {
+          qb.limit(limit);
+        }
+      }).
+      fetch().
     then(function(collection) {
       res.json(200, collection.toJSON({
         shallow: true

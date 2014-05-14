@@ -1,36 +1,42 @@
+"use strict";
+
 var DB = require('bookshelf').DB,
-    Artist = require('../models/artist').model,
-    Artists = require('../models/artist').collection,
-    Album = require('../models/album').model;
+  Artist = require('../models/artist').model,
+  Artists = require('../models/artist').collection,
+  Album = require('../models/album').model;
 
 
 module.exports = {
 
   // Look up artist in context of request
   load: function(req, res, next, id) {
-    Artist.forge({ ArtistID: id })
+    Artist.forge({
+        ArtistID: id
+      })
       .fetch({
         withRelated: ['albums'],
-       })
-      .then(function (artist) {
-        req.artist = artist;
-        next();
-      }, function (err) {
-        if(err.message && err.message.indexOf("EmptyResponse") !== -1) {
-          next(new Error('not found'));
-        } else {
-          next(err);
-        }
-      });
+      })
+      .then(function(artist) {
+      req.artist = artist;
+      next();
+    }, function(err) {
+      if (err.message && err.message.indexOf("EmptyResponse") !== -1) {
+        next(new Error('not found'));
+      } else {
+        next(err);
+      }
+    });
   },
 
   // Get data about a specific user.
   // TODO: JSON only.
   show: function(req, res) {
-    if(req.artist){
+    if (req.artist) {
       res.json(200, req.artist);
     } else {
-      res.json(404, {error: "Artist not found"});
+      res.json(404, {
+        error: "Artist not found"
+      });
     }
   },
 
@@ -40,7 +46,7 @@ module.exports = {
     var limit = req.body.limit;
 
     // Make sure this query is a thang.
-    if(!query || typeof query !== "string") {
+    if (!query || typeofquery !== "string") {
       res.json(400, {
         error: "bad request"
       });
@@ -72,39 +78,38 @@ module.exports = {
 
     // Of those, make sure they're distinct, and enforce an ordering and a limit.
     // We order first by relevancy, then by name. Relevancy is ordered as per the above queries.
-    var qb = DB.knex("Artists").              // Create a query builder on the Artists table
-        select("*").                          // select *
-        groupBy("ArtistID").                  // group by ArtistID
-        from(DB.knex.raw("((" +               // from (
-            q1.toString() + ") union (" +     //   q1 union
-            q2.toString() + ") union (" +     //   q2 union
-            q3.toString() + ")) X")).         //   q3
-        orderBy("rank").                      // ) order by rank, Artist
-        orderBy("Artist");                    //
+    var qb = DB.knex("Artists"). // Create a query builder on the Artists table
+    select("*"). // select *
+    groupBy("ArtistID"). // group by ArtistID
+    from(DB.knex.raw("((" + // from (
+                q1.toString() + ") union (" + //   q1 union
+            q2.toString() + ") union (" + //   q2 union
+        q3.toString() + ")) X")). //   q3
+    orderBy("rank"). // ) order by rank, Artist
+    orderBy("Artist"); //
 
     // If there's a limit, add it to the query builder.
-    if(limit) {
+    if (limit) {
       qb.limit(limit);
     }
 
     // Define promise resolution. Boy do I like promises.
     qb.
       then(function(results) {
-        if(results.length > 0) {
+        if (results.length > 0) {
           return Artists.forge(results).load('albums');
         } else {
           return results;
         }
       }).
-      then(function(results) {
-        res.json(200, results);
-      }, function (err) {
-        res.json(500, err.toString());
-      });
+    then(function(results) {
+      res.json(200, results);
+    }, function(err) {
+      res.json(500, err.toString());
+    });
 
 
 
 
   }
-
 };
