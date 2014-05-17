@@ -120,7 +120,7 @@ module.exports = {
           orWhere("FName", "like", "%" + query + "%").
         orWhere("LName", "like", "%" + query + "%");
 
-        if (limit && typeoflimit === "number") {
+        if (limit && typeof limit === "number") {
           qb.limit(limit);
         }
       }).

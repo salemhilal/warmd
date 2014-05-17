@@ -46,7 +46,7 @@ module.exports = {
     var limit = req.body.limit;
 
     // Make sure this query is a thang.
-    if (!query || typeofquery !== "string") {
+    if (!query || typeof query !== "string") {
       res.json(400, {
         error: "bad request"
       });
@@ -107,9 +107,6 @@ module.exports = {
     }, function(err) {
       res.json(500, err.toString());
     });
-
-
-
 
   }
 };

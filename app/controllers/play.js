@@ -67,19 +67,19 @@ module.exports = {
           error: "No such play",
           details: err
         });
-      })
+      });
     }
   },
 
   query: function(req, res) {
     var playlistID = req.body.playlistID;
-    var limit = req.body.limit
+    var limit = req.body.limit;
 
     Play.collection.forge().
       query(function(qb) {
         qb.where('PlayListID', '=', playlistID);
 
-        if (limit && typeoflimit === "number") {
+        if (limit && typeof limit === "number") {
           qb.limit(limit);
         }
       }).
