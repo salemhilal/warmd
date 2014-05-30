@@ -283,7 +283,7 @@ describe('Endpoints', function() {
                res.body.should.not.be.empty;
                res.body.UserID.should.equal(168);
                res.body.ProgramID.should.equal(32);
-               res.body.Comment.should.be.empty;
+               res.body.Comment.should.not.be.ok;
 
                done();
             });
@@ -301,7 +301,8 @@ describe('Endpoints', function() {
                res.should.have.status(200);
                res.body.should.not.be.empty;
                res.body.ProgramID.should.equal(32);
-               res.body.Comment.should.not.equal('The Mock: Testing');
+               res.body.Comment.should.equal('The Mock: Testing');
+               res.body.should.be.ok;
 
                done();
             });
