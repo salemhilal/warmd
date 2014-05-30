@@ -156,7 +156,7 @@ describe('Endpoints', function() {
 
          it('should find More Than Just a Dream at /albums/46679', function(done) {
             Tom.
-            get('/album/46679').
+            get('/albums/46679').
             end(function(err, res){
                should.not.exist(err);
                should.exist(res);
@@ -170,9 +170,9 @@ describe('Endpoints', function() {
             });
          });
 
-         it('should search at /album/query', function(done){
+         it('should search at /albums/query', function(done){
             Tom.
-            post('/album/query').
+            post('/albums/query').
             send({query: 'More'}).
             end(function(err, res){
                should.not.exist(err);
@@ -190,7 +190,7 @@ describe('Endpoints', function() {
 
          it('should let me update', function(done) {
             Tom.
-            put('/album/46679').
+            put('/albums/46679').
             send({Status: 'Library'}).
             end(function(err, res) {
                should.not.exist(err);
