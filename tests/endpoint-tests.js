@@ -164,7 +164,7 @@ describe('Endpoints', function() {
                res.should.be.json;
                res.should.have.status(200);
                res.body.Album.should.equal('More Than Just a Dream');
-               res.body.Year.should.equal('2013');
+               res.body.Year.should.equal(2013);
 
                done()
             });
@@ -223,21 +223,90 @@ describe('Endpoints', function() {
                });
             });
 
-         it('should find a show at /program/32', function(done){
+         it('should find a show at /programs/32', function(done){
             Tom.
-            get('/program/32').
+            get('/programs/32').
             end(function(err, res){
                should.not.exist(err);
                should.exist(res);
                should.exist(res.body);
                res.should.be.json;
                res.should.have.status(200);
-               res.body.
+               res.body.should.not.be.empty;
+               res.body.Promocode.should.equal('PROF0818');
+               res.body.should.be.ok;
 
                done()
             });
-
          });
+
+         it('should let me update', function(done) {
+            Tom.
+            put('/programs/32').
+            send({Promocode: 'PROS1418'}).
+            end(function(err, res) {
+               should.not.exist(err);
+               should.exist(res);
+               should.exist(res.body);
+               res.should.be.json;
+               res.should.have.status(200);
+               res.body.should.not.be.empty;
+               res.body.Program.should.equal('Viva le Mock');
+               res.body.Promocode.should.not.equal('PROF0818');
+
+               done();
+            });
+         });
+      });
+
+      describe('dealing with playlists', function() {
+         var Tom;
+
+         before(function(done) {
+            Tom = request.agent(app);
+            Tom.post('/users/session').
+            send({ username: 'Tom', password: 'test' }).
+            end(function(err, res) {
+               if (err) { return done(err); }
+               done();
+               });
+            });
+         it('should find a VlM playlist at /playlists/21702', function(done) {
+            Tom.
+            get('/playlists/21702').
+            end(function(err, res) {
+               should.not.exist(err);
+               should.exist(res);
+               should.exist(res.body);
+               res.should.be.json;
+               res.should.have.status(200);
+               res.body.should.not.be.empty;
+               res.body.UserID.should.equal(168);
+               res.body.ProgramID.should.equal(32);
+               res.body.Comment.should.be.empty;
+
+               done();
+            });
+         });
+
+         it('should let me update', function(done) {
+            Tom.
+            put('/playlists/21702').
+            send({Comment: 'The Mock: Testing'}).
+            end(function(err, res) {
+               should.not.exist(err);
+               should.exist(res);
+               should.exist(res.body);
+               res.should.be.json;
+               res.should.have.status(200);
+               res.body.should.not.be.empty;
+               res.body.ProgramID.should.equal(32);
+               res.body.Comment.should.not.equal('The Mock: Testing');
+
+               done();
+            });
+         });
+
       });
 
 });
