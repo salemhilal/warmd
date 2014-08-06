@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var DB = require('bookshelf').DB,
   Album = require('../models/album').model,
@@ -32,7 +32,7 @@ module.exports = {
       res.json(200, req.album);
     } else {
       res.json(404, {
-        error: "Album not found"
+        error: 'Album not found'
       });
     }
   },
@@ -41,7 +41,7 @@ module.exports = {
   update: function(req, res) {
     if (!req.album) {
       res.json(404, {
-        error: "Album not found"
+        error: 'Album not found'
       });
     } else {
       req.album.
@@ -53,7 +53,7 @@ module.exports = {
         res.json(200, model);
       }, function(err) {
         res.json(400, {
-          error: "Error updating playlist",
+          error: 'Error updating playlist',
           details: err
         });
       });
@@ -63,9 +63,9 @@ module.exports = {
   // Gives album art results the given query. Returns the first result. Not very creative.
   // TODO: Make this a bit smarter. i.e. have return only one album, for example.
   cover: function(req, res) {
-    console.log("Looking up:", req.query.artist, req.query.album);
-    console.log("Querying iTunes for " + '/search?term=' + encodeURI(req.query.artist) + "+" + encodeURI(req.query.album));
-    iTunes.get('/search?term=' + encodeURI(req.query.artist) + "%20" + encodeURI(req.query.album), function(err, meta, body) {
+    console.log('Looking up:', req.query.artist, req.query.album);
+    console.log('Querying iTunes for ' + '/search?term=' + encodeURI(req.query.artist) + '+' + encodeURI(req.query.album));
+    iTunes.get('/search?term=' + encodeURI(req.query.artist) + '%20' + encodeURI(req.query.album), function(err, meta, body) {
       if (!err) {
         res.json(200, body);
       } else {
@@ -81,27 +81,27 @@ module.exports = {
     var limit = req.body.limit;
 
     // Make sure this query is a thang.
-    if (!query || typeof query !== "string") {
+    if (!query || typeof query !== 'string') {
       res.json(400, {
-        error: "bad request"
+        error: 'bad request'
       });
     }
 
     // Sub-queries
-    var q1 = DB.knex("Albums").select(DB.knex.raw("*, 1 as `rank`")).from("Albums").where("Album", "like", query);
-    var q2 = DB.knex("Albums").select(DB.knex.raw("*, 2 as `rank`")).from("Albums").where("Album", "like", query + "%");
-    var q3 = DB.knex("Albums").select(DB.knex.raw("*, 3 as `rank`")).from("Albums").where("Album", "like", "%" + query + "%");
+    var q1 = DB.knex('Albums').select(DB.knex.raw('*, 1 as `rank`')).from('Albums').where('Album', 'like', query);
+    var q2 = DB.knex('Albums').select(DB.knex.raw('*, 2 as `rank`')).from('Albums').where('Album', 'like', query + '%');
+    var q3 = DB.knex('Albums').select(DB.knex.raw('*, 3 as `rank`')).from('Albums').where('Album', 'like', '%' + query + '%');
 
     // Cumulate these queries together
-    var qb = DB.knex("Albums").
-    select("*").
-    groupBy("AlbumID").
-    from(DB.knex.raw("((" +
-                q1.toString() + ") union (" +
-            q2.toString() + ") union (" +
-        q3.toString() + ")) X")).
-    orderBy("rank").
-    orderBy("Album");
+    var qb = DB.knex('Albums').
+    select('*').
+    groupBy('AlbumID').
+    from(DB.knex.raw('((' +
+                q1.toString() + ') union (' +
+            q2.toString() + ') union (' +
+        q3.toString() + ')) X')).
+    orderBy('rank').
+    orderBy('Album');
 
     // If there's a limit, add it to the query builder.
     if (limit) {

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var warmdApp = angular.module('warmdApp', [
   'ngRoute', 'ui.sortable'

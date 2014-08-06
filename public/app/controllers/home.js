@@ -4,7 +4,6 @@
 warmdApp.controller("HomeCtrl", ["$scope", "$http", "$location", function($scope, $http, $location) {
 
     console.log("HomeCtrl");
-    console.log($scope.user);
 
     $scope.showProgram = function(program) {
       return (program.StartTime != program.EndTime);

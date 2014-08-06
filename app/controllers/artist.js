@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var DB = require('bookshelf').DB,
   Artist = require('../models/artist').model,
@@ -20,7 +20,7 @@ module.exports = {
       req.artist = artist;
       next();
     }, function(err) {
-      if (err.message && err.message.indexOf("EmptyResponse") !== -1) {
+      if (err.message && err.message.indexOf('EmptyResponse') !== -1) {
         next(new Error('not found'));
       } else {
         next(err);
@@ -35,7 +35,7 @@ module.exports = {
       res.json(200, req.artist);
     } else {
       res.json(404, {
-        error: "Artist not found"
+        error: 'Artist not found'
       });
     }
   },
@@ -46,9 +46,9 @@ module.exports = {
     var limit = req.body.limit;
 
     // Make sure this query is a thang.
-    if (!query || typeof query !== "string") {
+    if (!query || typeof query !== 'string') {
       res.json(400, {
-        error: "bad request"
+        error: 'bad request'
       });
     }
 
@@ -67,26 +67,26 @@ module.exports = {
 
     */
 
-    // TODO: Replace things like " and ", " the ", " + ", " & ", etc. with " % "
+    // TODO: Replace things like ' and ', ' the ', ' + ', ' & ', etc. with ' % '
     // Query exact matches (most relevant)
-    var q1 = DB.knex("Artists").select(DB.knex.raw("*, 1 as `rank`")).from("Artists").where("Artist", "like", query);
-    // Query "starts with" matches
-    var q2 = DB.knex("Artists").select(DB.knex.raw("*, 2 as `rank`")).from("Artists").where("Artist", "like", query + "%");
-    // Query "contains" matches (least relevant)
-    var q3 = DB.knex("Artists").select(DB.knex.raw("*, 3 as `rank`")).from("Artists").where("Artist", "like", "%" + query + "%");
+    var q1 = DB.knex('Artists').select(DB.knex.raw('*, 1 as `rank`')).from('Artists').where('Artist', 'like', query);
+    // Query 'starts with' matches
+    var q2 = DB.knex('Artists').select(DB.knex.raw('*, 2 as `rank`')).from('Artists').where('Artist', 'like', query + '%');
+    // Query 'contains' matches (least relevant)
+    var q3 = DB.knex('Artists').select(DB.knex.raw('*, 3 as `rank`')).from('Artists').where('Artist', 'like', '%' + query + '%');
 
 
     // Of those, make sure they're distinct, and enforce an ordering and a limit.
     // We order first by relevancy, then by name. Relevancy is ordered as per the above queries.
-    var qb = DB.knex("Artists"). // Create a query builder on the Artists table
-    select("*"). // select *
-    groupBy("ArtistID"). // group by ArtistID
-    from(DB.knex.raw("((" + // from (
-                q1.toString() + ") union (" + //   q1 union
-            q2.toString() + ") union (" + //   q2 union
-        q3.toString() + ")) X")). //   q3
-    orderBy("rank"). // ) order by rank, Artist
-    orderBy("Artist"); //
+    var qb = DB.knex('Artists'). // Create a query builder on the Artists table
+    select('*'). // select *
+    groupBy('ArtistID'). // group by ArtistID
+    from(DB.knex.raw('((' + // from (
+                q1.toString() + ') union (' + //   q1 union
+            q2.toString() + ') union (' + //   q2 union
+        q3.toString() + ')) X')). //   q3
+    orderBy('rank'). // ) order by rank, Artist
+    orderBy('Artist'); //
 
     // If there's a limit, add it to the query builder.
     if (limit) {
