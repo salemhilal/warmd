@@ -339,7 +339,7 @@ INSERT INTO `Plays` (`Time`, `PlayID`, `Ordering`, `PlayListID`, `ArtistID`, `Al
 
 /* Programs for those plays */
 INSERT INTO `Programs` (`ProgramID`, `Program`, `UserID`, `StartTime`, `EndTime`, `Promo`, `Promocode`, `Type`, `isActive`, `DJName`, `Website`) VALUES
-(32, 'Viva le Mock', 168, '2012-08-31 21:00:00', '2012-09-01 01:00:00', 'Hey, do you remember that kid you picked on in high school?', 'PROS14018', 'show', 1, 'The Mockster', NULL);
+(32, 'Viva le Mock', 168, '2012-08-31 21:00:00', '2012-09-01 01:00:00', 'Hey, do you remember that kid you picked on in high school?', 'PROS1418', 'show', 1, 'The Mockster', NULL);
 
 /* Playlists for those shows */
 INSERT INTO `PlayLists` (`PlayListID`, `StartTime`, `EndTime`, `UserID`, `ProgramID`, `PlayList`, `Comment`) VALUES
