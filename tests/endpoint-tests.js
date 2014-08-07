@@ -1,12 +1,12 @@
-"use strict";
+'use strict';
 /* Test all sorts of endpoints */
 
 /* global describe, it, before */
 
 var should = require('should'),
-  request = require('supertest'),
-  app = require('../server'),
-  context = describe;
+    request = require('supertest'),
+    app = require('../server'),
+    context = describe;
 
 
 describe('Endpoints', function() {
@@ -263,7 +263,7 @@ describe('Endpoints', function() {
         res.should.be.json;
         res.should.have.status(200);
         res.body.should.not.be.empty;
-        res.body.Promocode.should.equal('PROF0818');
+        res.body.Promocode.should.equal('PROS1418');
         res.body.should.be.ok;
 
         done()
@@ -320,7 +320,7 @@ describe('Endpoints', function() {
         res.body.should.not.be.empty;
         res.body.UserID.should.equal(168);
         res.body.ProgramID.should.equal(32);
-        res.body.Comment.should.not.be.ok;
+        res.body.Comment.should.equal("The Mock: Testing");
 
         done();
       });
