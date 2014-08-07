@@ -339,11 +339,11 @@ INSERT INTO `Plays` (`Time`, `PlayID`, `Ordering`, `PlayListID`, `ArtistID`, `Al
 
 /* Programs for those plays */
 INSERT INTO `Programs` (`ProgramID`, `Program`, `UserID`, `StartTime`, `EndTime`, `Promo`, `Promocode`, `Type`, `isActive`, `DJName`, `Website`) VALUES
-(32, 'Viva le Mock', 168, '2012-08-31 21:00:00', '2012-09-01 01:00:00', 'Hey, do you remember that kid you picked on in high school?', 'PROF0818', 'show', 1, 'The Mockster', NULL);
+(32, 'Viva le Mock', 168, '2012-08-31 21:00:00', '2012-09-01 01:00:00', 'Hey, do you remember that kid you picked on in high school?', 'PROS14018', 'show', 1, 'The Mockster', NULL);
 
 /* Playlists for those shows */
 INSERT INTO `PlayLists` (`PlayListID`, `StartTime`, `EndTime`, `UserID`, `ProgramID`, `PlayList`, `Comment`) VALUES
-(21702, '2013-11-01 21:00:00', '2013-11-02 01:00:00', 168, 32, 'View', NULL),
+(21702, '2013-11-01 21:00:00', '2013-11-02 01:00:00', 168, 32, 'View', 'The Mock: Testing'),
 (21712, '2013-11-04 09:00:00', '2013-11-04 10:00:00', 671, 698, 'View', NULL),
 (21780, '2013-11-15 21:00:00', '2013-11-16 01:00:00', 168, 32, 'View', 'The Mock:  Bananarama'),
 (21816, '2013-11-22 21:00:00', '2013-11-23 01:00:00', 168, 32, 'View', 'The Mock: JFK Assassination (50th Anniversary)'),
