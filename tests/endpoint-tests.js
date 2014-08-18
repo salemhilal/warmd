@@ -266,7 +266,7 @@ describe('Endpoints', function() {
         res.body.Promocode.should.equal('PROS1418');
         res.body.should.be.ok;
 
-        done()
+        done();
       });
     });
 

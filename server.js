@@ -1,4 +1,5 @@
-"use strict";
+/* jshint node: true */
+'use strict';
 
 //================================
 // Globals =======================
@@ -11,7 +12,8 @@ var express = require('express'),
   https = require('https'),
   fs = require('fs'),
   app = express(),
-  Bookshelf = require('bookshelf');
+  bookshelf = require('bookshelf'),
+  knex = require('knex');
 
 
 // Configs
@@ -45,27 +47,20 @@ try {
 }
 
 //================================
-// Bootstrapping  ================
+// Database ======================
 //================================
 
-// DB connection
-
-// TODO: All this in a config file mayhaps?
-// We add the db to the scope of the library
-// Because javascript and awkward best practices.
-Bookshelf.DB = Bookshelf.initialize({
+var knexConfig = knex({
   client: 'mysql',
   connection: keys.mysql,
   debug: config.debug
 });
-// Use bookshelf plugins
-Bookshelf.DB.plugin('visibility');
-
-// Passport
-require('./config/passport')(passport, config);
-
-// Express config, routes
-require("./config/express")(app, config, passport);
+var db = bookshelf(knexConfig);                     // Initialize Bookshelf
+db.plugin('visibility');                            // Use visibility plugin
+bookshelf.DB = db;                                  // Expose globally 
+app.set('bookshelf', bookshelf);
+require('./config/passport')(passport, config);     // Passport
+require("./config/express")(app, config, passport); // Express config, routes
 
 //================================
 // Initialize ====================
@@ -74,8 +69,15 @@ require("./config/express")(app, config, passport);
 // Start app
 var port = process.env.PORT || config.port || 3000;
 var server = https.createServer(options, app).listen(port, function() {
+  wlog.info('__          __     _____  __  __ _____  ');
+  wlog.info('\\ \\        / /\\   |  __ \\|  \\/  |  __ \\ ');
+  wlog.info(' \\ \\  /\\  / /  \\  | |__) | \\  / | |  | |');
+  wlog.info('  \\ \\/  \\/ / /\\ \\ |  _  /| |\\/| | |  | |');
+  wlog.info('   \\  /\\  / ____ \\| | \\ \\| |  | | |__| |');
+  wlog.info('    \\/  \\/_/    \\_\\_|  \\_\\_|  |_|_____/ ');
+  wlog.info('');
 
-  wlog.info("\n\nWARMD now running on port " + port);
+  wlog.info("WARMD now running on port " + port);
   wlog.info("running in " + env + " environment");
   if (config.verbose) {
     console.log("Verbose mode on");
