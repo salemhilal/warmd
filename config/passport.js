@@ -1,23 +1,11 @@
-"use strict";
+'use strict';
 
 var LocalStrategy = require('passport-local').Strategy,
    crypto = require('crypto'),
    DB = require('bookshelf').DB,
-   User = require('../app/models/user').model;
-
-// Password verification functions
-
-var encryptPassword = function(password, username){
-  if (!password) { return ''; }
-  var encrypted, salt;
-  try {
-    salt = crypto.createCipher('aes256', password+username).final('hex');
-    encrypted = crypto.createHmac('sha1', salt).update(password).digest('hex');
-    return encrypted;
-  } catch  (err) {
-    return 'There was error!';
-  }
-};
+   User = require('../app/models/user').model, 
+   utils = require('./middlewares/utils'),
+   encryptPassword = utils.encryptPassword;
 
 module.exports = function(passport) {
 
@@ -40,8 +28,8 @@ module.exports = function(passport) {
           done(null, user);
         }
       }, function(err) {
-         if (err.message && err.message.indexOf("EmptyResponse") !== -1) {
-            done(new Error("No such user"));
+         if (err.message && err.message.indexOf('EmptyResponse') !== -1) {
+            done(new Error('No such user'));
          } else {
             done(err);
          }

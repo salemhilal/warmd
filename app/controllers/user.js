@@ -1,8 +1,9 @@
-"use strict";
+'use strict';
 
 var DB = require('bookshelf').DB,
-  User = require('../models/user').model,
-  Users = require('../models/user').collection;
+    User = require('../models/user').model,
+    Users = require('../models/user').collection,
+    encryptPassword = require('../../config/middlewares/utils').encryptPassword;
 
 module.exports = {
 
@@ -14,7 +15,7 @@ module.exports = {
       json: function() {
         // TODO: Make sure JSON errors are formatted uniformly. Maybe a util function?
         res.json(401, {
-          error: "You don't have permission to view this resource. Try loggin in."
+          error: 'You don\'t have permission to view this resource. Try loggin in.'
         });
       },
 
@@ -69,7 +70,7 @@ module.exports = {
       req.userData = user;
       next();
     }, function(err) {
-      if (err.message && err.message.indexOf("EmptyResponse") !== -1) {
+      if (err.message && err.message.indexOf('EmptyResponse') !== -1) {
         next(new Error('not found'));
       } else {
         next(err);
@@ -98,29 +99,37 @@ module.exports = {
   },
 
   create: function(req, res) {
-    console.log(req.body);
+    console.log('New user: ', req.body);
     // TODO: Implement this behind privileged auth
-    res.json({
-      response: "aww yeah"
+    new User({
+      User: req.body.User, 
+      FName: req.body.FName,
+      LName: req.body.LName,
+      Password: encryptPassword(req.body.Password, req.body.User),
+      Phone: req.body.Phone,
+      Email: req.body.Email,
+      AuthLevel: 'None'
+    }).save().then(function(model) {
+      // TODO: SEND AN EMAIL HERE!
+      res.json(200, model);
+    }, function(err) {
+      res.json(400, err);
     });
-
   },
 
   query: function(req, res) {
     var query = req.body.query;
     var limit = req.body.limit;
 
-    // var q1 = DB.knex("Users").select(DB.knex./  )
-
     Users.
       forge().
       query(function(qb) {
         qb.
-          where("User", "like", "%" + query + "%").
-          orWhere("FName", "like", "%" + query + "%").
-        orWhere("LName", "like", "%" + query + "%");
+          where('User', 'like', '%' + query + '%').
+          orWhere('FName', 'like', '%' + query + '%').
+        orWhere('LName', 'like', '%' + query + '%');
 
-        if (limit && typeof limit === "number") {
+        if (limit && typeof limit === 'number') {
           qb.limit(limit);
         }
       }).
@@ -131,7 +140,7 @@ module.exports = {
       }));
     }, function(err) {
       res.json(500, {
-        message: "Something went wrong",
+        message: 'Something went wrong',
         err: err.toString()
       });
     });

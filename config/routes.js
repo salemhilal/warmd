@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var users = require('../app/controllers/user.js'),
     artists = require('../app/controllers/artist.js'),
@@ -12,26 +12,34 @@ var users = require('../app/controllers/user.js'),
 module.exports = function(app, config, passport) {
 
   // Health & sanity checking
-  app.route("/ping").get(function(req,res) {
-   res.end("pong");
+  app.route('/ping').get(function(req,res) {
+   res.end('pong');
   });
 
-  /* Login and Session Routes */
+  // User login endpoint
   app.route('/login').get(function(req, res, next) {
-    if(req.user) {
-      res.redirect('/');
-    }
+    if(req.user) { res.redirect('/'); }
     next();
   }, users.login);
+
+  // User logout endpoint
   app.route('/logout').get(users.logout);
+
+  // Session init endpoint
   app.route('/users/session').
     get(function(req, res) {
       res.redirect('/');
     }).
     post(passport.authenticate('local', {
-      successRedirect: '/app', //TODO: Send to req.session.returnTo if exists
+      successRedirect: '/app', 
       failureRedirect: '/login?success=false'
     }));
+
+  // User signup endpoint
+  app.route('/signup').get(function(req, res, next) {
+    if(req.user) { res.redirect('/'); }
+    next();
+  }, users.login);
 
   // Get info about the current user
   // TODO: Move to Users controller
@@ -46,13 +54,13 @@ module.exports = function(app, config, passport) {
 
   //TODO: Auth all of these as necessary, you idiot.
   //TODO: Make these have better RESTful names.
-  // i.e. "artists" should refer to collections, "artist" to individuals
+  // i.e. 'artists' should refer to collections, 'artist' to individuals
 
   /* User Routes */
   var userRouter = express.Router().
     param('user', users.load).
     post('/query', users.isAuthed, users.query).
-    post('/new', users.isAuthed, users.create). //
+    post('/new', users.create). 
     get('/:user', users.isAuthed, users.show);
   app.use('/users', userRouter);
 

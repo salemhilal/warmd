@@ -62,4 +62,4 @@ module.exports = function(grunt) {
   grunt.registerTask('startProd', ['shell:clean', 'shell:updateProd', 'jshint', 'shell:test', 'startProd']);
 
 
-}
+};

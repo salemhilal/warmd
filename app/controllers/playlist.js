@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var DB = require('bookshelf').DB,
   Playlist = require('../models/playlist').model;
@@ -44,7 +44,7 @@ module.exports = {
       res.json(200, req.playlist);
     } else {
       res.json(404, {
-        error: "Playlist not found"
+        error: 'Playlist not found'
       });
     }
   },
