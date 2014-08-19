@@ -3,7 +3,8 @@
 var DB = require('bookshelf').DB,
     User = require('../models/user').model,
     Users = require('../models/user').collection,
-    encryptPassword = require('../../config/middlewares/utils').encryptPassword;
+    utils = require('../../config/middlewares/utils'),
+    encryptPassword = utils.encryptPassword;
 
 module.exports = {
 

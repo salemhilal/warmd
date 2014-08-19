@@ -71,6 +71,6 @@
     "grunt-cli": "~0.1.13",
     "mocha": "^1.18.2",
     "should": "^3.3.1",
-    "supertest": "^0.11.0"
+    "supertest": "^0.13.0"
   }
 }

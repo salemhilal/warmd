@@ -47,4 +47,5 @@ var hasAccess = function(level, fail) {
 module.exports = {
   encryptPassword: encryptPassword,
   hasAccess: hasAccess,
+  json401: json401
 };
