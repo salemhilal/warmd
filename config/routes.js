@@ -1,31 +1,32 @@
 'use strict';
 
-var users = require('../app/controllers/user.js'),
-    artists = require('../app/controllers/artist.js'),
-    programs = require('../app/controllers/program.js'),
-    playlists = require('../app/controllers/playlist.js'),
-    plays = require('../app/controllers/play.js'),
-    album = require('../app/controllers/album.js'),
-    review = require('../app/controllers/review.js'),
+var users = require('../app/controllers/user'),
+    artists = require('../app/controllers/artist'),
+    programs = require('../app/controllers/program'),
+    playlists = require('../app/controllers/playlist'),
+    plays = require('../app/controllers/play'),
+    album = require('../app/controllers/album'),
+    review = require('../app/controllers/review'),
+    util = require('./middlewares/utils'),
     express = require('express');
 
 module.exports = function(app, config, passport) {
 
-  // Health & sanity checking
+  /* Health & sanity checking */
   app.route('/ping').get(function(req,res) {
    res.end('pong');
   });
 
-  // User login endpoint
+  /* User login endpoint */
   app.route('/login').get(function(req, res, next) {
     if(req.user) { res.redirect('/'); }
     next();
   }, users.login);
 
-  // User logout endpoint
+  /* User logout endpoint */
   app.route('/logout').get(users.logout);
 
-  // Session init endpoint
+  /* Session init endpoint */
   app.route('/users/session').
     get(function(req, res) {
       res.redirect('/');
@@ -35,13 +36,13 @@ module.exports = function(app, config, passport) {
       failureRedirect: '/login?success=false'
     }));
 
-  // User signup endpoint
+  /* User signup endpoint */
   app.route('/signup').get(function(req, res, next) {
     if(req.user) { res.redirect('/'); }
     next();
   }, users.login);
 
-  // Get info about the current user
+  /* Get info about the current user */
   // TODO: Move to Users controller
   app.route('/me').get(users.isAuthed, function(req, res) {
     req.user.
@@ -61,6 +62,8 @@ module.exports = function(app, config, passport) {
     param('user', users.load).
     post('/query', users.isAuthed, users.query).
     post('/new', users.create). 
+    get('/pending', users.isAuthed, util.hasAccess('Admin'), users.pending).
+    post('/approve', users.isAuthed, util.hasAccess('Admin'), users.approve).
     get('/:user', users.isAuthed, users.show);
   app.use('/users', userRouter);
 

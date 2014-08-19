@@ -101,22 +101,63 @@ module.exports = {
   create: function(req, res) {
     console.log('New user: ', req.body);
     // TODO: Implement this behind privileged auth
-    new User({
-      User: req.body.User, 
-      FName: req.body.FName,
-      LName: req.body.LName,
-      Password: encryptPassword(req.body.Password, req.body.User),
-      Phone: req.body.Phone,
-      Email: req.body.Email,
-      AuthLevel: 'None'
-    }).save().then(function(model) {
+    req.body.AuthLevel = 'None';
+    req.body.Password = encryptPassword(req.body.Password, req.body.User);
+
+    new User(req.body).save().then(function(model) {
       // TODO: SEND AN EMAIL HERE!
       res.json(200, model);
     }, function(err) {
+      // Throws an error if the user already exists automatically
       res.json(400, err);
     });
   },
 
+  // Approve a pending user
+  approve: function(req, res) {
+    
+    User.where({ UserID: req.body.id })
+      .fetch()
+      .then(function(user) {
+        if(user.attributes.AuthLevel !== 'None') {
+          res.json(400, {
+            error: 'User already approved'
+          });
+        } else {
+          user
+            .set({AuthLevel: 'Training'})
+            .save()
+            .then(function(user) {
+              res.json(200, user.toJSON());
+            }, function(err) {
+              res.json(500, err);
+            });
+        }
+      });
+  },
+
+  // Lists pending users
+  pending: function(req, res) {
+    Users
+      .forge()
+      .query(function(qb) {
+        qb.where('AuthLevel', 'like', 'None');
+      })
+      .fetch()
+      .then(function(pendingUsers) {
+        res.json(200, pendingUsers.toJSON({
+          shallow: true
+        }));
+      }, function(err) {
+        res.json(500, {
+          message: 'Something went wrong', 
+          err: err.toString() 
+        });
+      });
+
+  },
+
+  // Search for a user
   query: function(req, res) {
     var query = req.body.query;
     var limit = req.body.limit;
@@ -145,7 +186,5 @@ module.exports = {
       });
     });
 
-  },
-
-
+  }
 };
