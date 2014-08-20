@@ -4,7 +4,8 @@ var DB = require('bookshelf').DB,
     User = require('../models/user').model,
     Users = require('../models/user').collection,
     utils = require('../../config/middlewares/utils'),
-    encryptPassword = utils.encryptPassword;
+    encryptPassword = utils.encryptPassword,
+    checkit = require('checkit');
 
 module.exports = {
 
@@ -81,7 +82,6 @@ module.exports = {
 
   show: function(req, res) {
     res.format({
-
       // They want JSON
       json: function() {
         res.json(req.userData.toJSON());
@@ -100,18 +100,28 @@ module.exports = {
   },
 
   create: function(req, res) {
-    console.log('New user: ', req.body);
     // TODO: Implement this behind privileged auth
     req.body.AuthLevel = 'None';
-    req.body.Password = encryptPassword(req.body.Password, req.body.User);
 
-    new User(req.body).save().then(function(model) {
-      // TODO: SEND AN EMAIL HERE!
-      res.json(200, model);
-    }, function(err) {
-      // Throws an error if the user already exists automatically
-      res.json(400, err);
-    });
+    // Ensure password length is at least 8, before it's encrypted
+    // Other validation is done in the User model
+    // TODO: Think about that a bit.
+
+    checkit({ Password: ['required', 'minLength:8'] })
+      .run(req.body)
+      .then(function(valid) {
+        req.body.Password = encryptPassword(req.body.Password, req.body.User);    
+        return new User(req.body).save();
+      })
+      .then(function(model) {
+        // TODO: SEND AN EMAIL HERE!
+        res.json(200, model);
+      }, function(err) {
+        res.json(400, err);
+      })
+      .catch(checkit.Error, function(err) {
+        res.json(400, err.toJSON());
+      });
   },
 
   // Approve a pending user
@@ -186,6 +196,24 @@ module.exports = {
         err: err.toString()
       });
     });
+  },
 
+  // See if a user exists. Returns no personal info.
+  exists: function(req, res) {
+    var response;
+    if (req.body.username && req.body.username.trim()) {
+      response = Users.forge()
+        .query('where', 'User', 'like', req.body.username.trim())
+        .fetch();
+    } else if (req.body.email && req.body.email.trim()) {
+      response = Users.forge()
+        .query('where', 'Email', 'like', req.body.email.trim())
+        .fetch();
+    } else {
+      res.json({exists: false});
+    }
+    response.then(function(results) {
+      res.json({exists: !!results.length});
+    });
   }
 };

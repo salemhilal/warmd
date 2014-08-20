@@ -64,6 +64,7 @@ module.exports = function(app, config, passport) {
     post('/new', users.create). 
     get('/pending', users.isAuthed, util.hasAccess('Admin'), users.pending).
     post('/approve', users.isAuthed, util.hasAccess('Admin'), users.approve).
+    post('/exists', users.exists).
     get('/:user', users.isAuthed, users.show);
   app.use('/users', userRouter);
 

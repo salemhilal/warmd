@@ -6,7 +6,7 @@ module.exports = {
   'development': {
     port: 3000,
     root: root,
-    debug: false,
+    debug: true,
   },
   
   'test': {

@@ -3,15 +3,29 @@
   font-size: 12px;
   text-transform: uppercase;
 }
+
 .menu-item:hover {
   text-decoration: underline;
 }
+
 .main {
   margin-top: 15px;
 }
-.login-form {
+
+.login-form, .signup-form {
   margin: 40px auto 0;
   max-width: 400px;
+}
+
+.signup-form, 
+.part2, 
+.signup-form .fui-check-inverted,
+.signup-form .error-message {
+  display: none;
+}
+
+.signup-form .has-success .fui-check-inverted {
+  display: inherit;
 }
 
 .login-logo {
@@ -80,4 +94,10 @@ div.click-to-edit form {
   font-style: italic;
   cursor: pointer;
   color: #bdc3c7;
+}
+
+.show-signup, .show-login {
+  display: inline-block;
+  margin: 15px auto 0;
+  cursor: pointer;
 }

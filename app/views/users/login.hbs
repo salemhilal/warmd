@@ -11,7 +11,6 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
 
-
   <link rel="stylesheet" href="/resources/css/style.css">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="/resources/css/flat-ui.css">
@@ -25,7 +24,6 @@
 <body>
   <div class="container">
     <div class="login-form tile">
-
       <h1>WRCT</h1>
 
       <form action="/users/session" method="post" role="form"  >
@@ -49,9 +47,59 @@
         <!-- Login button -->
         <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
       </form>
+      <a class="show-signup">Sign Up</a>
 
+    </div><!-- /.login-form.tile -->
+    <div class="signup-form tile">
+      <h1>WRCT</h1> 
+      <form action="/users/new" method="post" role="form">
+        <!-- First Name -->
+        <div class="form-group">
+          <input type="text" class="fname form-control input-lg login-field" name="FName" placeholder="Enter your first name...">
+          <span class="input-icon fui-check-inverted"></span>
+          <div class="error-message"></div>
+        </div>
+
+        <!-- Last Name -->
+        <div class="form-group">
+          <input type="text" class="lname form-control input-lg login-field" name="LName" placeholder="...and your last name.">
+          <span class="input-icon fui-check-inverted"></span>
+          <div class="error-message"></div>
+        </div>
+
+        <div class="part2">
+          <!-- Username -->
+          <div class="form-group">
+            <input id="user" type="text" name="User" class="username form-control input-lg login-field" placeholder="Enter a username" autofocus>
+            <span class="input-icon fui-check-inverted"></span>
+            <div class="error-message"></div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <input type="password" class="password form-control input-lg login-field" name="Password" placeholder="and a password (at least 8 characters)">
+            <span class="input-icon fui-check-inverted"></span>
+            <div class="error-message"></div>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <input type="text" class="email form-control input-lg login-field" name="Email" placeholder="Lastly, your email">
+            <span class="input-icon fui-check-inverted"></span>
+            <div class="error-message"></div>
+          </div>
+        </div>
+        
+        <!-- Signup button -->
+        <button class="btn btn-primary btn-lg btn-block submit-signup" disabled>Sign Up</button>
+        <a class="show-login">Login</a>
+      </form>
     </div>
-  </div>
+  </div><!-- /.container -->
+
+  <!-- Scripts! --> 
+  <script src="//cdn.jsdelivr.net/jquery/2.1/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/lodash/2.4.1/lodash.min.js"></script>
   <script type="text/javascript" charset="utf-8">
     var alert = document.getElementById("login-err")
     alert.style.display = "none";
@@ -78,7 +126,121 @@
       localStorage.removeItem("warmd_goto_url");
     }
 
-    console.log("Going to ", localStorage.getItem("warmd_goto_url"));
+    // Validate email
+    // http://stackoverflow.com/questions/2507030/email-validation-using-jquery
+    function isEmail(email) {
+      var emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      return emailRegex.test(email);
+    }
+
+    // Hide / show error messages for input, and color the input boxes
+    function toggleError($elem, error, message) {
+      var $formGroup = $elem.closest('.form-group'),
+          $errorMessage = $formGroup.find('.error-message');
+      if (error) {
+        $errorMessage.text(message).slideDown();
+        $formGroup.removeClass('has-success').addClass('has-error');
+      } else {
+        $errorMessage.slideUp();
+        $formGroup.removeClass('has-error').addClass('has-success');
+      }
+    }
+
+    // Login / Signup form toggle
+    $('.show-signup').click(function() {
+      $('.login-form').slideUp();
+      $('.signup-form').slideDown();
+    });
+    $('.show-login').click(function() {
+      $('.login-form').slideDown();
+      $('.signup-form').slideUp();
+    });
+
+    var checkFirstName = _.debounce(function($elem, name) {
+      toggleError($elem, !name.length, 'Please provide your first name');
+    }, 500);
+
+    var checkLastName = _.debounce(function($elem, name) {
+      toggleError($elem, !name.length, 'Please provide your last name');
+    }, 500);
+
+    // Checks to see if the username is valid, and isn't taken
+    var checkUsername = _.debounce(function($elem, username) {
+      
+      if(!username.length) { 
+        toggleError($elem, !username.length, 'Please enter a username');
+        return 
+      } else {
+        $.post('/users/exists', {username: username}, function(data) {
+          $elem.closest('.form-group')
+            .toggleClass('has-error', data.exists)
+            .toggleClass('has-success', !data.exists);
+          toggleError($elem, data.exists, 'That username is already in use');
+        });
+      }
+    }, 500);
+
+    // Checks to see if the email is valid and untaken
+    var checkEmail = _.debounce(function($elem, email) {
+      toggleError($elem, !isEmail(email), 'Please enter a valid email address');
+      if(!isEmail(email)) { return; }
+      $.post('/users/exists', {email: email}, function(data) {
+        $elem.closest('.form-group')
+          .toggleClass('has-error', data.exists)
+          .toggleClass('has-success', !data.exists);
+        toggleError($elem, data.exists, 'That email is already in use');
+      });
+    }, 500);
+
+    // Checks password
+    var checkPassword = _.debounce(function($elem, password) {
+      toggleError($elem, password.length < 8, 'Your password must be at least 8 characters');
+    }, 500);
+
+    // First and last name
+    $('.signup-form .fname, .signup-form .lname').on('input', function() {
+      var placeholder = 'Enter a username',
+          fname = $('.signup-form .fname').val(),
+          lname = $('.signup-form .lname').val();
+
+      if (fname.length && lname.length) {
+        placeholder += ' (like ' + (fname[0] + lname).toLowerCase() + ')'
+        $('.part2').slideDown();
+      } 
+      $('.signup-form .username').attr('placeholder', placeholder);
+    }).on('blur input', function() {
+      var $this = $(this);
+      if($this.hasClass('fname')) {
+        checkFirstName($this, $this.val().trim());  
+      } else {
+        checkLastName($this, $this.val().trim());
+      }
+    });
+
+    // Username Field
+    $('.signup-form .username').on('blur input', function(event) {
+      var $this = $(this);
+      checkUsername($this, $this.val().trim());
+    });
+
+    // Email Field
+    $('.signup-form .email').on('blur input', function(event) {
+      var $this = $(this);
+      checkEmail($this, $this.val().trim()); 
+    });
+
+    // Password
+    $('.signup-form .password').on('blur input', function() {
+      var $this = $(this);
+      checkPassword($this, $this.val());
+    });
+
+    // Signup button
+    $('.signup-form').on('input', function() {
+      $(this).find('submit-signup')
+        .prop('disabled', $(this).find('.form-group.has-success').length === 5);
+    });
+
   </script>
 
 </body>
