@@ -11,7 +11,6 @@ module.exports = {
 
   // Render a user login page
   login: function(req, res) {
-
     res.format({
       // Asking for JSON but aren't authed.
       json: function() {
@@ -26,8 +25,6 @@ module.exports = {
         res.render('users/login');
       }
     });
-
-    res.render('users/login');
   },
 
   // Log the user out, redirect back to login.
