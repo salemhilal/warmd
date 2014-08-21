@@ -20,7 +20,8 @@
 .signup-form, 
 .part2, 
 .signup-form .fui-check-inverted,
-.signup-form .error-message {
+.signup-form .error-message,
+#login-err {
   display: none;
 }
 

@@ -16,7 +16,7 @@ module.exports = {
   },
 
   'production': {
-    port: 443, //TODO: 443 at some point
+    port: 443, 
     root: root,
     debug: false,
   }

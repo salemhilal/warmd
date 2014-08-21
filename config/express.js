@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var express = require('express'),
     hbs = require('express-hbs'),
@@ -12,16 +12,14 @@ module.exports = function(app, config, passport) {
 
   // Config for specific environments. Nothing here yet, really.
   var env = process.env.NODE_ENV || 'development';
-  if('development' == env) {
+  if('development' === env) {
     // Show stack errors.
     app.set('showStackError', config.showStackError || true);
 
     // Log requests. Should probably remove this when Winston
     // becomes a more implemented thing.
     app.use(morgan());
-  } else if ('test' == env) {
-
-  } else if ('production' == env) {
+  } else if ('production' === env) {
     // Log requests. Should probably remove this when Winston
     // becomes a more implemented thing.
     app.use(morgan());
@@ -41,11 +39,16 @@ module.exports = function(app, config, passport) {
 
   // Config for all environments
 
-  app.use(cookieParser());    // Cookies
-  app.use(bodyParser());      // Request bodies (query params, payloads)
-  app.use(methodOverride());  // PUT / DELETE request support
-  app.use(session({
-    secret: 'shilalisababby'  // <-- lol
+  app.use(cookieParser());              // Cookies
+  app.use(bodyParser.json());           // Request bodies (query params, payloads)
+  app.use(bodyParser.urlencoded({       // Request bodies (query params, payloads)
+    extended: true
+  }));     
+  app.use(methodOverride());            // PUT / DELETE request support
+  app.use(session({                     // Session store. TODO: Use redis
+    secret: 'shilalisababby',  // <-- lol
+    resave: true, 
+    saveUninitialized: true
   }));
 
   // use passport session
@@ -64,9 +67,9 @@ module.exports = function(app, config, passport) {
   });
 
   // Serve static content. Must be after static security middleware
-  app.use("/app", express.static(config.root + '/public/app'));
+  app.use('/app', express.static(config.root + '/public/app'));
   // TODO: Have cache conditional on development/production variable
-  app.use("/resources", express.static(config.root + '/public/resources' /*, {maxAge: 1000 * 60 * 60 * 24}*/));
+  app.use('/resources', express.static(config.root + '/public/resources' /*, {maxAge: 1000 * 60 * 60 * 24}*/));
 
   // Routes
   require('./routes')(app, config, passport);
@@ -75,13 +78,13 @@ module.exports = function(app, config, passport) {
   app.use(function(err, req, res, next) {
     // treat as 404
     if (err.message &&
-          (~err.message.indexOf('not found') ||
-          (~err.message.indexOf('Cast to ObjectId failed')))) {
+          (err.message.indexOf('not found') ||
+          (err.message.indexOf('Cast to ObjectId failed')))) {
       return next();
     }
 
-    if(err.message && err.message.indexOf("Unexpected") != -1) {
-      res.json(400, {err: "Malformed request: " +err.message});
+    if(err.message && err.message.indexOf('Unexpected') !== -1) {
+      res.json(400, {err: 'Malformed request: ' +err.message});
       return;
     }
 

@@ -37,9 +37,12 @@ var options = {
 var keys;
 try {
   keys = require('./config/keys')[env];
+  if (!keys) {
+    throw 'No configuration found for environment ' + env;
+  }
 } catch (err) {
   if (err.code === 'MODULE_NOT_FOUND') {
-    console.error("\n\nMake sure you've created config/keys.js\n", err, "\n\n");
+    console.error('\n\nMake sure you\'ve created config/keys.js\n', err, '\n\n');
     // return;
   } else {
     throw err;

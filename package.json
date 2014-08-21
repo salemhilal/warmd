@@ -52,7 +52,7 @@
     "method-override": "~1.0.0",
     "morgan": "~1.1.1",
     "mysql": "~2.3.0",
-    "nodemailer": "~0.6.3",
+    "nodemailer": "~1.1.0",
     "passport": "~0.2.0",
     "passport-local": "~1.0.0",
     "request": "~2.36.0",
