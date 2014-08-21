@@ -63,7 +63,7 @@ db.plugin('visibility');                            // Use visibility plugin
 bookshelf.DB = db;                                  // Expose globally 
 app.set('bookshelf', bookshelf);
 require('./config/passport')(passport, config);     // Passport
-require("./config/express")(app, config, passport); // Express config, routes
+require('./config/express')(app, config, passport); // Express config, routes
 
 //================================
 // Initialize ====================
@@ -80,9 +80,9 @@ var server = https.createServer(options, app).listen(port, function() {
   wlog.info('    \\/  \\/_/    \\_\\_|  \\_\\_|  |_|_____/ ');
   wlog.info('');
 
-  wlog.info("WARMD now running on port " +port+ " in " +env+ " environment");
+  wlog.info('WARMD now running on port ' +port+ ' in ' +env+ ' environment');
   if (config.verbose) {
-    console.log("Verbose mode on");
+    console.log('Verbose mode on');
   }
 });
 

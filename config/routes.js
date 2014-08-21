@@ -19,8 +19,11 @@ module.exports = function(app, config, passport) {
 
   /* User login endpoint */
   app.route('/login').get(function(req, res, next) {
-    if(req.user) { res.redirect('/'); }
-    next();
+    if(req.user) { 
+      res.redirect('/'); 
+    } else {
+      next(); 
+    }
   }, users.login);
 
   /* User logout endpoint */
@@ -35,12 +38,6 @@ module.exports = function(app, config, passport) {
       successRedirect: '/app', 
       failureRedirect: '/login?success=false'
     }));
-
-  /* User signup endpoint */
-  app.route('/signup').get(function(req, res, next) {
-    if(req.user) { res.redirect('/'); }
-    next();
-  }, users.login);
 
   /* Get info about the current user */
   // TODO: Move to Users controller
